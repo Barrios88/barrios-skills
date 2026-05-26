@@ -27,7 +27,9 @@ Set these in your shell or a local `.env` file (never commit real values):
 | `NCBI_API_KEY` | citation-management | PubMed searches |
 | `BROWSERLESS_TOKEN` | web-scrape | Optional JS rendering (institutional setup) |
 | `BROWSERLESS_HOST` | web-scrape | Browserless server hostname |
-| WRDS credentials | wrds | Via `~/.pgpass` (see skill docs) |
+| `WRDS_USERNAME` | wrds-mcp, tunnel scripts | Your WRDS login (unique per user) |
+| `WRDS_PASSWORD` | wrds-mcp, tunnel scripts | Your WRDS password — set in MCP config or `~/.wrds-mcp.env`, never commit |
+| WRDS via pgpass | wrds Python scripts | Optional: `~/.pgpass` with YOUR username/password |
 
 ## Before you commit changes
 

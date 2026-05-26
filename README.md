@@ -33,6 +33,17 @@ cd docs && python3 -m http.server 8080
    - [Claude Code](install/claude.md) → `~/.claude/skills/`
    - [Codex](install/codex.md) → `~/.codex/skills/`
 
+
+## WRDS MCP (query Compustat, CRSP, and more)
+
+This repo includes **[wrds-mcp](mcp/wrds-mcp/)** — an MCP server by John Barrios for Wharton WRDS.
+
+**You need your own WRDS account.** Setup (install, your username/password, Duo tunnel, Cursor/Claude config):
+
+→ **[install/wrds-mcp.md](install/wrds-mcp.md)**
+
+Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and table conventions.
+
 ## Featured skills
 
 | Skill | What it does |

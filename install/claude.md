@@ -27,3 +27,7 @@ cp -R /path/to/barrios-skills/skills/research-tools/web-scrape .claude/skills/
 ## Verify
 
 Start Claude Code in a project and ask a task that matches the skill description. Claude loads skills when the request triggers the skill's `description` field.
+
+## WRDS data access
+
+To query Compustat, CRSP, etc. through the agent, set up **[wrds-mcp](../install/wrds-mcp.md)** with **your own** WRDS username and password.

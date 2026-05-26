@@ -33,3 +33,7 @@ In Cursor Agent chat, ask something that matches the skill — e.g. "Run a DiD r
 
 - [Cursor skills docs](https://cursor.com/docs)
 - Do **not** copy skills into `~/.cursor/skills-cursor/` — that folder is managed by Cursor.
+
+## WRDS data access
+
+To query Compustat, CRSP, etc. through the agent, set up **[wrds-mcp](../install/wrds-mcp.md)** with **your own** WRDS username and password.

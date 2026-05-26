@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wrds-mcp"
+version = "0.1.0"
+description = "MCP server for WRDS (Wharton Research Data Services) — explore schemas, query data, and download datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "John Barrios", email = "johnbarrios88@gmail.com" },
+]
+keywords = ["wrds", "mcp", "finance", "crsp", "compustat", "accounting", "research"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "pandas>=2.0",
+    "sqlalchemy>=2.0",
+    "psycopg2-binary>=2.9",
+    "pyarrow>=14.0",
+    "pydantic>=2.0",
+    "tabulate>=0.9",
+    "paramiko>=3.0",
+]
+
+[project.optional-dependencies]
+# If you prefer sshpass over paramiko, install sshpass system-wide
+# and skip this — paramiko is the fallback for Duo MFA handling
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+]
+
+[project.scripts]
+wrds-mcp = "wrds_mcp.server:mcp.run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["wrds_mcp"]

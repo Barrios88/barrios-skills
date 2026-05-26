@@ -7,8 +7,25 @@ collection: barrios-skills
 ---
 > **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
+## WRDS MCP (recommended for AI agents)
+
+John Barrios's **wrds-mcp** server exposes WRDS to Cursor, Claude, and other MCP clients.
+
+**Before querying WRDS, the user must:**
+
+1. Install the MCP from [`mcp/wrds-mcp/`](../../../mcp/wrds-mcp/) — see **[install/wrds-mcp.md](../../../install/wrds-mcp.md)**
+2. Set **their own** credentials: `WRDS_USERNAME` and `WRDS_PASSWORD` (from their WRDS account)
+3. Start the tunnel: `bash mcp/wrds-mcp/tunnel/tunnel_up.sh` and approve **Duo MFA** once per session
+4. Register the MCP with `WRDS_TUNNEL_PORT=49600` in Cursor or Claude config
+
+When MCP tools are available (`wrds_run_sql`, `wrds_get_compustat`, etc.), **prefer MCP over raw Python connections**. Still apply all filter rules in this skill.
+
+If the user has not configured MCP credentials, **stop and walk them through** [install/wrds-mcp.md](../../../install/wrds-mcp.md) — do not guess usernames or passwords.
+
+
 ## Contents
 
+- [WRDS MCP (recommended for AI agents)](#wrds-mcp-recommended-for-ai-agents)
 - [Query Enforcement](#query-enforcement)
 - [Quick Reference: Table Names](#quick-reference-table-names)
 - [Connection](#connection)
