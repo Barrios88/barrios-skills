@@ -40,7 +40,7 @@ This repo includes **[wrds-mcp](mcp/wrds-mcp/)** — an MCP server by John Barri
 
 **You need your own WRDS account.** Setup (install, your username/password, Duo tunnel, Cursor/Claude config):
 
-→ **[install/wrds-mcp.md](install/wrds-mcp.md)**
+→ **[WRDS MCP setup (web)](docs/wrds-mcp.html)** · [Markdown version](install/wrds-mcp.md)
 
 Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and table conventions.
 

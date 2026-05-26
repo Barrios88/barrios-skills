@@ -1,3 +1,5 @@
+> **Web guide:** [docs/wrds-mcp.html](../docs/wrds-mcp.html) (GitHub Pages: `https://YOUR_USERNAME.github.io/barrios-skills/wrds-mcp.html`)
+
 # WRDS MCP setup (John Barrios)
 
 The **wrds-mcp** server lets Cursor, Claude, and other MCP clients query WRDS (Compustat, CRSP, Form 4, etc.) using natural language. You need:
