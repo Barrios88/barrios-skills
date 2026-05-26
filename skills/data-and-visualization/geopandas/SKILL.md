@@ -4,7 +4,10 @@ description: Python library for working with geospatial vector data including sh
 license: BSD-3-Clause license
 metadata:
     skill-author: K-Dense Inc.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # GeoPandas
 

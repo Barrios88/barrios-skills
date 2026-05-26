@@ -1,7 +1,10 @@
 ---
 name: econ-lit-search
 description: Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenever the user asks to search for papers, find literature, look up references, do a lit review, check what's been published on a topic, find papers by an author, or any other request that involves discovering or retrieving academic economics papers. Also trigger when the user says "search econ-lit", "search the corpus", "find me papers on…", "what papers exist about…", "look up [topic] in the literature", or similar. This skill searches a local indexed corpus — it does NOT overlap with OpenAlex (which covers 240M+ works broadly). Let the user decide which to use; do not auto-combine with OpenAlex unless asked.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Econ-Lit Search
 

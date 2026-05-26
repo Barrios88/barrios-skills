@@ -1,7 +1,10 @@
 ---
 name: openalex-api
 description: Access and analyze OpenAlex scholarly metadata through the REST API, including works, authors, institutions, sources, concepts, topics, funders, and publishers. Use when asked to retrieve publication or citation metadata, run OpenAlex searches with filters, map author-institution relationships, or build reproducible bibliometric datasets from OpenAlex.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # OpenAlex API
 

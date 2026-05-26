@@ -1,21 +1,19 @@
 const FEATURED_IDS = [
   "stata-regression",
-  "econ-humanizer-plus",
   "wrds",
+  "python-panel-data",
+  "econ-humanizer-plus",
   "latex-tables",
-  "web-scrape",
-  "peer-review",
   "econ-lit-search",
-  "academic-paper-writer",
+  "peer-review",
+  "econ-visualization",
 ];
 
 const CATEGORY_SHORT = {
   "econometrics": "Econometrics",
-  "writing-and-review": "Writing",
   "data-and-visualization": "Data & viz",
-  "documents": "Documents",
   "research-tools": "Research",
-  "career-and-grants": "Career",
+  "writing-and-review": "Writing",
 };
 
 let catalog = null;

@@ -12,7 +12,10 @@ description: >
   seemingly simple scrape tasks — because tool selection (curl vs. curl_yale vs.
   browserless vs. Playwright) matters enormously and the wrong choice silently
   fails.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Web Scraping — Economist's Toolkit
 

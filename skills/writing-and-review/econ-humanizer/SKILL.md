@@ -1,7 +1,10 @@
 ---
 name: econ-humanizer
 description: "Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear, direct writing style inspired by John Cochrane: plain language, short sentences, active voice, concrete claims. Use this skill whenever editing, revising, or drafting prose for research papers targeting top journals (AER, QJE, JPE, Econometrica, REStud, JF, JFE, RFS, TAR, JAR, JAE). Also use when the user says humanize, clean up my writing, make this sound less AI, improve the prose, edit for style, or references Cochrane writing style. Works for any section of an academic paper including introduction, literature review, hypothesis development, results discussion, and conclusion. Complements the economic-writing skill (which handles structure, citations, and research process) by focusing purely on prose quality and voice."
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Econ-Humanizer: Clear Academic Prose for Economics, Finance, and Accounting
 

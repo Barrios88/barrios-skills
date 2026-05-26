@@ -1,7 +1,10 @@
 ---
 name: econ-writing-plus
 description: Supplements economic-writing, econ-humanizer, academic-paper-writer, research-grants, and referee-report with advanced econ-specific guidance — (1) identification-strategy-specific writing conventions for 13 methods (RCT, DiD, IV, RDD, Synthetic Control, Synthetic DiD, Structural, Descriptive, Bunching, Shift-Share/Bartik, Event Studies, ML Causal), (2) modern DiD estimator guidance (Callaway-Sant'Anna, Sun-Abraham, de Chaisemartin-D'Haultfoeuille, Goodman-Bacon decomposition), (3) AEA replication-package standards, (4) AI-use disclosure policies (AEA, Econometric Society), (5) ERC grant structure, (6) field conventions for macro, trade, finance, (7) title evaluation framework, (8) economic-significance translation rules. USE when drafting/reviewing identification-strategy descriptions, AEA-journal submission prep, ERC proposals, or when the existing econ-writing skills don't cover method-specific narrative conventions. Synthesizes Cochrane, McCloskey, Head, Bellemare, Shapiro, plus modern DiD literature (Goodman-Bacon 2021, Callaway & Sant'Anna 2021, Sun & Abraham 2021, de Chaisemartin & D'Haultfoeuille 2020, Borusyak-Hull-Jaravel 2022, Goldsmith-Pinkham-Sorkin-Swift 2020, Arkhangelsky et al. synthetic DiD).
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Econ Writing Plus
 

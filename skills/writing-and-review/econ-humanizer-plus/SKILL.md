@@ -1,7 +1,10 @@
 ---
 name: econ-humanizer-plus
 description: Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing patterns in economics, finance, and accounting prose. Adds (1) a 10+ phrase deletion list specific to econ papers ("it should be noted that", "this paper contributes to the literature by", "the remainder of this paper is organized as follows", "we perform/conduct/carry out a regression"), (2) an expanded banned-word list for AI tells ("delve", "landscape", "multifaceted", "notably", "leverage" as verb, "robust" outside stats, "pivotal", "groundbreaking", "shed light on", "pave the way", "crucial", "comprehensive", "furthermore", "utilize"), (3) sentence-length variation rules (mix 8-12 and 15-25 words), (4) explicit permission for em-dashes and parentheticals (real writers use these; over-sanitization is itself an AI tell), (5) hedging guidance ("this likely reflects", "one interpretation is"), (6) field-vocabulary naturalness ("extensive margin", "pass-through", "treatment on treated"), (7) micro rules on "clothe naked this", "where vs in which" for models, compound-modifier hyphenation, and named Greek letters. USE alongside econ-humanizer whenever rewriting for voice in econ/finance/accounting papers. Works on any section (intro, lit review, hypothesis development, results, conclusion). Also use when the user says "humanize", "make this sound less AI", "remove AI tells", "Cochrane style", or requests prose cleanup before top-journal submission.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Econ Humanizer Plus
 

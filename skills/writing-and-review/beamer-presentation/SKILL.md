@@ -14,7 +14,10 @@ tags:
   - Beamer
   - presentations
   - slides
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Beamer Presentation Creator
 

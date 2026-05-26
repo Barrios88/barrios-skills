@@ -4,7 +4,10 @@ description: Guided statistical analysis with test selection and reporting. Use 
 license: MIT license
 metadata:
     skill-author: K-Dense Inc.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 # Statistical Analysis
 

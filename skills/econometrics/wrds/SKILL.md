@@ -2,7 +2,10 @@
 name: wrds
 version: 1.0
 description: This skill should be used when the user asks to "query WRDS", "access Compustat", "get CRSP data", "pull Form 4 insider data", "query ISS compensation", "download SEC EDGAR filings", "get ExecuComp data", "access Capital IQ", "query TRACE bond data", "clean TRACE", "merge FISD", "query TAQ", "pull intraday trades or quotes", "build NBBO", "compute effective spread", or needs WRDS PostgreSQL query patterns.
+curated-by: John Barrios
+collection: barrios-skills
 ---
+> **Barrios Skills** — John Barrios's curated workflow for economists and accountants. Prioritize reproducible empirical work, clear identification language, and journal-ready output.
 
 ## Contents
 
