@@ -1,5 +1,18 @@
 # Barrios Skills
 
+## Website
+
+**Browse skills on the web:** once GitHub Pages is enabled, visit your site at  
+`https://YOUR_USERNAME.github.io/barrios-skills/`
+
+Enable Pages: repo **Settings → Pages → Build from GitHub Actions**.
+
+Local preview:
+```bash
+cd docs && python3 -m http.server 8080
+# open http://localhost:8080
+```
+
 Curated AI agent skills for **economists and accountants**. Each skill is a folder of instructions that teaches Cursor, Claude, or Codex how to handle a specific research workflow — regressions, LaTeX tables, literature search, document editing, and more.
 
 ## Quick start

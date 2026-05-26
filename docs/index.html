@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curated AI agent skills for economists, accountants, and academic researchers. Works with Cursor, Claude, and Codex.">
+  <title>Barrios Skills — AI workflows for academic research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">B</span>
+        <span class="brand-text"><strong>Barrios Skills</strong><small>For economists &amp; accountants</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#browse">Browse</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/jmb432/barrios-skills/blob/main/README.md">Docs</a>
+        <a href="https://github.com/jmb432/barrios-skills" class="btn btn-ghost">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Curated agent skills</p>
+          <h1>Research workflows your AI already knows how to run</h1>
+          <p class="lead">Copy-paste skills for Stata regressions, LaTeX tables, literature search, referee reports, and document workflows — built for <strong>Cursor</strong>, <strong>Claude</strong>, and <strong>Codex</strong>.</p>
+          <div class="hero-actions">
+            <a href="#browse" class="btn btn-primary">Browse skills</a>
+            <a href="#install" class="btn btn-secondary">How to install</a>
+          </div>
+          <dl class="stats" id="stats">
+            <div><dt id="stat-skills">—</dt><dd>skills</dd></div>
+            <div><dt id="stat-categories">—</dt><dd>categories</dd></div>
+            <div><dt>3</dt><dd>platforms</dd></div>
+          </dl>
+        </div>
+        <div class="hero-panel">
+          <div class="terminal">
+            <div class="terminal-bar"><span></span><span></span><span></span></div>
+            <pre><code><span class="t-muted"># Install a skill in one line</span>
+<span class="t-cmd">cp -R</span> skills/econometrics/stata-regression \
+     ~/.cursor/skills/
+
+<span class="t-muted"># Then ask your agent:</span>
+<span class="t-str">"Run a DiD in Stata with firm FE</span>
+<span class="t-str"> and export an esttab table."</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="featured" id="featured">
+      <div class="container">
+        <h2>Start here</h2>
+        <p class="section-intro">Popular skills for empirical work and academic writing.</p>
+        <div class="featured-grid" id="featured-grid"></div>
+      </div>
+    </section>
+    <section class="browse" id="browse">
+      <div class="container">
+        <div class="browse-header">
+          <div>
+            <h2>Browse by task</h2>
+            <p class="section-intro">Filter by what you are trying to accomplish, not by tool name.</p>
+          </div>
+          <div class="controls">
+            <label class="search-wrap">
+              <span class="sr-only">Search skills</span>
+              <input type="search" id="search" placeholder="Search skills… e.g. Stata, LaTeX, WRDS" autocomplete="off">
+            </label>
+          </div>
+        </div>
+        <div class="filters" id="filters" role="tablist" aria-label="Skill categories"></div>
+        <p class="results-meta" id="results-meta" aria-live="polite"></p>
+        <div class="skill-grid" id="skill-grid"></div>
+      </div>
+    </section>
+    <section class="install" id="install">
+      <div class="container">
+        <h2>Install in three steps</h2>
+        <div class="steps">
+          <article class="step-card"><span class="step-num">1</span><h3>Clone the repo</h3><pre><code>git clone https://github.com/YOUR_USERNAME/barrios-skills.git</code></pre></article>
+          <article class="step-card"><span class="step-num">2</span><h3>Copy a skill folder</h3><pre><code>cp -R barrios-skills/skills/econometrics/wrds ~/.claude/skills/</code></pre></article>
+          <article class="step-card"><span class="step-num">3</span><h3>Ask naturally</h3><p>The agent loads the skill when your request matches its description — no extra setup.</p></article>
+        </div>
+        <div class="platform-cards">
+          <a class="platform-card" href="https://github.com/jmb432/barrios-skills/blob/main/install/cursor.md"><h4>Cursor</h4><p><code>~/.cursor/skills/</code></p></a>
+          <a class="platform-card" href="https://github.com/jmb432/barrios-skills/blob/main/install/claude.md"><h4>Claude Code</h4><p><code>~/.claude/skills/</code></p></a>
+          <a class="platform-card" href="https://github.com/jmb432/barrios-skills/blob/main/install/codex.md"><h4>Codex</h4><p><code>~/.codex/skills/</code></p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>MIT License · Curated for academic economists and accountants</p>
+      <div class="footer-links">
+        <a href="https://github.com/jmb432/barrios-skills/blob/main/SECURITY.md">Security</a>
+        <a href="https://github.com/jmb432/barrios-skills/blob/main/CONTRIBUTING.md">Contribute</a>
+        <a href="https://github.com/jmb432/barrios-skills">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

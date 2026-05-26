@@ -12,10 +12,6 @@ This repository is a **public, shareable copy** of curated AI skills. Before pub
 | Search API keys | MeiliSearch bearer keys | `MEILI_API_KEY` env var |
 | Personal paths | `/Users/.../Dropbox/...` | Generic `~/` paths |
 
-## Skills excluded from this repo
-
-- **som-llm-api** — Yale SOM-specific LLM endpoint (kept private)
-
 ## Env vars you may need
 
 Set these in your shell or a local `.env` file (never commit real values):
