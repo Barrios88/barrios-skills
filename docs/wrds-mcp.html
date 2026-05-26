@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Set up wrds-mcp with your own WRDS username and password — Duo tunnel, Cursor and Claude configuration.">
+  <title>WRDS MCP Setup — Barrios Skills</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">B</span>
+        <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Econometrics &amp; empirical research</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#browse">Browse</a>
+        <a href="index.html#install">Install</a>
+        <a href="wrds-mcp.html" aria-current="page">WRDS MCP</a>
+        <a href="https://github.com/jmb432/barrios-skills" class="btn btn-ghost">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="guide-page">
+    <div class="container">
+      <a class="guide-back" href="index.html#install">← Back to install guide</a>
+
+      <header class="guide-hero">
+        <p class="eyebrow">John Barrios · wrds-mcp</p>
+        <h1>WRDS MCP setup</h1>
+        <p class="lead">Query Compustat, CRSP, Form 4, and other WRDS libraries from Cursor or Claude. You need <strong>your own</strong> WRDS account — username and password from Wharton — plus a one-time Duo approval per work session.</p>
+      </header>
+
+      <nav class="guide-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#step1">Install the MCP server</a></li>
+          <li><a href="#step2">Set your WRDS credentials</a></li>
+          <li><a href="#step3">Start the Duo tunnel</a></li>
+          <li><a href="#step4">Register in Cursor or Claude</a></li>
+          <li><a href="#step5">Daily workflow</a></li>
+          <li><a href="#tools">MCP tools</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ol>
+      </nav>
+
+      <section class="guide-section" id="prerequisites">
+        <h2>Prerequisites</h2>
+        <ul>
+          <li>Active <a href="https://wrds-www.wharton.upenn.edu/">WRDS</a> subscription</li>
+          <li>Your personal WRDS username and password (assigned when your account is approved)</li>
+          <li>Duo MFA enrolled on your WRDS account</li>
+          <li>Python 3.10 or newer</li>
+        </ul>
+        <div class="callout callout-warn">
+          <strong>Important:</strong> Never use someone else&apos;s credentials. Each researcher has a unique WRDS login. Do not commit passwords to git or paste them in shared chats.
+        </div>
+      </section>
+
+      <section class="guide-section" id="step1">
+        <h2>Step 1 — Install the MCP server</h2>
+        <p>After cloning <a href="https://github.com/jmb432/barrios-skills">Barrios Skills</a>, install the bundled server into a dedicated virtual environment:</p>
+        <pre><code>cd barrios-skills/mcp/wrds-mcp
+python3 -m venv ~/.wrds-mcp-env
+source ~/.wrds-mcp-env/bin/activate
+pip install -e .
+
+which wrds-mcp
+# should print: ~/.wrds-mcp-env/bin/wrds-mcp</code></pre>
+      </section>
+
+      <section class="guide-section" id="step2">
+        <h2>Step 2 — Set your WRDS credentials</h2>
+        <p>WRDS usernames often look like <code>jsmith_yale</code> or <code>firstname_lastname</code>. Use the username and password from your WRDS welcome email.</p>
+
+        <h3>Option A — Private env file (recommended)</h3>
+        <pre><code>cp mcp/wrds-mcp/.env.example ~/.wrds-mcp.env
+# Edit the file — replace placeholders with YOUR username and password
+chmod 600 ~/.wrds-mcp.env
+source ~/.wrds-mcp.env</code></pre>
+        <p>Your <code>~/.wrds-mcp.env</code> should contain:</p>
+        <pre><code>WRDS_USERNAME=your_wrds_username
+WRDS_PASSWORD=your_wrds_password
+WRDS_TUNNEL_PORT=49600</code></pre>
+
+        <h3>Option B — Export in the shell</h3>
+        <pre><code>export WRDS_USERNAME="your_wrds_username"
+export WRDS_PASSWORD="your_wrds_password"</code></pre>
+
+        <h3>Option C — MCP config only</h3>
+        <p>You can pass credentials only in the Cursor or Claude MCP registration (Step 4). The tunnel scripts still need <code>WRDS_USERNAME</code> and <code>WRDS_PASSWORD</code> exported when you run <code>tunnel_up.sh</code>.</p>
+      </section>
+
+      <section class="guide-section" id="step3">
+        <h2>Step 3 — Start the persistent tunnel</h2>
+        <p>WRDS requires Duo MFA. The tunnel daemon opens one SSH session — you approve Duo on your phone <em>once</em>, then every MCP query reuses that connection.</p>
+        <pre><code>source ~/.wrds-mcp.env   # or export credentials
+cd barrios-skills/mcp/wrds-mcp/tunnel
+bash tunnel_up.sh
+# Approve the Duo Push within ~30 seconds
+# -> "tunnel up on 127.0.0.1:49600"</code></pre>
+        <p>Verify the tunnel:</p>
+        <pre><code>bash tunnel_status.sh</code></pre>
+        <p>When you are done for the day:</p>
+        <pre><code>bash tunnel_down.sh</code></pre>
+        <p>Logs and PID files live in <code>~/.wrds-tunnel/</code>.</p>
+
+        <table class="guide-table">
+          <thead><tr><th>Variable</th><th>Required</th><th>Default</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>WRDS_USERNAME</code></td><td>Yes</td><td>—</td><td>Your WRDS login</td></tr>
+            <tr><td><code>WRDS_PASSWORD</code></td><td>Yes</td><td>—</td><td>Your WRDS password</td></tr>
+            <tr><td><code>WRDS_LOCAL_PORT</code></td><td>No</td><td>49600</td><td>Local port the daemon listens on</td></tr>
+            <tr><td><code>WRDS_TUNNEL_PORT</code></td><td>No</td><td>—</td><td>Set to 49600 in MCP config</td></tr>
+            <tr><td><code>WRDS_DUO_RESPONSE</code></td><td>No</td><td>push</td><td>Duo: push, phone, or passcode</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="guide-section" id="step4">
+        <h2>Step 4 — Register in Cursor or Claude</h2>
+        <p>Set <code>WRDS_TUNNEL_PORT=49600</code> so the MCP uses your local tunnel instead of opening a new SSH session (and triggering Duo again).</p>
+
+        <h3>Claude Code</h3>
+        <pre><code>claude mcp add wrds-mcp ~/.wrds-mcp-env/bin/wrds-mcp \
+  -s user \
+  --env WRDS_USERNAME=your_wrds_username \
+  --env WRDS_PASSWORD=your_wrds_password \
+  --env WRDS_TUNNEL_PORT=49600</code></pre>
+        <p>Replace <code>your_wrds_username</code> and <code>your_wrds_password</code> with your account. Check: <code>claude mcp get wrds-mcp</code>.</p>
+
+        <h3>Cursor</h3>
+        <p>Edit <code>~/.cursor/mcp.json</code> (use your home directory path):</p>
+        <pre><code>{
+  "mcpServers": {
+    "wrds-mcp": {
+      "command": "/Users/YOUR_USER/.wrds-mcp-env/bin/wrds-mcp",
+      "args": [],
+      "env": {
+        "WRDS_USERNAME": "your_wrds_username",
+        "WRDS_PASSWORD": "your_wrds_password",
+        "WRDS_TUNNEL_PORT": "49600"
+      }
+    }
+  }
+}</code></pre>
+        <p>Restart Cursor after saving.</p>
+      </section>
+
+      <section class="guide-section" id="step5">
+        <h2>Step 5 — Daily workflow</h2>
+        <div class="flow-steps">
+          <div class="flow-step"><span class="flow-num">1</span><div><strong>Morning</strong> — <code>source ~/.wrds-mcp.env</code> then <code>bash tunnel_up.sh</code> (approve Duo once)</div></div>
+          <div class="flow-step"><span class="flow-num">2</span><div><strong>Work</strong> — Ask your agent for Compustat, CRSP, etc. Install the <a href="https://github.com/jmb432/barrios-skills/tree/main/skills/econometrics/wrds">wrds skill</a> for query filters.</div></div>
+          <div class="flow-step"><span class="flow-num">3</span><div><strong>Evening</strong> — <code>bash tunnel_down.sh</code></div></div>
+        </div>
+        <div class="callout">
+          <strong>Order matters:</strong> Start the tunnel <em>before</em> your first MCP query. If you see &quot;nothing is listening on WRDS_TUNNEL_PORT&quot;, run <code>tunnel_up.sh</code> again.
+        </div>
+      </section>
+
+      <section class="guide-section" id="tools">
+        <h2>MCP tools available</h2>
+        <table class="guide-table">
+          <thead><tr><th>Tool</th><th>Use for</th></tr></thead>
+          <tbody>
+            <tr><td><code>wrds_list_libraries</code></td><td>Browse WRDS schemas</td></tr>
+            <tr><td><code>wrds_list_tables</code></td><td>Tables in a library</td></tr>
+            <tr><td><code>wrds_describe_table</code></td><td>Column names and types</td></tr>
+            <tr><td><code>wrds_sample_data</code></td><td>Preview rows</td></tr>
+            <tr><td><code>wrds_run_sql</code></td><td>Read-only SQL</td></tr>
+            <tr><td><code>wrds_download_data</code></td><td>Export CSV / Parquet / JSON</td></tr>
+            <tr><td><code>wrds_get_crsp_returns</code></td><td>CRSP returns helper</td></tr>
+            <tr><td><code>wrds_get_compustat</code></td><td>Compustat helper</td></tr>
+            <tr><td><code>wrds_merge_crsp_compustat</code></td><td>CCM merge helper</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="guide-section" id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <table class="guide-table">
+          <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td><code>WRDS_USERNAME and WRDS_PASSWORD must be exported</code></td><td>Export both or <code>source ~/.wrds-mcp.env</code> before <code>tunnel_up.sh</code></td></tr>
+            <tr><td><code>authentication failed</code></td><td>Check username/password; confirm WRDS account is active</td></tr>
+            <tr><td>Duo not approved in time</td><td>Re-run <code>tunnel_up.sh</code> and approve within ~30s</td></tr>
+            <tr><td><code>connection refused</code> on port 49600</td><td>Run <code>tunnel_up.sh</code>; check <code>tunnel_status.sh</code></td></tr>
+            <tr><td>Port already in use</td><td><code>tunnel_down.sh</code>, then <code>tunnel_up.sh</code></td></tr>
+            <tr><td>Bad query results</td><td>Use the wrds skill Compustat / CRSP filter checklist</td></tr>
+          </tbody>
+        </table>
+        <p>Daemon logs: <code>~/.wrds-tunnel/daemon.log</code></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>MIT License · John Barrios · <a href="index.html">Barrios Skills</a></p>
+      <div class="footer-links">
+        <a href="https://github.com/jmb432/barrios-skills/blob/main/SECURITY.md">Security</a>
+        <a href="index.html#install">Install</a>
+        <a href="https://github.com/jmb432/barrios-skills">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

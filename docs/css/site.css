@@ -212,3 +212,43 @@ section h2 {
   .hero-panel { order: -1; }
   .nav-links a:not(.btn) { display: none; }
 }
+
+
+/* Guide / detail pages */
+.guide-page { padding: 2.5rem 0 4rem; }
+.guide-page .container { width: min(780px, calc(100% - 2rem)); }
+.guide-back { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--accent-light); text-decoration: none; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.25rem; }
+.guide-back:hover { text-decoration: underline; }
+.guide-hero { margin-bottom: 2rem; }
+.guide-hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.1; margin: 0 0 0.75rem; }
+.guide-hero .lead { color: var(--ink-soft); font-size: 1.05rem; margin: 0; }
+.guide-section { margin-bottom: 2.5rem; }
+.guide-section h2 { font-family: var(--font-serif); font-size: 1.55rem; margin: 0 0 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+.guide-section:first-of-type h2 { border-top: none; padding-top: 0; }
+.guide-section h3 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; color: var(--accent); }
+.guide-section p, .guide-section li { color: var(--ink-soft); font-size: 0.95rem; }
+.guide-section ul, .guide-section ol { padding-left: 1.25rem; }
+.guide-section li { margin-bottom: 0.35rem; }
+.guide-section pre { margin: 0.75rem 0; padding: 1rem 1.1rem; background: #111827; color: #e5e7eb; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+.guide-section code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85em; }
+.guide-section p code, .guide-section li code { background: var(--paper-2); padding: 0.12rem 0.35rem; border-radius: 4px; color: var(--ink); }
+.callout { background: white; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 1rem 1.15rem; margin: 1rem 0; }
+.callout-warn { border-left-color: var(--gold); }
+.callout strong { color: var(--ink); }
+.guide-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; }
+.guide-table th, .guide-table td { border: 1px solid var(--border); padding: 0.55rem 0.65rem; text-align: left; vertical-align: top; }
+.guide-table th { background: var(--paper-2); color: var(--ink); font-weight: 600; }
+.guide-table td { color: var(--ink-soft); }
+.guide-toc { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.15rem 1.25rem; margin-bottom: 2rem; }
+.guide-toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.65rem; border: none; padding: 0; color: var(--ink-soft); }
+.guide-toc ol { margin: 0; padding-left: 1.2rem; }
+.guide-toc a { color: var(--accent-light); text-decoration: none; font-size: 0.92rem; }
+.guide-toc a:hover { text-decoration: underline; }
+.flow-steps { display: grid; gap: 0.75rem; margin: 1rem 0; }
+.flow-step { display: flex; gap: 0.85rem; align-items: flex-start; background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1rem; }
+.flow-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: white; display: grid; place-items: center; font-weight: 700; font-size: 0.82rem; }
+
+.wrds-promo { background: linear-gradient(135deg, rgba(30,77,107,0.06), rgba(184,134,11,0.08)); border: 1px solid rgba(30,77,107,0.2); border-radius: var(--radius); padding: 1.15rem 1.25rem; transition: box-shadow 0.2s, border-color 0.2s; }
+.wrds-promo:hover { box-shadow: var(--shadow); border-color: var(--accent-light); }
+.wrds-promo h4 { margin: 0 0 0.35rem; color: var(--accent); }
+.wrds-promo p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
