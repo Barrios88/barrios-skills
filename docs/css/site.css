@@ -85,7 +85,8 @@ body {
   line-height: 1.08; margin: 0 0 1rem; font-weight: 700;
 }
 .lead { font-size: 1.08rem; color: var(--ink-soft); max-width: 38rem; margin: 0 0 1.5rem; }
-.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.hero-actions .btn-primary-alt { background: var(--gold); color: white; box-shadow: 0 8px 24px rgba(184, 134, 11, 0.25); }
 .stats { display: flex; gap: 2rem; margin: 0; }
 .stats div { min-width: 4.5rem; }
 .stats dt { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--accent); margin: 0; }
@@ -264,7 +265,7 @@ section h2 {
 .split-card p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); }
 .split-card.mcp-card { border-color: rgba(184, 134, 11, 0.35); background: linear-gradient(135deg, rgba(184,134,11,0.06), white); }
 .mcp-section {
-  padding: 3rem 0; background: var(--paper-2); border-block: 1px solid var(--border);
+  padding: 3rem 0 4rem;
 }
 .mcp-section .section-label {
   display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
@@ -286,4 +287,40 @@ section h2 {
 .mcp-compare th { background: white; color: var(--ink); }
 @media (max-width: 860px) {
   .split-banner, .mcp-grid { grid-template-columns: 1fr; }
+}
+
+.pillar-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.pillar-header h2 { margin: 0; }
+.section-label-skills { color: var(--accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.35rem; }
+.section-label-mcp { color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.35rem; }
+.mcp-featured-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.mcp-hero-card {
+  background: white; border: 1px solid rgba(30, 77, 107, 0.18); border-radius: var(--radius);
+  padding: 1.35rem 1.4rem; text-decoration: none; color: inherit;
+  box-shadow: var(--shadow); transition: transform 0.2s, border-color 0.2s;
+}
+.mcp-hero-card:hover { transform: translateY(-2px); border-color: var(--accent-light); }
+.mcp-hero-card h3 { margin: 0 0 0.5rem; font-family: var(--font-serif); font-size: 1.5rem; color: var(--accent); }
+.mcp-hero-card p { margin: 0 0 0.65rem; font-size: 0.92rem; color: var(--ink-soft); }
+.mcp-tools-panel { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.15rem 1.2rem; }
+.mcp-tools-panel h3 { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--ink); }
+.mcp-tool-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+.mcp-tool-list li { font-size: 0.84rem; color: var(--ink-soft); display: flex; gap: 0.5rem; align-items: baseline; }
+.mcp-tool-list code { color: var(--accent); font-size: 0.82rem; white-space: nowrap; }
+.mcp-tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 2rem; }
+.mcp-tool-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+.mcp-tool-card strong { display: block; font-size: 0.82rem; color: var(--accent); font-family: ui-monospace, monospace; margin-bottom: 0.25rem; }
+.mcp-tool-card span { font-size: 0.8rem; color: var(--ink-soft); }
+.compare-band { padding: 2rem 0; border-block: 1px solid var(--border); background: white; }
+.compare-band .container { width: min(900px, calc(100% - 2rem)); }
+.compare-band h2 { font-family: var(--font-serif); font-size: 1.35rem; margin: 0 0 0.5rem; text-align: center; }
+.compare-band > .container > p { text-align: center; color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 1rem; }
+.dual-stats { display: flex; gap: 2.5rem; margin-top: 1.25rem; }
+.dual-stats div { text-align: center; flex: 1; }
+.dual-stats dt { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; margin: 0; }
+.dual-stats dt.skills-stat { color: var(--accent); }
+.dual-stats dt.mcp-stat { color: var(--gold); }
+.dual-stats dd { margin: 0; font-size: 0.78rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+@media (max-width: 860px) {
+  .mcp-featured-grid { grid-template-columns: 1fr; }
 }

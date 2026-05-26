@@ -16,12 +16,13 @@
     <div class="container header-inner">
       <a class="brand" href="#top">
         <span class="brand-mark">B</span>
-        <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Econometrics &amp; empirical research</small></span>
+        <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Skills &amp; MCP servers</small></span>
       </a>
       <nav class="nav-links">
         <a href="#skills">Skills</a>
-        <a href="#mcp">MCP servers</a>
-        <a href="#install-skills">Install</a>
+        <a href="#mcp">MCP</a>
+        <a href="#install-skills">Install skills</a>
+        <a href="#install-mcp">Install MCP</a>
         <a href="https://github.com/jmb432/barrios-skills" class="btn btn-ghost">GitHub</a>
       </nav>
     </div>
@@ -31,43 +32,59 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">John Barrios · Curated collection</p>
-          <h1>Research workflows your AI already knows how to run</h1>
-          <p class="lead">Two kinds of tools in this repo — <strong>skills</strong> (markdown instructions the agent reads) and <strong>MCP servers</strong> (separate programs that connect to data sources like WRDS). They work together but install differently.</p>
+          <h1>Skills and MCP servers for empirical research</h1>
+          <p class="lead"><strong>Skills</strong> teach your agent how to work (Stata, LaTeX, writing). <strong>MCP servers</strong> connect it to live data (WRDS). Same repo, different folders — equal parts of the toolkit.</p>
           <div class="hero-actions">
-            <a href="#skills" class="btn btn-primary">Browse skills</a>
-            <a href="#mcp" class="btn btn-secondary">MCP servers</a>
+            <a href="#skills" class="btn btn-primary">Browse 40 skills</a>
+            <a href="#mcp" class="btn btn-primary btn-primary-alt">WRDS MCP server</a>
           </div>
-          <div class="split-banner">
-            <div class="split-card">
-              <h3>Skills · <code>skills/</code></h3>
-              <p>Copy a folder to <code>~/.cursor/skills/</code>. Teaches Stata, LaTeX, writing voice, literature search.</p>
-            </div>
-            <div class="split-card mcp-card">
-              <h3>MCP servers · <code>mcp/</code></h3>
-              <p>Install once, register in Cursor/Claude, add <strong>your</strong> credentials. Gives the agent live WRDS query tools.</p>
-            </div>
-          </div>
+          <dl class="dual-stats">
+            <div><dt class="skills-stat" id="stat-skills">40</dt><dd>Agent skills · <code>skills/</code></dd></div>
+            <div><dt class="mcp-stat">1</dt><dd>MCP server · <code>mcp/</code></dd></div>
+          </dl>
         </div>
         <div class="hero-panel">
           <div class="terminal">
             <div class="terminal-bar"><span></span><span></span><span></span></div>
-            <pre><code><span class="t-muted"># Skill (copy markdown instructions)</span>
+            <pre><code><span class="t-muted"># Skills — copy markdown</span>
 <span class="t-cmd">cp -R</span> skills/econometrics/stata-regression \
      ~/.cursor/skills/
 
-<span class="t-muted"># MCP (separate — see mcp/ folder)</span>
+<span class="t-muted"># MCP — install + your credentials</span>
 <span class="t-cmd">pip install -e</span> mcp/wrds-mcp
-<span class="t-muted"># + your WRDS_USERNAME / WRDS_PASSWORD</span></code></pre>
+<span class="t-str">export WRDS_USERNAME="your_username"</span>
+<span class="t-str">export WRDS_PASSWORD="your_password"</span></code></pre>
           </div>
         </div>
       </div>
     </section>
 
+    <section class="compare-band">
+      <div class="container">
+        <h2>Skills vs MCP</h2>
+        <p>Both are first-class parts of this collection — they install differently and solve different problems.</p>
+        <table class="guide-table">
+          <thead><tr><th></th><th>Skills · <code>skills/</code></th><th>MCP · <code>mcp/</code></th></tr></thead>
+          <tbody>
+            <tr><td>What</td><td>Markdown instructions the agent reads</td><td>Python server the agent calls as tools</td></tr>
+            <tr><td>Install</td><td>Copy folder → <code>~/.cursor/skills/</code></td><td><code>pip install</code> + MCP config + credentials</td></tr>
+            <tr><td>Credentials</td><td>None needed</td><td>Your WRDS username &amp; password</td></tr>
+            <tr><td>Example</td><td>econ-humanizer, stata-regression</td><td>wrds-mcp → <code>wrds_run_sql</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <section class="featured" id="skills">
       <div class="container">
-        <p class="section-label" style="color:var(--accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 0.35rem">Skills · agent instructions</p>
-        <h2>Start here</h2>
-        <p class="section-intro">Popular skills for empirical work and academic writing. These are markdown files — not MCP servers.</p>
+        <div class="pillar-header">
+          <div>
+            <p class="section-label-skills">Skills · agent instructions</p>
+            <h2>Popular skills</h2>
+          </div>
+          <a href="#browse" class="btn btn-secondary">View all skills</a>
+        </div>
+        <p class="section-intro">Copy any folder from <code>skills/</code> into your agent. No credentials required.</p>
         <div class="featured-grid" id="featured-grid"></div>
       </div>
     </section>
@@ -77,7 +94,7 @@
         <div class="browse-header">
           <div>
             <h2>Browse skills by task</h2>
-            <p class="section-intro">40 curated skills in <code>skills/</code>. Filter by what you want to accomplish.</p>
+            <p class="section-intro">Filter by what you want to accomplish.</p>
           </div>
           <div class="controls">
             <label class="search-wrap">
@@ -92,41 +109,10 @@
       </div>
     </section>
 
-    <section class="mcp-section" id="mcp">
-      <div class="container">
-        <p class="section-label">MCP servers · separate from skills</p>
-        <h2>Connect to live data sources</h2>
-        <p class="section-intro">MCP servers live in <code>mcp/</code>, not <code>skills/</code>. They are Python programs registered in Cursor or Claude — you install them once and provide <strong>your own</strong> account credentials (e.g. WRDS username and password).</p>
-        <div class="mcp-grid">
-          <a class="mcp-card-large" href="wrds-mcp.html">
-            <span class="mcp-meta">MCP server · not a skill</span>
-            <h3>wrds-mcp →</h3>
-            <p>Query Compustat, CRSP, Form 4, TRACE, and other WRDS libraries via MCP tools like <code>wrds_run_sql</code>. Requires your WRDS account, Duo MFA, and a one-time tunnel setup per session.</p>
-            <p><strong>Full setup guide</strong> — credentials, tunnel, Cursor &amp; Claude config</p>
-          </a>
-          <div class="mcp-compare">
-            <p><strong>Skills vs MCP — what&apos;s the difference?</strong></p>
-            <table>
-              <thead><tr><th></th><th>Skills</th><th>MCP servers</th></tr></thead>
-              <tbody>
-                <tr><td>Location</td><td><code>skills/</code></td><td><code>mcp/</code></td></tr>
-                <tr><td>What it is</td><td>Markdown instructions</td><td>Runnable server program</td></tr>
-                <tr><td>Install</td><td>Copy folder to agent skills dir</td><td><code>pip install</code> + MCP config</td></tr>
-                <tr><td>Credentials</td><td>Usually none</td><td>Your WRDS login (etc.)</td></tr>
-                <tr><td>Example</td><td>stata-regression, econ-humanizer</td><td>wrds-mcp</td></tr>
-              </tbody>
-            </table>
-            <p style="margin-top:0.85rem">The <code>wrds</code> <em>skill</em> teaches query filters; <code>wrds-mcp</code> <em>executes</em> queries. Use both together.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="install" id="install-skills">
       <div class="container">
-        <p class="section-label" style="color:var(--accent);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 0.35rem">Skills only</p>
+        <p class="section-label-skills">Install · skills</p>
         <h2>Install skills in three steps</h2>
-        <p class="section-intro">This section is for <code>skills/</code> only. For WRDS MCP, see the <a href="wrds-mcp.html">MCP setup guide</a>.</p>
         <div class="steps">
           <article class="step-card"><span class="step-num">1</span><h3>Clone the repo</h3><pre><code>git clone https://github.com/YOUR_USERNAME/barrios-skills.git</code></pre></article>
           <article class="step-card"><span class="step-num">2</span><h3>Copy a skill folder</h3><pre><code>cp -R barrios-skills/skills/econometrics/stata-regression \
@@ -140,13 +126,84 @@
         </div>
       </div>
     </section>
+
+    <section class="mcp-section" id="mcp">
+      <div class="container">
+        <div class="pillar-header">
+          <div>
+            <p class="section-label-mcp">MCP servers · live data connections</p>
+            <h2>WRDS MCP</h2>
+          </div>
+          <a href="wrds-mcp.html" class="btn btn-primary btn-primary-alt">Full setup guide</a>
+        </div>
+        <p class="section-intro">Install from <code>mcp/wrds-mcp/</code>. Requires <strong>your</strong> WRDS account, Duo MFA, and MCP registration in Cursor or Claude. Pair with the <code>wrds</code> skill for query filters.</p>
+
+        <div class="mcp-featured-grid">
+          <a class="mcp-hero-card" href="wrds-mcp.html">
+            <p class="section-label-mcp" style="margin-bottom:0.5rem">Featured MCP server</p>
+            <h3>wrds-mcp</h3>
+            <p>Query Compustat, CRSP, Form 4, TRACE, TAQ, and other WRDS libraries through MCP tools. One Duo approval per session via the persistent tunnel.</p>
+            <p><strong>→ Complete setup guide</strong> (credentials, tunnel, Cursor &amp; Claude)</p>
+          </a>
+          <div class="mcp-tools-panel">
+            <h3>Key MCP tools</h3>
+            <ul class="mcp-tool-list">
+              <li><code>wrds_run_sql</code> Read-only SQL</li>
+              <li><code>wrds_get_compustat</code> Fundamentals</li>
+              <li><code>wrds_get_crsp_returns</code> Returns</li>
+              <li><code>wrds_merge_crsp_compustat</code> CCM merge</li>
+              <li><code>wrds_list_libraries</code> Browse schemas</li>
+              <li><code>wrds_download_data</code> Export CSV/Parquet</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 1rem">All wrds-mcp tools</h2>
+        <div class="mcp-tools-grid">
+          <div class="mcp-tool-card"><strong>wrds_list_libraries</strong><span>Browse WRDS schemas</span></div>
+          <div class="mcp-tool-card"><strong>wrds_list_tables</strong><span>Tables in a library</span></div>
+          <div class="mcp-tool-card"><strong>wrds_describe_table</strong><span>Columns and types</span></div>
+          <div class="mcp-tool-card"><strong>wrds_sample_data</strong><span>Preview rows</span></div>
+          <div class="mcp-tool-card"><strong>wrds_run_sql</strong><span>Read-only SQL</span></div>
+          <div class="mcp-tool-card"><strong>wrds_download_data</strong><span>CSV / Parquet / JSON</span></div>
+          <div class="mcp-tool-card"><strong>wrds_get_crsp_returns</strong><span>CRSP returns</span></div>
+          <div class="mcp-tool-card"><strong>wrds_get_compustat</strong><span>Compustat data</span></div>
+          <div class="mcp-tool-card"><strong>wrds_merge_crsp_compustat</strong><span>CCM merge</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="install" id="install-mcp">
+      <div class="container">
+        <p class="section-label-mcp">Install · MCP</p>
+        <h2>Install WRDS MCP in three steps</h2>
+        <p class="section-intro">Use <strong>your own</strong> WRDS username and password throughout. See the <a href="wrds-mcp.html">detailed guide</a> for troubleshooting.</p>
+        <div class="steps">
+          <article class="step-card"><span class="step-num">1</span><h3>Install the server</h3><pre><code>cd barrios-skills/mcp/wrds-mcp
+python3 -m venv ~/.wrds-mcp-env
+source ~/.wrds-mcp-env/bin/activate
+pip install -e .</code></pre></article>
+          <article class="step-card"><span class="step-num">2</span><h3>Set your credentials &amp; tunnel</h3><pre><code>export WRDS_USERNAME="your_wrds_username"
+export WRDS_PASSWORD="your_wrds_password"
+bash mcp/wrds-mcp/tunnel/tunnel_up.sh</code></pre></article>
+          <article class="step-card"><span class="step-num">3</span><h3>Register in Cursor or Claude</h3><pre><code># Add WRDS_USERNAME, WRDS_PASSWORD,
+# WRDS_TUNNEL_PORT=49600 to MCP config</code></pre></article>
+        </div>
+        <div class="platform-cards">
+          <a class="platform-card" href="wrds-mcp.html#step4"><h4>Cursor config</h4><p><code>~/.cursor/mcp.json</code></p></a>
+          <a class="platform-card" href="wrds-mcp.html#step4"><h4>Claude Code</h4><p><code>claude mcp add</code></p></a>
+          <a class="platform-card" href="wrds-mcp.html#troubleshooting"><h4>Troubleshooting</h4><p>Duo, tunnel, auth</p></a>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>MIT License · John Barrios · <code>skills/</code> + <code>mcp/</code> · <a href="https://github.com/jmb432/barrios-skills/tree/main/skills/optional">Optional skills</a></p>
+      <p>MIT License · John Barrios · <code>skills/</code> + <code>mcp/</code></p>
       <div class="footer-links">
-        <a href="wrds-mcp.html">WRDS MCP</a>
-        <a href="https://github.com/jmb432/barrios-skills/blob/main/SECURITY.md">Security</a>
+        <a href="#skills">Skills</a>
+        <a href="#mcp">MCP</a>
+        <a href="wrds-mcp.html">WRDS setup</a>
         <a href="https://github.com/jmb432/barrios-skills">GitHub</a>
       </div>
     </div>

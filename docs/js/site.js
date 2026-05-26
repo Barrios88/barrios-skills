@@ -113,8 +113,8 @@ function renderSkills() {
 async function init() {
   const res = await fetch("data/skills.json");
   catalog = await res.json();
-  document.getElementById("stat-skills").textContent = catalog.skills.length;
-  document.getElementById("stat-categories").textContent = catalog.categories.length;
+  const el = document.getElementById("stat-skills");
+  if (el) el.textContent = catalog.skills.length;
   renderFeatured();
   renderFilters();
   renderSkills();
