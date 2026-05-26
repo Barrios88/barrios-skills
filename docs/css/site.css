@@ -252,3 +252,38 @@ section h2 {
 .wrds-promo:hover { box-shadow: var(--shadow); border-color: var(--accent-light); }
 .wrds-promo h4 { margin: 0 0 0.35rem; color: var(--accent); }
 .wrds-promo p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.split-banner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 0;
+}
+.split-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.15rem 1.2rem;
+}
+.split-card h3 { margin: 0 0 0.4rem; font-size: 1rem; color: var(--accent); }
+.split-card p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); }
+.split-card.mcp-card { border-color: rgba(184, 134, 11, 0.35); background: linear-gradient(135deg, rgba(184,134,11,0.06), white); }
+.mcp-section {
+  padding: 3rem 0; background: var(--paper-2); border-block: 1px solid var(--border);
+}
+.mcp-section .section-label {
+  display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+}
+.mcp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+.mcp-card-large {
+  background: white; border: 1px solid rgba(30, 77, 107, 0.2); border-radius: var(--radius);
+  padding: 1.35rem 1.4rem; text-decoration: none; color: inherit;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.mcp-card-large:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.mcp-card-large h3 { margin: 0 0 0.5rem; color: var(--accent); font-size: 1.15rem; }
+.mcp-card-large p { margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--ink-soft); }
+.mcp-card-large .mcp-meta { font-size: 0.78rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.mcp-compare { font-size: 0.92rem; color: var(--ink-soft); }
+.mcp-compare table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.85rem; }
+.mcp-compare th, .mcp-compare td { border: 1px solid var(--border); padding: 0.5rem 0.6rem; text-align: left; }
+.mcp-compare th { background: white; color: var(--ink); }
+@media (max-width: 860px) {
+  .split-banner, .mcp-grid { grid-template-columns: 1fr; }
+}

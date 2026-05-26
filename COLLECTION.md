@@ -1,6 +1,6 @@
 # Collection philosophy
 
-**Barrios Skills** is John Barrios's personal catalog of AI agent workflows for empirical economics and accounting research.
+**Barrios Skills** is John Barrios's personal catalog of **agent skills** (`skills/`) and **MCP servers** (`mcp/`) — kept in separate folders because they install differently. of AI agent workflows for empirical economics and accounting research.
 
 ## Core focus (40 skills)
 

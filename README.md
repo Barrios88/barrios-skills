@@ -13,6 +13,18 @@ Local preview:
 cd docs && python3 -m http.server 8080
 ```
 
+
+## Repository layout
+
+This repo has **two separate parts**:
+
+| Folder | What it is | Install |
+|--------|------------|---------|
+| [`skills/`](skills/) | **Agent skills** — markdown instructions (Stata, LaTeX, writing, etc.) | Copy folder to `~/.cursor/skills/` |
+| [`mcp/`](mcp/) | **MCP servers** — programs that connect agents to external data | `pip install` + register in Cursor/Claude + your credentials |
+
+Skills teach *how* to work. MCP servers give the agent *live tools* (e.g. run SQL on WRDS).
+
 ## What this collection covers
 
 | Area | Skills | What you get |
@@ -34,7 +46,11 @@ cd docs && python3 -m http.server 8080
    - [Codex](install/codex.md) → `~/.codex/skills/`
 
 
-## WRDS MCP (query Compustat, CRSP, and more)
+## MCP servers (separate from skills)
+
+MCP servers are **not** skills. They live in [`mcp/`](mcp/) and require installation, MCP registration, and often **your own account credentials**.
+
+### WRDS MCP (query Compustat, CRSP, and more)
 
 This repo includes **[wrds-mcp](mcp/wrds-mcp/)** — an MCP server by John Barrios for Wharton WRDS.
 
