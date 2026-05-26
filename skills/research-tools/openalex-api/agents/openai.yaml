@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenAlex API"
+  short_description: "Query OpenAlex scholarly metadata"
+  default_prompt: "Use $openalex-api to fetch and filter OpenAlex works and authors for a reproducible literature dataset."

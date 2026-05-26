@@ -1,0 +1,4 @@
+interface:
+  display_name: "Econ Humanizer"
+  short_description: "Humanize econ/finance/accounting prose style"
+  default_prompt: "Use $econ-humanizer to revise this draft so it reads like direct, human academic prose with active voice and concrete magnitudes."
