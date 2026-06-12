@@ -15,6 +15,13 @@ const CATEGORY_SHORT = {
   "writing-and-review": "Writing",
 };
 
+const CATEGORY_FILTER_LABELS = {
+  "econometrics": "Econometrics",
+  "data-and-visualization": "Data & viz",
+  "research-tools": "Research",
+  "writing-and-review": "Writing",
+};
+
 let catalog = null;
 let activeCategory = "all";
 let searchQuery = "";
@@ -23,22 +30,81 @@ function titleCase(id) {
   return id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function truncate(text, n = 140) {
-  if (!text) return "";
-  const clean = text.replace(/\s+/g, " ").trim();
-  return clean.length > n ? clean.slice(0, n - 1) + "…" : clean;
+function descriptionNeedsClamp(text, n = 96) {
+  if (!text) return false;
+  return text.replace(/\s+/g, " ").trim().length > n;
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function skillSummary(skill) {
+  return skill.summary || skill.description || "";
+}
+
+function skillHasDetail(skill) {
+  const summary = skillSummary(skill);
+  const detail = skill.description || "";
+  return Boolean(detail && detail !== summary);
 }
 
 function skillDownloadUrl(skillId) {
   return `downloads/skills/${skillId}.zip`;
 }
 
-function applySkillDownloadLink(anchor, skill) {
-  anchor.href = skillDownloadUrl(skill.id);
-  anchor.download = `${skill.id}.zip`;
-  anchor.removeAttribute("target");
-  anchor.removeAttribute("rel");
-  anchor.setAttribute("aria-label", `Download ${titleCase(skill.id)} skill`);
+function skillCardMarkup(skill, { featured = false } = {}) {
+  const tag = CATEGORY_SHORT[skill.category] || skill.category;
+  const summary = skillSummary(skill);
+  const hasDetail = skillHasDetail(skill);
+  const clampAt = featured ? 72 : 80;
+  const expandable =
+    descriptionNeedsClamp(summary, clampAt) || (hasDetail && descriptionNeedsClamp(skill.description, 100));
+  const descClass = expandable ? "skill-card-desc is-clamped" : "skill-card-desc";
+  const detailHtml = hasDetail
+    ? `<p class="skill-card-detail">${escapeHtml(skill.description)}</p>`
+    : "";
+
+  return `
+    <div class="skill-card-head">
+      <h3>${titleCase(skill.id)}</h3>
+      <span class="category-tag category-tag--${skill.category}">${tag}</span>
+    </div>
+    <div class="skill-card-body">
+      <p class="${descClass}">${escapeHtml(summary)}</p>
+      ${detailHtml}
+    </div>
+    <div class="skill-card-footer">
+      <a class="skill-card-download" href="${skillDownloadUrl(skill.id)}" download="${skill.id}.zip" aria-label="Download ${titleCase(skill.id)} zip">Download zip ↓</a>
+    </div>
+  `;
+}
+
+function applySkillCardClasses(card, skill, { featured = false } = {}) {
+  const summary = skillSummary(skill);
+  const hasDetail = skillHasDetail(skill);
+  const clampAt = featured ? 72 : 80;
+  if (descriptionNeedsClamp(summary, clampAt) || (hasDetail && descriptionNeedsClamp(skill.description, 100))) {
+    card.classList.add("is-expandable");
+  }
+  card.dataset.category = skill.category;
+}
+
+function createSkillCard(skill, { featured = false, animationIndex = 0 } = {}) {
+  const card = document.createElement("article");
+  card.className = featured ? "feature-card skill-card-interactive" : "skill-card skill-card-interactive";
+  card.tabIndex = 0;
+  card.setAttribute("aria-label", `${titleCase(skill.id)} skill`);
+  if (!featured && animationIndex > 0) {
+    card.style.animationDelay = `${Math.min(animationIndex * 0.02, 0.4)}s`;
+  }
+  card.innerHTML = skillCardMarkup(skill, { featured });
+  applySkillCardClasses(card, skill, { featured });
+  return card;
 }
 
 function renderFeatured() {
@@ -47,11 +113,13 @@ function renderFeatured() {
   FEATURED_IDS.forEach((id) => {
     const skill = catalog.skills.find((s) => s.id === id);
     if (!skill) return;
-    const a = document.createElement("a");
-    a.className = "feature-card";
-    applySkillDownloadLink(a, skill);
-    a.innerHTML = `<h3>${titleCase(skill.id)}</h3><p>${truncate(skill.description, 110)}</p><span class="feature-card-cta">Download zip →</span>`;
-    grid.appendChild(a);
+    grid.appendChild(createSkillCard(skill, { featured: true }));
+  });
+}
+
+function updateFilterAria(filters) {
+  filters.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.setAttribute("aria-selected", btn.classList.contains("active") ? "true" : "false");
   });
 }
 
@@ -62,14 +130,19 @@ function renderFilters() {
   allBtn.textContent = "All skills";
   allBtn.dataset.category = "all";
   allBtn.type = "button";
+  allBtn.setAttribute("role", "tab");
+  allBtn.setAttribute("aria-selected", "true");
   filters.appendChild(allBtn);
 
   catalog.categories.forEach((cat) => {
     const btn = document.createElement("button");
     btn.className = "filter-btn";
-    btn.textContent = cat.label;
+    btn.textContent = CATEGORY_FILTER_LABELS[cat.id] || cat.label;
+    btn.title = cat.label;
     btn.dataset.category = cat.id;
     btn.type = "button";
+    btn.setAttribute("role", "tab");
+    btn.setAttribute("aria-selected", "false");
     filters.appendChild(btn);
   });
 
@@ -78,6 +151,7 @@ function renderFilters() {
     if (!btn) return;
     activeCategory = btn.dataset.category;
     filters.querySelectorAll(".filter-btn").forEach((b) => b.classList.toggle("active", b === btn));
+    updateFilterAria(filters);
     renderSkills();
   });
 }
@@ -87,16 +161,46 @@ function matches(skill) {
   const inCategory = activeCategory === "all" || skill.category === activeCategory;
   if (!inCategory) return false;
   if (!q) return true;
-  const hay = `${skill.id} ${skill.name} ${skill.description} ${skill.category}`.toLowerCase();
+  const hay = `${skill.id} ${skill.name} ${skill.summary || ""} ${skill.description} ${skill.category}`.toLowerCase();
   return hay.includes(q);
+}
+
+function categoryMeta(categoryId) {
+  return catalog.categories.find((cat) => cat.id === categoryId);
+}
+
+function sortSkillsForDisplay(skills, grouped) {
+  if (!grouped) {
+    return [...skills].sort((a, b) => a.id.localeCompare(b.id));
+  }
+  const order = catalog.categories.map((cat) => cat.id);
+  return [...skills].sort((a, b) => {
+    const ai = order.indexOf(a.category);
+    const bi = order.indexOf(b.category);
+    if (ai !== bi) return ai - bi;
+    return a.id.localeCompare(b.id);
+  });
+}
+
+function createCategoryHeading(categoryId) {
+  const cat = categoryMeta(categoryId);
+  const heading = document.createElement("div");
+  heading.className = `skill-category-heading skill-category-heading--${categoryId}`;
+  heading.innerHTML = `
+    <h3>${escapeHtml(CATEGORY_SHORT[categoryId] || cat?.label || categoryId)}</h3>
+    ${cat?.hook ? `<p>${escapeHtml(cat.hook)}</p>` : ""}
+  `;
+  return heading;
 }
 
 function renderSkills() {
   const grid = document.getElementById("skill-grid");
   const meta = document.getElementById("results-meta");
-  const visible = catalog.skills.filter(matches).sort((a, b) => a.id.localeCompare(b.id));
+  const grouped = activeCategory === "all" && !searchQuery;
+  const visible = sortSkillsForDisplay(catalog.skills.filter(matches), grouped);
   meta.textContent = `${visible.length} skill${visible.length === 1 ? "" : "s"} shown`;
   grid.innerHTML = "";
+  grid.classList.toggle("skill-grid--grouped", grouped);
 
   if (visible.length === 0) {
     grid.innerHTML = `
@@ -107,22 +211,54 @@ function renderSkills() {
     return;
   }
 
+  let lastCategory = null;
   visible.forEach((skill, i) => {
-    const card = document.createElement("a");
-    card.className = "skill-card";
-    applySkillDownloadLink(card, skill);
-    card.style.animationDelay = `${Math.min(i * 0.02, 0.4)}s`;
-    const tag = CATEGORY_SHORT[skill.category] || skill.category;
-    card.innerHTML = `
-      <div class="skill-card-head">
-        <h3>${titleCase(skill.id)}</h3>
-        <span class="category-tag category-tag--${skill.category}">${tag}</span>
-      </div>
-      <p>${truncate(skill.description)}</p>
-      <span class="skill-card-cta">Download zip →</span>
-    `;
-    grid.appendChild(card);
+    if (grouped && skill.category !== lastCategory) {
+      grid.appendChild(createCategoryHeading(skill.category));
+      lastCategory = skill.category;
+    }
+    grid.appendChild(createSkillCard(skill, { animationIndex: i }));
   });
+}
+
+let activateInstallPanel = null;
+
+function initInstallTabs() {
+  const tablist = document.querySelector(".install-tabs");
+  if (!tablist) return;
+
+  const tabs = tablist.querySelectorAll(".install-tab");
+  const panels = {
+    skills: document.getElementById("install-panel-skills"),
+    mcp: document.getElementById("install-panel-mcp"),
+  };
+
+  activateInstallPanel = (panelId) => {
+    tabs.forEach((tab) => {
+      const active = tab.dataset.panel === panelId;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    Object.entries(panels).forEach(([id, panel]) => {
+      if (!panel) return;
+      const active = id === panelId;
+      panel.classList.toggle("is-active", active);
+      panel.hidden = !active;
+    });
+  };
+
+  tablist.addEventListener("click", (e) => {
+    const tab = e.target.closest(".install-tab");
+    if (!tab) return;
+    activateInstallPanel(tab.dataset.panel);
+  });
+}
+
+function activateInstallFromHash() {
+  if (!activateInstallPanel) return;
+  const hash = window.location.hash;
+  if (hash === "#install-mcp" || hash === "#install?mcp") activateInstallPanel("mcp");
+  else if (hash === "#install-skills") activateInstallPanel("skills");
 }
 
 function setNavOpen(nav, toggle, open) {
@@ -229,7 +365,11 @@ async function init() {
   renderFeatured();
   renderFilters();
   renderSkills();
+  initInstallTabs();
   initScrollSpy();
+
+  activateInstallFromHash();
+  window.addEventListener("hashchange", activateInstallFromHash);
   document.getElementById("search").addEventListener("input", (e) => {
     searchQuery = e.target.value;
     renderSkills();

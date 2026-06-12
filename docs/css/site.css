@@ -103,8 +103,8 @@ body.nav-open { overflow: hidden; }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.btn:focus-visible, .filter-btn:focus-visible, .nav-toggle:focus-visible,
-.search-wrap input:focus-visible, .feature-card:focus-visible, .skill-card:focus-visible,
+.btn:focus-visible, .filter-btn:focus-visible, .install-tab:focus-visible, .nav-toggle:focus-visible,
+.search-wrap input:focus-visible,
 .platform-card:focus-visible, .mcp-hero-card:focus-visible, summary:focus-visible {
   outline: 2px solid var(--accent-light); outline-offset: 2px;
 }
@@ -166,16 +166,72 @@ section h2 {
 .featured-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;
 }
-.feature-card {
+.feature-card,
+.skill-card {
   background: white; border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.15rem; text-decoration: none; color: inherit;
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  padding: 1.1rem 1.15rem 0.95rem; display: flex; flex-direction: column; gap: 0.55rem;
+  position: relative; color: inherit;
+  transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s, background 0.22s;
 }
-.feature-card:hover { box-shadow: var(--shadow); border-color: rgba(30, 77, 107, 0.25); transform: translateY(-2px); }
-.feature-card h3 { margin: 0 0 0.35rem; font-size: 1.05rem; color: var(--accent); }
-.feature-card p { margin: 0 0 0.65rem; font-size: 0.88rem; color: var(--ink-soft); }
-.feature-card-cta { font-size: 0.8rem; font-weight: 600; color: var(--accent-light); }
-.feature-card:hover .feature-card-cta { text-decoration: underline; }
+.feature-card { padding: 1.15rem 1.15rem 0.95rem; }
+.feature-card:hover,
+.skill-card:hover,
+.skill-card-interactive.is-expandable:focus-within {
+  box-shadow: 0 20px 44px rgba(26, 35, 50, 0.12);
+  border-color: rgba(30, 77, 107, 0.28);
+  transform: translateY(-2px);
+}
+.feature-card h3 { margin: 0; font-size: 1.05rem; color: var(--accent); }
+.skill-card-body { flex: 1; min-height: 0; }
+.skill-card-desc {
+  margin: 0; font-size: 0.86rem; color: var(--ink-soft); line-height: 1.5;
+  position: relative;
+}
+.feature-card .skill-card-desc { font-size: 0.88rem; }
+.skill-card-detail {
+  display: none; margin: 0.55rem 0 0; font-size: 0.8rem; line-height: 1.5;
+  color: var(--ink-soft); opacity: 0.92;
+}
+.skill-card-desc.is-clamped {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.skill-card-desc.is-clamped::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.4em;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), white 85%);
+  pointer-events: none;
+}
+.skill-card-footer {
+  margin-top: auto; padding-top: 0.55rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: flex-end;
+}
+.skill-card-download {
+  font-size: 0.82rem; font-weight: 600; color: var(--accent-light);
+  text-decoration: none; padding: 0.35rem 0.55rem; border-radius: 8px;
+  min-height: 36px; display: inline-flex; align-items: center;
+}
+.skill-card-download:hover { text-decoration: underline; background: rgba(30, 77, 107, 0.06); }
+.skill-card-download:focus-visible {
+  outline: 2px solid var(--accent-light); outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .skill-card-interactive.is-expandable:hover .skill-card-desc.is-clamped,
+  .skill-card-interactive.is-expandable:focus-within .skill-card-desc.is-clamped {
+    display: block; -webkit-line-clamp: unset; overflow: visible;
+  }
+  .skill-card-interactive.is-expandable:hover .skill-card-desc.is-clamped::after,
+  .skill-card-interactive.is-expandable:focus-within .skill-card-desc.is-clamped::after {
+    display: none;
+  }
+  .skill-card-interactive.is-expandable:hover .skill-card-detail,
+  .skill-card-interactive.is-expandable:focus-within .skill-card-detail {
+    display: block;
+  }
+  .skill-card-interactive.is-expandable:hover,
+  .skill-card-interactive.is-expandable:focus-within {
+    z-index: 2;
+  }
+}
 
 .browse { padding: 2rem 0 4rem; }
 .browse-header {
@@ -206,22 +262,31 @@ section h2 {
 .skill-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
 }
-.skill-card {
-  background: white; border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.1rem 1.15rem 1rem; display: flex; flex-direction: column; gap: 0.65rem;
-  text-decoration: none; color: inherit; cursor: pointer;
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-  animation: fadeUp 0.35s ease both;
+.skill-category-heading {
+  grid-column: 1 / -1; margin: 1.25rem 0 0.15rem; padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
 }
-.skill-card:hover {
-  box-shadow: var(--shadow); border-color: rgba(30, 77, 107, 0.25); transform: translateY(-2px);
+.skill-category-heading:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.skill-category-heading h3 {
+  margin: 0 0 0.2rem; font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink);
+}
+.skill-category-heading p {
+  margin: 0; font-size: 0.86rem; color: var(--ink-soft);
+}
+.skill-category-heading--econometrics h3 { color: var(--accent); }
+.skill-category-heading--data-and-visualization h3 { color: var(--accent-light); }
+.skill-category-heading--research-tools h3 { color: #8a6508; }
+.skill-category-heading--writing-and-review h3 { color: var(--ink-soft); }
+.skill-card { animation: fadeUp 0.35s ease both; }
+.skill-card-interactive:focus { outline: none; }
+.skill-card-interactive:focus-visible {
+  outline: 2px solid var(--accent-light); outline-offset: 2px;
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .skill-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
-.skill-card h3 { margin: 0; font-size: 1rem; color: var(--ink); }
 .category-tag {
   font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em;
   padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--paper-2);
@@ -231,12 +296,6 @@ section h2 {
 .category-tag--data-and-visualization { background: rgba(42, 111, 148, 0.1); color: var(--accent-light); }
 .category-tag--research-tools { background: rgba(184, 134, 11, 0.12); color: #8a6508; }
 .category-tag--writing-and-review { background: rgba(26, 35, 50, 0.08); color: var(--ink-soft); }
-.skill-card p { margin: 0; font-size: 0.86rem; color: var(--ink-soft); flex: 1; }
-.skill-card-cta {
-  font-size: 0.82rem; font-weight: 600; color: var(--accent-light);
-}
-.skill-card:hover .skill-card-cta { text-decoration: underline; }
-
 .empty-state {
   grid-column: 1 / -1; background: white; border: 1px dashed var(--border);
   border-radius: var(--radius); padding: 2rem 1.5rem; text-align: center;
@@ -246,6 +305,29 @@ section h2 {
 .empty-state strong { color: var(--ink); }
 
 .install { padding: 3rem 0 4.5rem; background: var(--paper-2); border-block: 1px solid var(--border); }
+.section-label-install {
+  color: var(--ink-soft); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin: 0 0 0.35rem;
+}
+.install-tabs {
+  display: inline-flex; gap: 0.35rem; margin-bottom: 1.25rem;
+  padding: 0.3rem; background: white; border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.install-tab {
+  border: none; background: transparent; color: var(--ink-soft);
+  padding: 0.55rem 1.15rem; border-radius: 999px; cursor: pointer;
+  font: inherit; font-size: 0.88rem; font-weight: 600; min-height: 44px;
+  touch-action: manipulation; transition: background 0.15s, color 0.15s;
+}
+.install-tab:hover { color: var(--ink); }
+.install-tab.active { background: var(--accent); color: white; }
+.install-tab.active[data-panel="mcp"] { background: var(--gold); }
+.install-panel[hidden] { display: none !important; }
+.install-panel-note {
+  margin: 0 0 1rem; font-size: 0.92rem; color: var(--ink-soft); max-width: 42rem;
+}
+.step-num--mcp { background: var(--gold); }
 .steps {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;
 }
@@ -340,8 +422,6 @@ section h2 {
   .dual-stats div { text-align: left; }
   .dual-stats dd { overflow-wrap: anywhere; }
   .step-card pre, .terminal pre, .guide-section pre { font-size: 0.72rem; }
-  .mcp-tool-list li { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
-  .mcp-tool-list code { white-space: normal; word-break: break-word; }
   .brand-text small { font-size: 0.72rem; }
   .compare-band, .install, .browse, .mcp-section { padding-inline: 0; }
   .guide-page { padding-top: 1.75rem; }
@@ -434,8 +514,8 @@ section h2 {
 .pillar-header h2 { margin: 0; }
 .section-label-skills { color: var(--accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.35rem; }
 .section-label-mcp { color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.35rem; }
-.mcp-featured-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; margin-bottom: 2rem; }
 .mcp-hero-card {
+  display: block; margin-bottom: 1rem;
   background: white; border: 1px solid rgba(30, 77, 107, 0.18); border-radius: var(--radius);
   padding: 1.35rem 1.4rem; text-decoration: none; color: inherit;
   box-shadow: var(--shadow); transition: transform 0.2s, border-color 0.2s;
@@ -444,17 +524,12 @@ section h2 {
 .mcp-hero-card h3 { margin: 0 0 0.5rem; font-family: var(--font-serif); font-size: 1.5rem; color: var(--accent); }
 .mcp-card-label { margin-bottom: 0.5rem; }
 .mcp-hero-card p { margin: 0 0 0.65rem; font-size: 0.92rem; color: var(--ink-soft); }
-.mcp-tools-panel { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.15rem 1.2rem; }
-.mcp-tools-panel h3 { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--ink); }
 .mcp-why-list {
   list-style: none; margin: -0.5rem 0 1.5rem; padding: 0;
   display: grid; gap: 0.35rem; max-width: 42rem;
 }
 .mcp-why-list li { font-size: 0.9rem; color: var(--ink-soft); padding-left: 1rem; position: relative; }
 .mcp-why-list li::before { content: "·"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
-.mcp-tool-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
-.mcp-tool-list li { font-size: 0.84rem; color: var(--ink-soft); display: flex; gap: 0.5rem; align-items: baseline; }
-.mcp-tool-list code { color: var(--accent); font-size: 0.82rem; white-space: nowrap; }
 .mcp-tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
 .mcp-tools-details {
   border: 1px solid var(--border); border-radius: var(--radius);
@@ -482,6 +557,3 @@ section h2 {
 .dual-stats dt.skills-stat { color: var(--accent); }
 .dual-stats dt.mcp-stat { color: var(--gold); }
 .dual-stats dd { margin: 0; font-size: 0.78rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
-@media (max-width: 860px) {
-  .mcp-featured-grid { grid-template-columns: 1fr; }
-}

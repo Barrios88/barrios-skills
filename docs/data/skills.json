@@ -9,31 +9,36 @@
           "id": "stata-regression",
           "name": "stata-regression",
           "path": "skills/econometrics/stata-regression",
-          "description": "Run regression analyses in Stata with publication-ready output tables."
+          "description": "Run regression analyses in Stata with publication-ready output tables.",
+          "summary": "Run regression analyses in Stata with publication-ready output tables."
         },
         {
           "id": "stata-data-cleaning",
           "name": "stata-data-cleaning",
           "path": "skills/econometrics/stata-data-cleaning",
-          "description": "Clean and transform messy data in Stata with reproducible workflows"
+          "description": "Clean and transform messy data in Stata with reproducible workflows",
+          "summary": "Clean and transform messy data in Stata with reproducible workflows"
         },
         {
           "id": "r-econometrics",
           "name": "r-econometrics",
           "path": "skills/econometrics/r-econometrics",
-          "description": "Run IV, DiD, and RDD analyses in R with proper diagnostics"
+          "description": "Run IV, DiD, and RDD analyses in R with proper diagnostics",
+          "summary": "Run IV, DiD, and RDD analyses in R with proper diagnostics"
         },
         {
           "id": "python-panel-data",
           "name": "python-panel-data",
           "path": "skills/econometrics/python-panel-data",
-          "description": "Panel data analysis with Python using linearmodels and pandas."
+          "description": "Panel data analysis with Python using linearmodels and pandas.",
+          "summary": "Panel data analysis with Python using linearmodels and pandas."
         },
         {
           "id": "wrds",
           "name": "wrds",
           "path": "skills/econometrics/wrds",
-          "description": "This skill should be used when the user asks to \"query WRDS\", \"access Compustat\", \"get CRSP data\", \"pull Form 4 insider data\", \"query ISS compensation\", \"download SEC EDGAR filings\", \"get ExecuComp da"
+          "description": "This skill should be used when the user asks to \"query WRDS\", \"access Compustat\", \"get CRSP data\", \"pull Form 4 insider data\", \"query ISS compensation\", \"download SEC EDGAR filings\", \"get ExecuComp data\", \"access Capital IQ\", \"query TRACE bond data\", \"clean TRACE\", \"merge FISD\", \"query TAQ\", \"pull intraday trades or quotes\", \"build NBBO\", \"compute effective spread\", or needs WRDS PostgreSQL query patterns.",
+          "summary": "Query WRDS libraries \u2014 Compustat, CRSP, TRACE, TAQ, and more \u2014 with agent-ready SQL patterns."
         }
       ]
     },
@@ -46,67 +51,78 @@
           "id": "econ-visualization",
           "name": "econ-visualization",
           "path": "skills/data-and-visualization/econ-visualization",
-          "description": "Create publication-quality charts and graphs for economics papers."
+          "description": "Create publication-quality charts and graphs for economics papers.",
+          "summary": "Create publication-quality charts and graphs for economics papers."
         },
         {
           "id": "matplotlib",
           "name": "matplotlib",
           "path": "skills/data-and-visualization/matplotlib",
-          "description": "Low-level plotting library for full customization. Use when you need fine-grained control over every plot element, creating novel plot types, or integrating with specific scientific workflows. Export "
+          "description": "Low-level plotting library for full customization. Use when you need fine-grained control over every plot element, creating novel plot types, or integrating with specific scientific workflows. Export to PNG/PDF/SVG for publication. For quick statistical plots use seaborn; for interactive plots use plotly; for publication-ready multi-panel figures with journal styling, use scientific-visualization.",
+          "summary": "Fine-grained static plots for publication \u2014 full control over every chart element."
         },
         {
           "id": "seaborn",
           "name": "seaborn",
           "path": "skills/data-and-visualization/seaborn",
-          "description": "Statistical visualization with pandas integration. Use for quick exploration of distributions, relationships, and categorical comparisons with attractive defaults. Best for box plots, violin plots, pa"
+          "description": "Statistical visualization with pandas integration. Use for quick exploration of distributions, relationships, and categorical comparisons with attractive defaults. Best for box plots, violin plots, pair plots, heatmaps. Built on matplotlib. For interactive plots use plotly; for publication styling use scientific-visualization.",
+          "summary": "Statistical visualization with pandas integration."
         },
         {
           "id": "plotly",
           "name": "plotly",
           "path": "skills/data-and-visualization/plotly",
-          "description": "Interactive visualization library. Use when you need hover info, zoom, pan, or web-embeddable charts. Best for dashboards, exploratory analysis, and presentations. For static publication figures use m"
+          "description": "Interactive visualization library. Use when you need hover info, zoom, pan, or web-embeddable charts. Best for dashboards, exploratory analysis, and presentations. For static publication figures use matplotlib or scientific-visualization.",
+          "summary": "Interactive visualization library."
         },
         {
           "id": "polars",
           "name": "polars",
           "path": "skills/data-and-visualization/polars",
-          "description": "Fast in-memory DataFrame library for datasets that fit in RAM. Use when pandas is too slow but data still fits in memory. Lazy evaluation, parallel execution, Apache Arrow backend. Best for 1-100GB da"
+          "description": "Fast in-memory DataFrame library for datasets that fit in RAM. Use when pandas is too slow but data still fits in memory. Lazy evaluation, parallel execution, Apache Arrow backend. Best for 1-100GB datasets, ETL pipelines, faster pandas replacement. For larger-than-RAM data use dask or vaex.",
+          "summary": "Fast in-memory DataFrame library for datasets that fit in RAM."
         },
         {
           "id": "statsmodels",
           "name": "statsmodels",
           "path": "skills/data-and-visualization/statsmodels",
-          "description": "Statistical models library for Python. Use when you need specific model classes (OLS, GLM, mixed models, ARIMA) with detailed diagnostics, residuals, and inference. Best for econometrics, time series,"
+          "description": "Statistical models library for Python. Use when you need specific model classes (OLS, GLM, mixed models, ARIMA) with detailed diagnostics, residuals, and inference. Best for econometrics, time series, rigorous inference with coefficient tables. For guided statistical test selection with APA reporting use statistical-analysis.",
+          "summary": "Statistical models library for Python."
         },
         {
           "id": "scikit-learn",
           "name": "scikit-learn",
           "path": "skills/data-and-visualization/scikit-learn",
-          "description": "Machine learning in Python with scikit-learn. Use when working with supervised learning (classification, regression), unsupervised learning (clustering, dimensionality reduction), model evaluation, hy"
+          "description": "Machine learning in Python with scikit-learn. Use when working with supervised learning (classification, regression), unsupervised learning (clustering, dimensionality reduction), model evaluation, hyperparameter tuning, preprocessing, or building ML pipelines. Provides comprehensive reference documentation for algorithms, preprocessing techniques, pipelines, and best practices.",
+          "summary": "Machine learning in Python with scikit-learn."
         },
         {
           "id": "statistical-analysis",
           "name": "statistical-analysis",
           "path": "skills/data-and-visualization/statistical-analysis",
-          "description": "Guided statistical analysis with test selection and reporting. Use when you need help choosing appropriate tests for your data, assumption checking, power analysis, and APA-formatted results. Best for"
+          "description": "Guided statistical analysis with test selection and reporting. Use when you need help choosing appropriate tests for your data, assumption checking, power analysis, and APA-formatted results. Best for academic research reporting, test selection guidance. For implementing specific models programmatically use statsmodels.",
+          "summary": "Guided statistical analysis with test selection and reporting."
         },
         {
           "id": "pymc-bayesian-modeling",
           "name": "pymc-bayesian-modeling",
           "path": "skills/data-and-visualization/pymc-bayesian-modeling",
-          "description": "Bayesian modeling with PyMC. Build hierarchical models, MCMC (NUTS), variational inference, LOO/WAIC comparison, posterior checks, for probabilistic programming and inference."
+          "description": "Bayesian modeling with PyMC. Build hierarchical models, MCMC (NUTS), variational inference, LOO/WAIC comparison, posterior checks, for probabilistic programming and inference.",
+          "summary": "Bayesian modeling with PyMC."
         },
         {
           "id": "dask",
           "name": "dask",
           "path": "skills/data-and-visualization/dask",
-          "description": "Distributed computing for larger-than-RAM pandas/NumPy workflows. Use when you need to scale existing pandas/NumPy code beyond memory or across clusters. Best for parallel file processing, distributed"
+          "description": "Distributed computing for larger-than-RAM pandas/NumPy workflows. Use when you need to scale existing pandas/NumPy code beyond memory or across clusters. Best for parallel file processing, distributed ML, integration with existing pandas code. For out-of-core analytics on single machine use vaex; for in-memory speed use polars.",
+          "summary": "Distributed computing for larger-than-RAM pandas/NumPy workflows."
         },
         {
           "id": "geopandas",
           "name": "geopandas",
           "path": "skills/data-and-visualization/geopandas",
-          "description": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files. Use when working with geographic data for spatial analysis, geometric operations, coordinate"
+          "description": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files. Use when working with geographic data for spatial analysis, geometric operations, coordinate transformations, spatial joins, overlay operations, choropleth mapping, or any task involving reading/writing/analyzing vector geographic data. Supports PostGIS databases, interactive maps, and integration with matplotlib/folium/cartopy. Use for tasks like buffer analysis, spatial joins between datasets, dissolving boundaries, clipping data, calculating areas/distances, reprojecting coordinate systems, creating maps, or converting between spatial file formats.",
+          "summary": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files."
         }
       ]
     },
@@ -119,73 +135,85 @@
           "id": "api-data-fetcher",
           "name": "api-data-fetcher",
           "path": "skills/research-tools/api-data-fetcher",
-          "description": "Fetch economic data from FRED, World Bank, and other APIs"
+          "description": "Fetch economic data from FRED, World Bank, and other APIs",
+          "summary": "Fetch economic data from FRED, World Bank, and other APIs"
         },
         {
           "id": "citation-management",
           "name": "citation-management",
           "path": "skills/research-tools/citation-management",
-          "description": "Comprehensive citation management for academic research. Search Google Scholar and PubMed for papers, extract accurate metadata, validate citations, and generate properly formatted BibTeX entries. Thi"
+          "description": "Comprehensive citation management for academic research. Search Google Scholar and PubMed for papers, extract accurate metadata, validate citations, and generate properly formatted BibTeX entries. This skill should be used when you need to find papers, verify citation information, convert DOIs to BibTeX, or ensure reference accuracy in scientific writing.",
+          "summary": "Find papers, validate metadata, and generate BibTeX for your bibliography."
         },
         {
           "id": "datacommons-client",
           "name": "datacommons-client",
           "path": "skills/research-tools/datacommons-client",
-          "description": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources. Use this skill when working with demographic data, economic indicators, health statisti"
+          "description": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources. Use this skill when working with demographic data, economic indicators, health statistics, environmental data, or any public datasets available through Data Commons. Applicable for querying population statistics, GDP figures, unemployment rates, disease prevalence, geographic entity resolution, and exploring relationships between statistical entities.",
+          "summary": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources."
         },
         {
           "id": "econ-lit-search",
           "name": "econ-lit-search",
           "path": "skills/research-tools/econ-lit-search",
-          "description": "Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenev"
+          "description": "Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenever the user asks to search for papers, find literature, look up references, do a lit review, check what's been published on a topic, find papers by an author, or any other request that involves discovering or retrieving academic economics papers. Also trigger when the user says \"search econ-lit\", \"search the corpus\", \"find me papers on\u2026\", \"what papers exist about\u2026\", \"look up [topic] in the literature\", or similar. This skill searches a local indexed corpus \u2014 it does NOT overlap with OpenAlex (which covers 240M+ works broadly). Let the user decide which to use; do not auto-combine with OpenAlex unless asked.",
+          "summary": "Search ~51k economics papers with full-text search, abstracts, and citation sorting."
         },
         {
           "id": "exploratory-data-analysis",
           "name": "exploratory-data-analysis",
           "path": "skills/research-tools/exploratory-data-analysis",
-          "description": "Perform comprehensive exploratory data analysis on scientific data files across 200+ file formats. This skill should be used when analyzing any scientific data file to understand its structure, conten"
+          "description": "Perform comprehensive exploratory data analysis on scientific data files across 200+ file formats. This skill should be used when analyzing any scientific data file to understand its structure, content, quality, and characteristics. Automatically detects file type and generates detailed markdown reports with format-specific analysis, quality metrics, and downstream analysis recommendations. Covers chemistry, bioinformatics, microscopy, spectroscopy, proteomics, metabolomics, and general scientific data formats.",
+          "summary": "Profile scientific data files across 200+ formats before analysis."
         },
         {
           "id": "lit-review-assistant",
           "name": "lit-review-assistant",
           "path": "skills/research-tools/lit-review-assistant",
-          "description": "Search, summarize, and synthesize economics literature"
+          "description": "Search, summarize, and synthesize economics literature",
+          "summary": "Search, summarize, and synthesize economics literature"
         },
         {
           "id": "literature-review",
           "name": "literature-review",
           "path": "skills/research-tools/literature-review",
-          "description": "Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should be used when conducting systematic literature"
+          "description": "Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should be used when conducting systematic literature reviews, meta-analyses, research synthesis, or comprehensive literature searches across biomedical, scientific, and technical domains. Creates professionally formatted markdown documents and PDFs with verified citations in multiple citation styles (APA, Nature, Vancouver, etc.).",
+          "summary": "Systematic literature reviews across PubMed, arXiv, Semantic Scholar, and more."
         },
         {
           "id": "openalex-api",
           "name": "openalex-api",
           "path": "skills/research-tools/openalex-api",
-          "description": "Access and analyze OpenAlex scholarly metadata through the REST API, including works, authors, institutions, sources, concepts, topics, funders, and publishers. Use when asked to retrieve publication "
+          "description": "Access and analyze OpenAlex scholarly metadata through the REST API, including works, authors, institutions, sources, concepts, topics, funders, and publishers. Use when asked to retrieve publication or citation metadata, run OpenAlex searches with filters, map author-institution relationships, or build reproducible bibliometric datasets from OpenAlex.",
+          "summary": "Access and analyze OpenAlex scholarly metadata through the REST API, including works, authors, institutions, sources, concepts, topics, funders, and\u2026"
         },
         {
           "id": "research-ideation",
           "name": "research-ideation",
           "path": "skills/research-tools/research-ideation",
-          "description": "Generate research questions from economic phenomena"
+          "description": "Generate research questions from economic phenomena",
+          "summary": "Generate research questions from economic phenomena"
         },
         {
           "id": "research-lookup",
           "name": "research-lookup",
           "path": "skills/research-tools/research-lookup",
-          "description": "Look up current research information using Perplexity Sonar Pro Search or Sonar Reasoning Pro models through OpenRouter. Automatically selects the best model based on query complexity. Search academic"
+          "description": "Look up current research information using Perplexity Sonar Pro Search or Sonar Reasoning Pro models through OpenRouter. Automatically selects the best model based on query complexity. Search academic papers, recent studies, technical documentation, and general research information with citations.",
+          "summary": "Look up recent research with Perplexity Sonar via OpenRouter, with citations."
         },
         {
           "id": "web-scrape",
           "name": "web-scrape",
           "path": "skills/research-tools/web-scrape",
-          "description": ">"
+          "description": "Web scraping skill for economists and applied researchers. Use this skill whenever the user wants to extract data from websites, scrape tables, download PDFs, access paywalled academic journals (JSTOR, ScienceDirect, Elsevier, NBER, SSRN, AER, etc.), bulk-download papers, scrape government data, hit REST APIs, or build reusable scraping scripts. Triggers on: \"scrape\", \"download PDF\", \"get data from\", \"pull from website\", \"extract table\", \"journal article\", \"paywall\", \"curl\", \"Playwright\", \"bulk download\", \"DOI download\", or any request to collect data from an external URL. Always use this skill \u2014 even for seemingly simple scrape tasks \u2014 because tool selection (curl vs. curl_yale vs. browserless vs. Playwright) matters enormously and the wrong choice silently fails.",
+          "summary": "Scrape websites, download journal PDFs, and extract tables using the right tool for each source."
         },
         {
           "id": "paper-2-acfin-web",
           "name": "paper-2-acfin-web",
           "path": "skills/research-tools/paper-2-acfin-web",
-          "description": "Convert accounting and finance papers into interactive websites, seminar videos, and conference posters using Paper2All \u2014 tuned for identification, archival data, and AAA/MFA/WFA dissemination."
+          "description": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters. Use when turning a JAR/JAE/TAR, JF/JFE/RFS, or empirical arch manuscript (LaTeX or PDF) into a Paper2Web homepage, Paper2Video talk, or Paper2Poster for AAA, FARS, MFA, WFA, or journal promotion.",
+          "summary": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters."
         }
       ]
     },
@@ -198,73 +226,85 @@
           "id": "academic-paper-writer",
           "name": "academic-paper-writer",
           "path": "skills/writing-and-review/academic-paper-writer",
-          "description": "Draft economics papers with proper structure and academic style"
+          "description": "Draft economics papers with proper structure and academic style",
+          "summary": "Draft economics papers with proper structure and academic style"
         },
         {
           "id": "beamer-presentation",
           "name": "beamer-presentation",
           "path": "skills/writing-and-review/beamer-presentation",
-          "description": "Create academic presentations in Beamer with professional themes"
+          "description": "Create academic presentations in Beamer with professional themes",
+          "summary": "Create academic presentations in Beamer with professional themes"
         },
         {
           "id": "econ-humanizer",
           "name": "econ-humanizer",
           "path": "skills/writing-and-review/econ-humanizer",
-          "description": "Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear, direct writing style inspired by John Cochrane: plain language, short sentences, active voice, conc"
+          "description": "Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear, direct writing style inspired by John Cochrane: plain language, short sentences, active voice, concrete claims. Use this skill whenever editing, revising, or drafting prose for research papers targeting top journals (AER, QJE, JPE, Econometrica, REStud, JF, JFE, RFS, TAR, JAR, JAE). Also use when the user says humanize, clean up my writing, make this sound less AI, improve the prose, edit for style, or references Cochrane writing style. Works for any section of an academic paper including introduction, literature review, hypothesis development, results discussion, and conclusion. Complements the economic-writing skill (which handles structure, citations, and research process) by focusing purely on prose quality and voice.",
+          "summary": "Remove AI writing patterns from academic economics, finance, and accounting prose."
         },
         {
           "id": "econ-humanizer-plus",
           "name": "econ-humanizer-plus",
           "path": "skills/writing-and-review/econ-humanizer-plus",
-          "description": "Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing patterns in economics, finance, and accounting prose. Adds (1) a 10+ phrase delet"
+          "description": "Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing patterns in economics, finance, and accounting prose. Adds (1) a 10+ phrase deletion list specific to econ papers (\"it should be noted that\", \"this paper contributes to the literature by\", \"the remainder of this paper is organized as follows\", \"we perform/conduct/carry out a regression\"), (2) an expanded banned-word list for AI tells (\"delve\", \"landscape\", \"multifaceted\", \"notably\", \"leverage\" as verb, \"robust\" outside stats, \"pivotal\", \"groundbreaking\", \"shed light on\", \"pave the way\", \"crucial\", \"comprehensive\", \"furthermore\", \"utilize\"), (3) sentence-length variation rules (mix 8-12 and 15-25 words), (4) explicit permission for em-dashes and parentheticals (real writers use these; over-sanitization is itself an AI tell), (5) hedging guidance (\"this likely reflects\", \"one interpretation is\"), (6) field-vocabulary naturalness (\"extensive margin\", \"pass-through\", \"treatment on treated\"), (7) micro rules on \"clothe naked this\", \"where vs in which\" for models, compound-modifier hyphenation, and named Greek letters. USE alongside econ-humanizer whenever rewriting for voice in econ/finance/accounting papers. Works on any section (intro, lit review, hypothesis development, results, conclusion). Also use when the user says \"humanize\", \"make this sound less AI\", \"remove AI tells\", \"Cochrane style\", or requests prose cleanup before top-journal submission.",
+          "summary": "Stronger Cochrane-style rules for removing AI tells in economics and finance prose."
         },
         {
           "id": "econ-writing-plus",
           "name": "econ-writing-plus",
           "path": "skills/writing-and-review/econ-writing-plus",
-          "description": "Supplements economic-writing, econ-humanizer, academic-paper-writer, research-grants, and referee-report with advanced econ-specific guidance \u2014 (1) identification-strategy-specific writing conventions"
+          "description": "Supplements economic-writing, econ-humanizer, academic-paper-writer, research-grants, and referee-report with advanced econ-specific guidance \u2014 (1) identification-strategy-specific writing conventions for 13 methods (RCT, DiD, IV, RDD, Synthetic Control, Synthetic DiD, Structural, Descriptive, Bunching, Shift-Share/Bartik, Event Studies, ML Causal), (2) modern DiD estimator guidance (Callaway-Sant'Anna, Sun-Abraham, de Chaisemartin-D'Haultfoeuille, Goodman-Bacon decomposition), (3) AEA replication-package standards, (4) AI-use disclosure policies (AEA, Econometric Society), (5) ERC grant structure, (6) field conventions for macro, trade, finance, (7) title evaluation framework, (8) economic-significance translation rules. USE when drafting/reviewing identification-strategy descriptions, AEA-journal submission prep, ERC proposals, or when the existing econ-writing skills don't cover method-specific narrative conventions. Synthesizes Cochrane, McCloskey, Head, Bellemare, Shapiro, plus modern DiD literature (Goodman-Bacon 2021, Callaway & Sant'Anna 2021, Sun & Abraham 2021, de Chaisemartin & D'Haultfoeuille 2020, Borusyak-Hull-Jaravel 2022, Goldsmith-Pinkham-Sorkin-Swift 2020, Arkhangelsky et al. synthetic DiD).",
+          "summary": "Identification-strategy writing conventions, modern DiD guidance, and AEA submission standards."
         },
         {
           "id": "hypothesis-generation",
           "name": "hypothesis-generation",
           "path": "skills/writing-and-review/hypothesis-generation",
-          "description": "Structured hypothesis formulation from observations. Use when you have experimental observations or data and need to formulate testable hypotheses with predictions, propose mechanisms, and design expe"
+          "description": "Structured hypothesis formulation from observations. Use when you have experimental observations or data and need to formulate testable hypotheses with predictions, propose mechanisms, and design experiments to test them. Follows scientific method framework. For open-ended ideation use scientific-brainstorming; for automated LLM-driven hypothesis testing on datasets use hypogenic.",
+          "summary": "Structured hypothesis formulation from observations."
         },
         {
           "id": "latex-econ-model",
           "name": "latex-econ-model",
           "path": "skills/writing-and-review/latex-econ-model",
-          "description": "Write and typeset economic models in LaTeX with proper notation"
+          "description": "Write and typeset economic models in LaTeX with proper notation",
+          "summary": "Write and typeset economic models in LaTeX with proper notation"
         },
         {
           "id": "latex-posters",
           "name": "latex-posters",
           "path": "skills/writing-and-review/latex-posters",
-          "description": "Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter. Support for conference presentations, academic posters, and scientific communication. Includes layout design,"
+          "description": "Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter. Support for conference presentations, academic posters, and scientific communication. Includes layout design, color schemes, multi-column formats, figure integration, and poster-specific best practices for visual communication.",
+          "summary": "Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter."
         },
         {
           "id": "latex-tables",
           "name": "latex-tables",
           "path": "skills/writing-and-review/latex-tables",
-          "description": "Generate publication-ready regression tables in LaTeX."
+          "description": "Generate publication-ready regression tables in LaTeX.",
+          "summary": "Generate publication-ready regression tables in LaTeX."
         },
         {
           "id": "scholar-evaluation",
           "name": "scholar-evaluation",
           "path": "skills/writing-and-review/scholar-evaluation",
-          "description": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including problem formulation, methodology, analysis, and wri"
+          "description": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including problem formulation, methodology, analysis, and writing with quantitative scoring and actionable feedback.",
+          "summary": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including\u2026"
         },
         {
           "id": "scientific-critical-thinking",
           "name": "scientific-critical-thinking",
           "path": "skills/writing-and-review/scientific-critical-thinking",
-          "description": "Evaluate scientific claims and evidence quality. Use for assessing experimental design validity, identifying biases and confounders, applying evidence grading frameworks (GRADE, Cochrane Risk of Bias)"
+          "description": "Evaluate scientific claims and evidence quality. Use for assessing experimental design validity, identifying biases and confounders, applying evidence grading frameworks (GRADE, Cochrane Risk of Bias), or teaching critical analysis. Best for understanding evidence quality, identifying flaws. For formal peer review writing use peer-review.",
+          "summary": "Evaluate scientific claims and evidence quality."
         },
         {
           "id": "venue-templates",
           "name": "venue-templates",
           "path": "skills/writing-and-review/venue-templates",
-          "description": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML"
+          "description": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing manuscripts for journal submission, conference papers, research posters, or grant proposals and need venue-specific formatting requirements and templates.",
+          "summary": "LaTeX templates and submission rules for major journals and conferences."
         }
       ]
     }
@@ -276,7 +316,8 @@
       "category": "econometrics",
       "path": "skills/econometrics/stata-regression",
       "description": "Run regression analyses in Stata with publication-ready output tables.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Run regression analyses in Stata with publication-ready output tables."
     },
     {
       "id": "stata-data-cleaning",
@@ -284,7 +325,8 @@
       "category": "econometrics",
       "path": "skills/econometrics/stata-data-cleaning",
       "description": "Clean and transform messy data in Stata with reproducible workflows",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Clean and transform messy data in Stata with reproducible workflows"
     },
     {
       "id": "r-econometrics",
@@ -292,7 +334,8 @@
       "category": "econometrics",
       "path": "skills/econometrics/r-econometrics",
       "description": "Run IV, DiD, and RDD analyses in R with proper diagnostics",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Run IV, DiD, and RDD analyses in R with proper diagnostics"
     },
     {
       "id": "python-panel-data",
@@ -300,15 +343,17 @@
       "category": "econometrics",
       "path": "skills/econometrics/python-panel-data",
       "description": "Panel data analysis with Python using linearmodels and pandas.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Panel data analysis with Python using linearmodels and pandas."
     },
     {
       "id": "wrds",
       "name": "wrds",
       "category": "econometrics",
       "path": "skills/econometrics/wrds",
-      "description": "This skill should be used when the user asks to \"query WRDS\", \"access Compustat\", \"get CRSP data\", \"pull Form 4 insider data\", \"query ISS compensation\", \"download SEC EDGAR filings\", \"get ExecuComp data\", \"access Capital IQ\", \"query TRACE bond data\", \"clean TRACE\", \"merge FISD\", \"query TAQ\", \"pull intraday trades or quotes\", \"build NBBO\", \"compute effective spread\", or needs WRDS PostgreSQL query ",
-      "curated-by": "John Barrios"
+      "description": "This skill should be used when the user asks to \"query WRDS\", \"access Compustat\", \"get CRSP data\", \"pull Form 4 insider data\", \"query ISS compensation\", \"download SEC EDGAR filings\", \"get ExecuComp data\", \"access Capital IQ\", \"query TRACE bond data\", \"clean TRACE\", \"merge FISD\", \"query TAQ\", \"pull intraday trades or quotes\", \"build NBBO\", \"compute effective spread\", or needs WRDS PostgreSQL query patterns.",
+      "curated-by": "John Barrios",
+      "summary": "Query WRDS libraries \u2014 Compustat, CRSP, TRACE, TAQ, and more \u2014 with agent-ready SQL patterns."
     },
     {
       "id": "econ-visualization",
@@ -316,7 +361,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/econ-visualization",
       "description": "Create publication-quality charts and graphs for economics papers.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Create publication-quality charts and graphs for economics papers."
     },
     {
       "id": "matplotlib",
@@ -324,7 +370,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/matplotlib",
       "description": "Low-level plotting library for full customization. Use when you need fine-grained control over every plot element, creating novel plot types, or integrating with specific scientific workflows. Export to PNG/PDF/SVG for publication. For quick statistical plots use seaborn; for interactive plots use plotly; for publication-ready multi-panel figures with journal styling, use scientific-visualization.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Fine-grained static plots for publication \u2014 full control over every chart element."
     },
     {
       "id": "seaborn",
@@ -332,7 +379,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/seaborn",
       "description": "Statistical visualization with pandas integration. Use for quick exploration of distributions, relationships, and categorical comparisons with attractive defaults. Best for box plots, violin plots, pair plots, heatmaps. Built on matplotlib. For interactive plots use plotly; for publication styling use scientific-visualization.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Statistical visualization with pandas integration."
     },
     {
       "id": "plotly",
@@ -340,7 +388,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/plotly",
       "description": "Interactive visualization library. Use when you need hover info, zoom, pan, or web-embeddable charts. Best for dashboards, exploratory analysis, and presentations. For static publication figures use matplotlib or scientific-visualization.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Interactive visualization library."
     },
     {
       "id": "polars",
@@ -348,7 +397,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/polars",
       "description": "Fast in-memory DataFrame library for datasets that fit in RAM. Use when pandas is too slow but data still fits in memory. Lazy evaluation, parallel execution, Apache Arrow backend. Best for 1-100GB datasets, ETL pipelines, faster pandas replacement. For larger-than-RAM data use dask or vaex.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Fast in-memory DataFrame library for datasets that fit in RAM."
     },
     {
       "id": "statsmodels",
@@ -356,7 +406,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/statsmodels",
       "description": "Statistical models library for Python. Use when you need specific model classes (OLS, GLM, mixed models, ARIMA) with detailed diagnostics, residuals, and inference. Best for econometrics, time series, rigorous inference with coefficient tables. For guided statistical test selection with APA reporting use statistical-analysis.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Statistical models library for Python."
     },
     {
       "id": "scikit-learn",
@@ -364,7 +415,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/scikit-learn",
       "description": "Machine learning in Python with scikit-learn. Use when working with supervised learning (classification, regression), unsupervised learning (clustering, dimensionality reduction), model evaluation, hyperparameter tuning, preprocessing, or building ML pipelines. Provides comprehensive reference documentation for algorithms, preprocessing techniques, pipelines, and best practices.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Machine learning in Python with scikit-learn."
     },
     {
       "id": "statistical-analysis",
@@ -372,7 +424,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/statistical-analysis",
       "description": "Guided statistical analysis with test selection and reporting. Use when you need help choosing appropriate tests for your data, assumption checking, power analysis, and APA-formatted results. Best for academic research reporting, test selection guidance. For implementing specific models programmatically use statsmodels.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Guided statistical analysis with test selection and reporting."
     },
     {
       "id": "pymc-bayesian-modeling",
@@ -380,7 +433,8 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/pymc-bayesian-modeling",
       "description": "Bayesian modeling with PyMC. Build hierarchical models, MCMC (NUTS), variational inference, LOO/WAIC comparison, posterior checks, for probabilistic programming and inference.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Bayesian modeling with PyMC."
     },
     {
       "id": "dask",
@@ -388,15 +442,17 @@
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/dask",
       "description": "Distributed computing for larger-than-RAM pandas/NumPy workflows. Use when you need to scale existing pandas/NumPy code beyond memory or across clusters. Best for parallel file processing, distributed ML, integration with existing pandas code. For out-of-core analytics on single machine use vaex; for in-memory speed use polars.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Distributed computing for larger-than-RAM pandas/NumPy workflows."
     },
     {
       "id": "geopandas",
       "name": "geopandas",
       "category": "data-and-visualization",
       "path": "skills/data-and-visualization/geopandas",
-      "description": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files. Use when working with geographic data for spatial analysis, geometric operations, coordinate transformations, spatial joins, overlay operations, choropleth mapping, or any task involving reading/writing/analyzing vector geographic data. Supports PostGIS databases, interactive maps, and integ",
-      "curated-by": "John Barrios"
+      "description": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files. Use when working with geographic data for spatial analysis, geometric operations, coordinate transformations, spatial joins, overlay operations, choropleth mapping, or any task involving reading/writing/analyzing vector geographic data. Supports PostGIS databases, interactive maps, and integration with matplotlib/folium/cartopy. Use for tasks like buffer analysis, spatial joins between datasets, dissolving boundaries, clipping data, calculating areas/distances, reprojecting coordinate systems, creating maps, or converting between spatial file formats.",
+      "curated-by": "John Barrios",
+      "summary": "Python library for working with geospatial vector data including shapefiles, GeoJSON, and GeoPackage files."
     },
     {
       "id": "api-data-fetcher",
@@ -404,7 +460,8 @@
       "category": "research-tools",
       "path": "skills/research-tools/api-data-fetcher",
       "description": "Fetch economic data from FRED, World Bank, and other APIs",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Fetch economic data from FRED, World Bank, and other APIs"
     },
     {
       "id": "citation-management",
@@ -412,31 +469,35 @@
       "category": "research-tools",
       "path": "skills/research-tools/citation-management",
       "description": "Comprehensive citation management for academic research. Search Google Scholar and PubMed for papers, extract accurate metadata, validate citations, and generate properly formatted BibTeX entries. This skill should be used when you need to find papers, verify citation information, convert DOIs to BibTeX, or ensure reference accuracy in scientific writing.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Find papers, validate metadata, and generate BibTeX for your bibliography."
     },
     {
       "id": "datacommons-client",
       "name": "datacommons-client",
       "category": "research-tools",
       "path": "skills/research-tools/datacommons-client",
-      "description": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources. Use this skill when working with demographic data, economic indicators, health statistics, environmental data, or any public datasets available through Data Commons. Applicable for querying population statistics, GDP figures, unemployment rates, disease prevalence, geographic entity res",
-      "curated-by": "John Barrios"
+      "description": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources. Use this skill when working with demographic data, economic indicators, health statistics, environmental data, or any public datasets available through Data Commons. Applicable for querying population statistics, GDP figures, unemployment rates, disease prevalence, geographic entity resolution, and exploring relationships between statistical entities.",
+      "curated-by": "John Barrios",
+      "summary": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources."
     },
     {
       "id": "econ-lit-search",
       "name": "econ-lit-search",
       "category": "research-tools",
       "path": "skills/research-tools/econ-lit-search",
-      "description": "Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenever the user asks to search for papers, find literature, look up references, do a lit review, check what's been published on a topic, find papers by an author, or any other request that involves discov",
-      "curated-by": "John Barrios"
+      "description": "Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenever the user asks to search for papers, find literature, look up references, do a lit review, check what's been published on a topic, find papers by an author, or any other request that involves discovering or retrieving academic economics papers. Also trigger when the user says \"search econ-lit\", \"search the corpus\", \"find me papers on\u2026\", \"what papers exist about\u2026\", \"look up [topic] in the literature\", or similar. This skill searches a local indexed corpus \u2014 it does NOT overlap with OpenAlex (which covers 240M+ works broadly). Let the user decide which to use; do not auto-combine with OpenAlex unless asked.",
+      "curated-by": "John Barrios",
+      "summary": "Search ~51k economics papers with full-text search, abstracts, and citation sorting."
     },
     {
       "id": "exploratory-data-analysis",
       "name": "exploratory-data-analysis",
       "category": "research-tools",
       "path": "skills/research-tools/exploratory-data-analysis",
-      "description": "Perform comprehensive exploratory data analysis on scientific data files across 200+ file formats. This skill should be used when analyzing any scientific data file to understand its structure, content, quality, and characteristics. Automatically detects file type and generates detailed markdown reports with format-specific analysis, quality metrics, and downstream analysis recommendations. Covers",
-      "curated-by": "John Barrios"
+      "description": "Perform comprehensive exploratory data analysis on scientific data files across 200+ file formats. This skill should be used when analyzing any scientific data file to understand its structure, content, quality, and characteristics. Automatically detects file type and generates detailed markdown reports with format-specific analysis, quality metrics, and downstream analysis recommendations. Covers chemistry, bioinformatics, microscopy, spectroscopy, proteomics, metabolomics, and general scientific data formats.",
+      "curated-by": "John Barrios",
+      "summary": "Profile scientific data files across 200+ formats before analysis."
     },
     {
       "id": "lit-review-assistant",
@@ -444,15 +505,17 @@
       "category": "research-tools",
       "path": "skills/research-tools/lit-review-assistant",
       "description": "Search, summarize, and synthesize economics literature",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Search, summarize, and synthesize economics literature"
     },
     {
       "id": "literature-review",
       "name": "literature-review",
       "category": "research-tools",
       "path": "skills/research-tools/literature-review",
-      "description": "Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should be used when conducting systematic literature reviews, meta-analyses, research synthesis, or comprehensive literature searches across biomedical, scientific, and technical domains. Creates professionally formatted markdown documents and PDFs wit",
-      "curated-by": "John Barrios"
+      "description": "Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should be used when conducting systematic literature reviews, meta-analyses, research synthesis, or comprehensive literature searches across biomedical, scientific, and technical domains. Creates professionally formatted markdown documents and PDFs with verified citations in multiple citation styles (APA, Nature, Vancouver, etc.).",
+      "curated-by": "John Barrios",
+      "summary": "Systematic literature reviews across PubMed, arXiv, Semantic Scholar, and more."
     },
     {
       "id": "openalex-api",
@@ -460,7 +523,8 @@
       "category": "research-tools",
       "path": "skills/research-tools/openalex-api",
       "description": "Access and analyze OpenAlex scholarly metadata through the REST API, including works, authors, institutions, sources, concepts, topics, funders, and publishers. Use when asked to retrieve publication or citation metadata, run OpenAlex searches with filters, map author-institution relationships, or build reproducible bibliometric datasets from OpenAlex.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Access and analyze OpenAlex scholarly metadata through the REST API, including works, authors, institutions, sources, concepts, topics, funders, and\u2026"
     },
     {
       "id": "research-ideation",
@@ -468,7 +532,8 @@
       "category": "research-tools",
       "path": "skills/research-tools/research-ideation",
       "description": "Generate research questions from economic phenomena",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Generate research questions from economic phenomena"
     },
     {
       "id": "research-lookup",
@@ -476,15 +541,17 @@
       "category": "research-tools",
       "path": "skills/research-tools/research-lookup",
       "description": "Look up current research information using Perplexity Sonar Pro Search or Sonar Reasoning Pro models through OpenRouter. Automatically selects the best model based on query complexity. Search academic papers, recent studies, technical documentation, and general research information with citations.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Look up recent research with Perplexity Sonar via OpenRouter, with citations."
     },
     {
       "id": "web-scrape",
       "name": "web-scrape",
       "category": "research-tools",
       "path": "skills/research-tools/web-scrape",
-      "description": ">",
-      "curated-by": "John Barrios"
+      "description": "Web scraping skill for economists and applied researchers. Use this skill whenever the user wants to extract data from websites, scrape tables, download PDFs, access paywalled academic journals (JSTOR, ScienceDirect, Elsevier, NBER, SSRN, AER, etc.), bulk-download papers, scrape government data, hit REST APIs, or build reusable scraping scripts. Triggers on: \"scrape\", \"download PDF\", \"get data from\", \"pull from website\", \"extract table\", \"journal article\", \"paywall\", \"curl\", \"Playwright\", \"bulk download\", \"DOI download\", or any request to collect data from an external URL. Always use this skill \u2014 even for seemingly simple scrape tasks \u2014 because tool selection (curl vs. curl_yale vs. browserless vs. Playwright) matters enormously and the wrong choice silently fails.",
+      "curated-by": "John Barrios",
+      "summary": "Scrape websites, download journal PDFs, and extract tables using the right tool for each source."
     },
     {
       "id": "academic-paper-writer",
@@ -492,7 +559,8 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/academic-paper-writer",
       "description": "Draft economics papers with proper structure and academic style",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Draft economics papers with proper structure and academic style"
     },
     {
       "id": "beamer-presentation",
@@ -500,31 +568,35 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/beamer-presentation",
       "description": "Create academic presentations in Beamer with professional themes",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Create academic presentations in Beamer with professional themes"
     },
     {
       "id": "econ-humanizer",
       "name": "econ-humanizer",
       "category": "writing-and-review",
       "path": "skills/writing-and-review/econ-humanizer",
-      "description": "Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear, direct writing style inspired by John Cochrane: plain language, short sentences, active voice, concrete claims. Use this skill whenever editing, revising, or drafting prose for research papers targeting top journals (AER, QJE, JPE, Econometrica, REStud, JF, JFE, RFS, TAR, JAR, JAE). Also use when t",
-      "curated-by": "John Barrios"
+      "description": "Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear, direct writing style inspired by John Cochrane: plain language, short sentences, active voice, concrete claims. Use this skill whenever editing, revising, or drafting prose for research papers targeting top journals (AER, QJE, JPE, Econometrica, REStud, JF, JFE, RFS, TAR, JAR, JAE). Also use when the user says humanize, clean up my writing, make this sound less AI, improve the prose, edit for style, or references Cochrane writing style. Works for any section of an academic paper including introduction, literature review, hypothesis development, results discussion, and conclusion. Complements the economic-writing skill (which handles structure, citations, and research process) by focusing purely on prose quality and voice.",
+      "curated-by": "John Barrios",
+      "summary": "Remove AI writing patterns from academic economics, finance, and accounting prose."
     },
     {
       "id": "econ-humanizer-plus",
       "name": "econ-humanizer-plus",
       "category": "writing-and-review",
       "path": "skills/writing-and-review/econ-humanizer-plus",
-      "description": "Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing patterns in economics, finance, and accounting prose. Adds (1) a 10+ phrase deletion list specific to econ papers (\"it should be noted that\", \"this paper contributes to the literature by\", \"the remainder of this paper is organized as follows\", \"we perform/conduct/carry out a regre",
-      "curated-by": "John Barrios"
+      "description": "Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing patterns in economics, finance, and accounting prose. Adds (1) a 10+ phrase deletion list specific to econ papers (\"it should be noted that\", \"this paper contributes to the literature by\", \"the remainder of this paper is organized as follows\", \"we perform/conduct/carry out a regression\"), (2) an expanded banned-word list for AI tells (\"delve\", \"landscape\", \"multifaceted\", \"notably\", \"leverage\" as verb, \"robust\" outside stats, \"pivotal\", \"groundbreaking\", \"shed light on\", \"pave the way\", \"crucial\", \"comprehensive\", \"furthermore\", \"utilize\"), (3) sentence-length variation rules (mix 8-12 and 15-25 words), (4) explicit permission for em-dashes and parentheticals (real writers use these; over-sanitization is itself an AI tell), (5) hedging guidance (\"this likely reflects\", \"one interpretation is\"), (6) field-vocabulary naturalness (\"extensive margin\", \"pass-through\", \"treatment on treated\"), (7) micro rules on \"clothe naked this\", \"where vs in which\" for models, compound-modifier hyphenation, and named Greek letters. USE alongside econ-humanizer whenever rewriting for voice in econ/finance/accounting papers. Works on any section (intro, lit review, hypothesis development, results, conclusion). Also use when the user says \"humanize\", \"make this sound less AI\", \"remove AI tells\", \"Cochrane style\", or requests prose cleanup before top-journal submission.",
+      "curated-by": "John Barrios",
+      "summary": "Stronger Cochrane-style rules for removing AI tells in economics and finance prose."
     },
     {
       "id": "econ-writing-plus",
       "name": "econ-writing-plus",
       "category": "writing-and-review",
       "path": "skills/writing-and-review/econ-writing-plus",
-      "description": "Supplements economic-writing, econ-humanizer, academic-paper-writer, research-grants, and referee-report with advanced econ-specific guidance \u2014 (1) identification-strategy-specific writing conventions for 13 methods (RCT, DiD, IV, RDD, Synthetic Control, Synthetic DiD, Structural, Descriptive, Bunching, Shift-Share/Bartik, Event Studies, ML Causal), (2) modern DiD estimator guidance (Callaway-Sant",
-      "curated-by": "John Barrios"
+      "description": "Supplements economic-writing, econ-humanizer, academic-paper-writer, research-grants, and referee-report with advanced econ-specific guidance \u2014 (1) identification-strategy-specific writing conventions for 13 methods (RCT, DiD, IV, RDD, Synthetic Control, Synthetic DiD, Structural, Descriptive, Bunching, Shift-Share/Bartik, Event Studies, ML Causal), (2) modern DiD estimator guidance (Callaway-Sant'Anna, Sun-Abraham, de Chaisemartin-D'Haultfoeuille, Goodman-Bacon decomposition), (3) AEA replication-package standards, (4) AI-use disclosure policies (AEA, Econometric Society), (5) ERC grant structure, (6) field conventions for macro, trade, finance, (7) title evaluation framework, (8) economic-significance translation rules. USE when drafting/reviewing identification-strategy descriptions, AEA-journal submission prep, ERC proposals, or when the existing econ-writing skills don't cover method-specific narrative conventions. Synthesizes Cochrane, McCloskey, Head, Bellemare, Shapiro, plus modern DiD literature (Goodman-Bacon 2021, Callaway & Sant'Anna 2021, Sun & Abraham 2021, de Chaisemartin & D'Haultfoeuille 2020, Borusyak-Hull-Jaravel 2022, Goldsmith-Pinkham-Sorkin-Swift 2020, Arkhangelsky et al. synthetic DiD).",
+      "curated-by": "John Barrios",
+      "summary": "Identification-strategy writing conventions, modern DiD guidance, and AEA submission standards."
     },
     {
       "id": "hypothesis-generation",
@@ -532,7 +604,8 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/hypothesis-generation",
       "description": "Structured hypothesis formulation from observations. Use when you have experimental observations or data and need to formulate testable hypotheses with predictions, propose mechanisms, and design experiments to test them. Follows scientific method framework. For open-ended ideation use scientific-brainstorming; for automated LLM-driven hypothesis testing on datasets use hypogenic.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Structured hypothesis formulation from observations."
     },
     {
       "id": "latex-econ-model",
@@ -540,7 +613,8 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/latex-econ-model",
       "description": "Write and typeset economic models in LaTeX with proper notation",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Write and typeset economic models in LaTeX with proper notation"
     },
     {
       "id": "latex-posters",
@@ -548,7 +622,8 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/latex-posters",
       "description": "Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter. Support for conference presentations, academic posters, and scientific communication. Includes layout design, color schemes, multi-column formats, figure integration, and poster-specific best practices for visual communication.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter."
     },
     {
       "id": "latex-tables",
@@ -556,7 +631,8 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/latex-tables",
       "description": "Generate publication-ready regression tables in LaTeX.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Generate publication-ready regression tables in LaTeX."
     },
     {
       "id": "scholar-evaluation",
@@ -564,7 +640,8 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/scholar-evaluation",
       "description": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including problem formulation, methodology, analysis, and writing with quantitative scoring and actionable feedback.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Systematically evaluate scholarly work using the ScholarEval framework, providing structured assessment across research quality dimensions including\u2026"
     },
     {
       "id": "scientific-critical-thinking",
@@ -572,23 +649,26 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/scientific-critical-thinking",
       "description": "Evaluate scientific claims and evidence quality. Use for assessing experimental design validity, identifying biases and confounders, applying evidence grading frameworks (GRADE, Cochrane Risk of Bias), or teaching critical analysis. Best for understanding evidence quality, identifying flaws. For formal peer review writing use peer-review.",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Evaluate scientific claims and evidence quality."
     },
     {
       "id": "venue-templates",
       "name": "venue-templates",
       "category": "writing-and-review",
       "path": "skills/writing-and-review/venue-templates",
-      "description": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing manuscripts for journal submission, conference papers, research posters, or grant p",
-      "curated-by": "John Barrios"
+      "description": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing manuscripts for journal submission, conference papers, research posters, or grant proposals and need venue-specific formatting requirements and templates.",
+      "curated-by": "John Barrios",
+      "summary": "LaTeX templates and submission rules for major journals and conferences."
     },
     {
       "id": "paper-2-acfin-web",
       "name": "paper-2-acfin-web",
       "path": "skills/research-tools/paper-2-acfin-web",
-      "description": "Convert accounting and finance papers into interactive websites, seminar videos, and conference posters using Paper2All \u2014 tuned for identification, archival data, and AAA/MFA/WFA dissemination.",
+      "description": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters. Use when turning a JAR/JAE/TAR, JF/JFE/RFS, or empirical arch manuscript (LaTeX or PDF) into a Paper2Web homepage, Paper2Video talk, or Paper2Poster for AAA, FARS, MFA, WFA, or journal promotion.",
       "category": "research-tools",
-      "curated-by": "John Barrios"
+      "curated-by": "John Barrios",
+      "summary": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters."
     }
   ],
   "collection": {

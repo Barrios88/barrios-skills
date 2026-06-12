@@ -27,8 +27,7 @@
       <nav class="nav-links" id="site-nav" aria-label="Main">
         <a href="#skills">Skills</a>
         <a href="#mcp">MCP</a>
-        <a href="#install-skills">Install skills</a>
-        <a href="#install-mcp">Install MCP</a>
+        <a href="#install">Install</a>
         <a href="https://github.com/Barrios88/barrios-skills" class="btn btn-ghost">GitHub</a>
       </nav>
     </div>
@@ -95,7 +94,7 @@
           </div>
           <a href="#browse" class="btn btn-secondary">View all skills</a>
         </div>
-        <p class="section-intro">Click a skill to download its folder as a zip, then copy into your agent. No credentials required.</p>
+        <p class="section-intro">Hover for full details, then use <strong>Download zip</strong> to save a skill folder. No credentials required.</p>
         <div class="featured-grid" id="featured-grid"></div>
       </div>
     </section>
@@ -105,36 +104,18 @@
         <div class="browse-header">
           <div>
             <h2>Browse skills by task</h2>
-            <p class="section-intro">Filter by task — click any skill to download a zip.</p>
+            <p class="section-intro">Filter by task — hover a card for details, download when ready.</p>
           </div>
           <div class="controls">
             <label class="search-wrap">
               <span class="sr-only">Search skills</span>
-              <input type="search" id="search" placeholder="Search skills… Stata, LaTeX, peer review" autocomplete="off">
+              <input type="search" id="search" placeholder="Search skills… Stata, LaTeX, WRDS" autocomplete="off">
             </label>
           </div>
         </div>
         <div class="filters" id="filters" role="tablist" aria-label="Skill categories"></div>
         <p class="results-meta" id="results-meta" aria-live="polite"></p>
         <div class="skill-grid" id="skill-grid"></div>
-      </div>
-    </section>
-
-    <section class="install" id="install-skills">
-      <div class="container">
-        <p class="section-label-skills">Install · skills</p>
-        <h2>Install skills in three steps</h2>
-        <div class="steps">
-          <article class="step-card"><span class="step-num">1</span><h3>Clone the repo</h3><pre><code>git clone https://github.com/Barrios88/barrios-skills.git</code></pre></article>
-          <article class="step-card"><span class="step-num">2</span><h3>Unzip and copy the skill</h3><pre><code>unzip stata-regression.zip
-cp -R stata-regression ~/.cursor/skills/</code></pre></article>
-          <article class="step-card"><span class="step-num">3</span><h3>Ask naturally</h3><p>The agent loads the skill when your request matches its description.</p></article>
-        </div>
-        <div class="platform-cards">
-          <a class="platform-card" href="https://github.com/Barrios88/barrios-skills/blob/main/install/cursor.md"><h4>Cursor</h4><p><code>~/.cursor/skills/</code></p></a>
-          <a class="platform-card" href="https://github.com/Barrios88/barrios-skills/blob/main/install/claude.md"><h4>Claude Code</h4><p><code>~/.claude/skills/</code></p></a>
-          <a class="platform-card" href="https://github.com/Barrios88/barrios-skills/blob/main/install/codex.md"><h4>Codex</h4><p><code>~/.codex/skills/</code></p></a>
-        </div>
       </div>
     </section>
 
@@ -155,28 +136,15 @@ cp -R stata-regression ~/.cursor/skills/</code></pre></article>
           <li><strong>Pairs with the wrds skill</strong> — MCP executes; the skill enforces Compustat and CRSP filters</li>
         </ul>
 
-        <div class="mcp-featured-grid">
-          <a class="mcp-hero-card" href="wrds-mcp.html">
-            <p class="section-label-mcp mcp-card-label">Featured MCP server</p>
-            <h3>wrds-mcp</h3>
-            <p>Query Compustat, CRSP, Form 4, TRACE, TAQ, and other WRDS libraries through MCP tools. One Duo approval per session via the persistent tunnel.</p>
-            <p><strong>→ Complete setup guide</strong> (credentials, tunnel, Cursor &amp; Claude)</p>
-          </a>
-          <div class="mcp-tools-panel">
-            <h3>Key MCP tools</h3>
-            <ul class="mcp-tool-list">
-              <li><code>wrds_run_sql</code> Read-only SQL</li>
-              <li><code>wrds_get_compustat</code> Fundamentals</li>
-              <li><code>wrds_get_crsp_returns</code> Returns</li>
-              <li><code>wrds_merge_crsp_compustat</code> CCM merge</li>
-              <li><code>wrds_list_libraries</code> Browse schemas</li>
-              <li><code>wrds_download_data</code> Export CSV/Parquet</li>
-            </ul>
-          </div>
-        </div>
+        <a class="mcp-hero-card" href="wrds-mcp.html">
+          <p class="section-label-mcp mcp-card-label">Featured MCP server</p>
+          <h3>wrds-mcp</h3>
+          <p>Query Compustat, CRSP, Form 4, TRACE, TAQ, and other WRDS libraries through MCP tools. One Duo approval per session via the persistent tunnel.</p>
+          <p><strong>→ Complete setup guide</strong> (credentials, tunnel, Cursor &amp; Claude)</p>
+        </a>
 
         <details class="mcp-tools-details">
-          <summary>View all 9 wrds-mcp tools</summary>
+          <summary>All 9 wrds-mcp tools</summary>
           <div class="mcp-tools-grid">
             <div class="mcp-tool-card"><strong>wrds_list_libraries</strong><span>Browse WRDS schemas</span></div>
             <div class="mcp-tool-card"><strong>wrds_list_tables</strong><span>Tables in a library</span></div>
@@ -192,26 +160,48 @@ cp -R stata-regression ~/.cursor/skills/</code></pre></article>
       </div>
     </section>
 
-    <section class="install" id="install-mcp">
+    <section class="install" id="install">
       <div class="container">
-        <p class="section-label-mcp">Install · MCP</p>
-        <h2>Install WRDS MCP in three steps</h2>
-        <p class="section-intro">Use <strong>your own</strong> WRDS username and password throughout. See the <a href="wrds-mcp.html">detailed guide</a> for troubleshooting.</p>
-        <div class="steps">
-          <article class="step-card"><span class="step-num">1</span><h3>Install the server</h3><pre><code>cd barrios-skills/mcp/wrds-mcp
+        <p class="section-label-install">Install</p>
+        <h2>Get started in three steps</h2>
+        <p class="section-intro">Skills and MCP install differently — pick the path you need.</p>
+        <div class="install-tabs" role="tablist" aria-label="Install type">
+          <button class="install-tab active" type="button" role="tab" id="install-tab-skills" aria-selected="true" aria-controls="install-panel-skills" data-panel="skills">Skills</button>
+          <button class="install-tab" type="button" role="tab" id="install-tab-mcp" aria-selected="false" aria-controls="install-panel-mcp" data-panel="mcp">MCP</button>
+        </div>
+
+        <div class="install-panel is-active" id="install-panel-skills" role="tabpanel" aria-labelledby="install-tab-skills">
+          <div class="steps">
+            <article class="step-card"><span class="step-num">1</span><h3>Clone the repo</h3><pre><code>git clone https://github.com/Barrios88/barrios-skills.git</code></pre></article>
+            <article class="step-card"><span class="step-num">2</span><h3>Unzip and copy the skill</h3><pre><code>unzip stata-regression.zip
+cp -R stata-regression ~/.cursor/skills/</code></pre></article>
+            <article class="step-card"><span class="step-num">3</span><h3>Ask naturally</h3><p>The agent loads the skill when your request matches its description.</p></article>
+          </div>
+          <div class="platform-cards">
+            <a class="platform-card" href="https://github.com/Barrios88/barrios-skills/blob/main/install/cursor.md"><h4>Cursor</h4><p><code>~/.cursor/skills/</code></p></a>
+            <a class="platform-card" href="https://github.com/Barrios88/barrios-skills/blob/main/install/claude.md"><h4>Claude Code</h4><p><code>~/.claude/skills/</code></p></a>
+            <a class="platform-card" href="https://github.com/Barrios88/barrios-skills/blob/main/install/codex.md"><h4>Codex</h4><p><code>~/.codex/skills/</code></p></a>
+          </div>
+        </div>
+
+        <div class="install-panel" id="install-panel-mcp" role="tabpanel" aria-labelledby="install-tab-mcp" hidden>
+          <p class="install-panel-note">Use <strong>your own</strong> WRDS username and password throughout. See the <a href="wrds-mcp.html">detailed guide</a> for troubleshooting.</p>
+          <div class="steps">
+            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">1</span><h3>Install the server</h3><pre><code>cd barrios-skills/mcp/wrds-mcp
 python3 -m venv ~/.wrds-mcp-env
 source ~/.wrds-mcp-env/bin/activate
 pip install -e .</code></pre></article>
-          <article class="step-card"><span class="step-num">2</span><h3>Set your credentials &amp; tunnel</h3><pre><code>export WRDS_USERNAME="your_wrds_username"
+            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">2</span><h3>Set your credentials &amp; tunnel</h3><pre><code>export WRDS_USERNAME="your_wrds_username"
 export WRDS_PASSWORD="your_wrds_password"
 bash mcp/wrds-mcp/tunnel/tunnel_up.sh</code></pre></article>
-          <article class="step-card"><span class="step-num">3</span><h3>Register in Cursor or Claude</h3><pre><code># Add WRDS_USERNAME, WRDS_PASSWORD,
+            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">3</span><h3>Register in Cursor or Claude</h3><pre><code># Add WRDS_USERNAME, WRDS_PASSWORD,
 # WRDS_TUNNEL_PORT=49600 to MCP config</code></pre></article>
-        </div>
-        <div class="platform-cards">
-          <a class="platform-card" href="wrds-mcp.html#step4"><h4>Cursor config</h4><p><code>~/.cursor/mcp.json</code></p></a>
-          <a class="platform-card" href="wrds-mcp.html#step4"><h4>Claude Code</h4><p><code>claude mcp add</code></p></a>
-          <a class="platform-card" href="wrds-mcp.html#troubleshooting"><h4>Troubleshooting</h4><p>Duo, tunnel, auth</p></a>
+          </div>
+          <div class="platform-cards">
+            <a class="platform-card" href="wrds-mcp.html#step4"><h4>Cursor config</h4><p><code>~/.cursor/mcp.json</code></p></a>
+            <a class="platform-card" href="wrds-mcp.html#step4"><h4>Claude Code</h4><p><code>claude mcp add</code></p></a>
+            <a class="platform-card" href="wrds-mcp.html#troubleshooting"><h4>Troubleshooting</h4><p>Duo, tunnel, auth</p></a>
+          </div>
         </div>
       </div>
     </section>
@@ -222,6 +212,7 @@ bash mcp/wrds-mcp/tunnel/tunnel_up.sh</code></pre></article>
       <div class="footer-links">
         <a href="#skills">Skills</a>
         <a href="#mcp">MCP</a>
+        <a href="#install">Install</a>
         <a href="wrds-mcp.html">WRDS setup</a>
         <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
       </div>
