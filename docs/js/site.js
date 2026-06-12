@@ -5,7 +5,6 @@ const FEATURED_IDS = [
   "econ-humanizer-plus",
   "latex-tables",
   "econ-lit-search",
-  "peer-review",
   "econ-visualization",
 ];
 

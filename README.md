@@ -32,9 +32,9 @@ Skills teach *how* to work. MCP servers give the agent *live tools* (e.g. run SQ
 | **Econometrics & empirical data** | 5 | Stata regressions, panel data, WRDS, R IV/DiD/RDD |
 | **Data & visualization** | 11 | Econ figures, matplotlib/seaborn, polars, statsmodels, PyMC |
 | **Research & literature** | 12 | Econ lit search, citations, FRED/APIs, web scraping, ac/fin paper dissemination |
-| **Writing & review** | 13 | Econ voice humanizer, LaTeX tables, peer review, Beamer |
+| **Writing & review** | 12 | Econ voice humanizer, LaTeX tables, Beamer |
 
-**41 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
+**40 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
 
 ## Quick start
 
@@ -70,7 +70,6 @@ Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and ta
 | [econ-humanizer-plus](skills/writing-and-review/econ-humanizer-plus) | Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing … |
 | [latex-tables](skills/writing-and-review/latex-tables) | Generate publication-ready regression tables in LaTeX |
 | [econ-lit-search](skills/research-tools/econ-lit-search) | Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstr… |
-| [peer-review](skills/writing-and-review/peer-review) | Structured manuscript/grant review with checklist-based evaluation |
 | [econ-visualization](skills/data-and-visualization/econ-visualization) | Create publication-quality charts and graphs for economics papers |
 
 ## Browse by task
@@ -139,7 +138,6 @@ Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and ta
 | [latex-econ-model](skills/writing-and-review/latex-econ-model) | Write and typeset economic models in LaTeX with proper notation |
 | [latex-posters](skills/writing-and-review/latex-posters) | Create professional research posters in LaTeX using beamerposter, tikzposter, or baposter. Support … |
 | [latex-tables](skills/writing-and-review/latex-tables) | Generate publication-ready regression tables in LaTeX. |
-| [peer-review](skills/writing-and-review/peer-review) | Structured manuscript/grant review with checklist-based evaluation. Use when writing formal peer re… |
 | [scholar-evaluation](skills/writing-and-review/scholar-evaluation) | Systematically evaluate scholarly work using the ScholarEval framework, providing structured assess… |
 | [scientific-critical-thinking](skills/writing-and-review/scientific-critical-thinking) | Evaluate scientific claims and evidence quality. Use for assessing experimental design validity, id… |
 | [venue-templates](skills/writing-and-review/venue-templates) | Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major … |

@@ -249,12 +249,6 @@
           "description": "Generate publication-ready regression tables in LaTeX."
         },
         {
-          "id": "peer-review",
-          "name": "peer-review",
-          "path": "skills/writing-and-review/peer-review",
-          "description": "Structured manuscript/grant review with checklist-based evaluation. Use when writing formal peer reviews with specific criteria methodology assessment, statistical validity, reporting standards compli"
-        },
-        {
           "id": "scholar-evaluation",
           "name": "scholar-evaluation",
           "path": "skills/writing-and-review/scholar-evaluation",
@@ -562,14 +556,6 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/latex-tables",
       "description": "Generate publication-ready regression tables in LaTeX.",
-      "curated-by": "John Barrios"
-    },
-    {
-      "id": "peer-review",
-      "name": "peer-review",
-      "category": "writing-and-review",
-      "path": "skills/writing-and-review/peer-review",
-      "description": "Structured manuscript/grant review with checklist-based evaluation. Use when writing formal peer reviews with specific criteria methodology assessment, statistical validity, reporting standards compliance (CONSORT/STROBE), and constructive feedback. Best for actual review writing, manuscript revision. For evaluating claims/evidence quality use scientific-critical-thinking; for quantitative scoring",
       "curated-by": "John Barrios"
     },
     {
