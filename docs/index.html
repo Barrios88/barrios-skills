@@ -9,10 +9,10 @@
   <title>Barrios Skills — AI workflows for academic research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
 </head>
-<body>
+<body data-page="home">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="page-bg" aria-hidden="true"></div>
   <header class="site-header">
@@ -25,7 +25,8 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav-links" id="site-nav" aria-label="Main">
-        <a href="#skills">Skills</a>
+        <a href="#skills">Popular</a>
+        <a href="skills.html">All skills</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
         <a href="https://github.com/Barrios88/barrios-skills" class="btn btn-ghost">GitHub</a>
@@ -40,16 +41,24 @@
         <div class="hero-copy">
           <p class="eyebrow">John Barrios · Curated collection</p>
           <h1>Skills and MCP servers for empirical research</h1>
-          <p class="hero-intro">A free, open-source toolkit for economists and accountants using AI coding agents. Copy skills into Cursor, Claude, or Codex — or connect to WRDS with the bundled MCP server.</p>
-          <p class="lead"><strong>Skills</strong> teach your agent how to work (Stata, LaTeX, writing). <strong>MCP servers</strong> connect it to live data. Same repo, different folders.</p>
-          <div class="hero-actions">
-            <a href="#skills" class="btn btn-primary">Browse skills</a>
-            <a href="#mcp" class="btn btn-primary btn-primary-alt">WRDS MCP server</a>
+          <p class="hero-intro">Free, open-source agent skills and a WRDS MCP server for economists and accountants — in Cursor, Claude, or Codex.</p>
+          <div class="hero-actions-row">
+            <div class="hero-actions">
+              <a href="skills.html" class="btn btn-primary">Browse all skills</a>
+              <a href="#mcp" class="btn btn-outline-gold">WRDS MCP server</a>
+            </div>
+            <dl class="dual-stats dual-stats--inline">
+              <div><dt class="skills-stat" id="stat-skills">40</dt><dd>Skills</dd></div>
+              <div><dt class="mcp-stat">1</dt><dd>MCP server</dd></div>
+            </dl>
           </div>
-          <dl class="dual-stats">
-            <div><dt class="skills-stat" id="stat-skills">40</dt><dd>Agent skills · <code>skills/</code></dd></div>
-            <div><dt class="mcp-stat">1</dt><dd>MCP server · <code>mcp/</code></dd></div>
-          </dl>
+          <form class="hero-search" action="skills.html" method="get" role="search">
+            <label class="search-wrap hero-search-field">
+              <span class="sr-only">Search skills</span>
+              <input type="search" name="q" placeholder="Search all skills… Stata, LaTeX, WRDS" autocomplete="off">
+            </label>
+            <button type="submit" class="btn btn-secondary">Search</button>
+          </form>
         </div>
         <div class="hero-panel">
           <div class="terminal">
@@ -69,18 +78,26 @@
 
     <section class="compare-band">
       <div class="container">
-        <h2>Skills vs MCP</h2>
-        <p class="compare-band-note">Both are first-class parts of this collection — they install differently and solve different problems.</p>
-        <div class="table-scroll">
-          <table class="guide-table">
-          <thead><tr><th></th><th>Skills · <code>skills/</code></th><th>MCP · <code>mcp/</code></th></tr></thead>
-          <tbody>
-            <tr><td>What</td><td>Markdown instructions the agent reads</td><td>Python server the agent calls as tools</td></tr>
-            <tr><td>Install</td><td>Copy folder → <code>~/.cursor/skills/</code></td><td><code>pip install</code> + MCP config + credentials</td></tr>
-            <tr><td>Credentials</td><td>None needed</td><td>Your WRDS username &amp; password</td></tr>
-            <tr><td>Example</td><td>econ-humanizer, stata-regression</td><td>wrds-mcp → <code>wrds_run_sql</code></td></tr>
-          </tbody>
-        </table>
+        <h2 class="compare-band-title">Skills vs MCP</h2>
+        <div class="compare-cards">
+          <article class="compare-card compare-card--skills">
+            <p class="section-label-skills">Skills · <code>skills/</code></p>
+            <h3>Agent instructions</h3>
+            <p>Markdown workflows the agent reads — Stata, LaTeX, writing, data viz. No credentials.</p>
+            <ul>
+              <li>Copy folder → <code>~/.cursor/skills/</code></li>
+              <li>e.g. stata-regression, econ-humanizer</li>
+            </ul>
+          </article>
+          <article class="compare-card compare-card--mcp">
+            <p class="section-label-mcp">MCP · <code>mcp/</code></p>
+            <h3>Live data connections</h3>
+            <p>Python servers the agent calls as tools — query WRDS with your own account.</p>
+            <ul>
+              <li><code>pip install</code> + MCP config + credentials</li>
+              <li>e.g. wrds-mcp → <code>wrds_run_sql</code></li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -92,30 +109,10 @@
             <p class="section-label-skills">Skills · agent instructions</p>
             <h2>Popular skills</h2>
           </div>
-          <a href="#browse" class="btn btn-secondary">View all skills</a>
+          <a href="skills.html" class="btn btn-secondary">View all 40 skills</a>
         </div>
-        <p class="section-intro">Hover for full details, then use <strong>Download zip</strong> to save a skill folder. No credentials required.</p>
+        <p class="section-intro">Hover for details on desktop, tap <strong>More</strong> on mobile, then <strong>Download zip</strong>.</p>
         <div class="featured-grid" id="featured-grid"></div>
-      </div>
-    </section>
-
-    <section class="browse" id="browse">
-      <div class="container">
-        <div class="browse-header">
-          <div>
-            <h2>Browse skills by task</h2>
-            <p class="section-intro">Filter by task — hover a card for details, download when ready.</p>
-          </div>
-          <div class="controls">
-            <label class="search-wrap">
-              <span class="sr-only">Search skills</span>
-              <input type="search" id="search" placeholder="Search skills… Stata, LaTeX, WRDS" autocomplete="off">
-            </label>
-          </div>
-        </div>
-        <div class="filters" id="filters" role="tablist" aria-label="Skill categories"></div>
-        <p class="results-meta" id="results-meta" aria-live="polite"></p>
-        <div class="skill-grid" id="skill-grid"></div>
       </div>
     </section>
 
@@ -126,7 +123,7 @@
             <p class="section-label-mcp">MCP servers · live data connections</p>
             <h2>WRDS MCP</h2>
           </div>
-          <a href="wrds-mcp.html" class="btn btn-primary btn-primary-alt">Full setup guide</a>
+          <a href="wrds-mcp.html" class="btn btn-outline-gold">Full setup guide</a>
         </div>
         <p class="section-intro">Install from <code>mcp/wrds-mcp/</code>. Requires <strong>your</strong> WRDS account, Duo MFA, and MCP registration in Cursor or Claude. Pair with the <code>wrds</code> skill for query filters.</p>
         <ul class="mcp-why-list">
@@ -210,7 +207,8 @@ bash mcp/wrds-mcp/tunnel/tunnel_up.sh</code></pre></article>
     <div class="container footer-inner">
       <p>MIT License · John Barrios · <code>skills/</code> + <code>mcp/</code></p>
       <div class="footer-links">
-        <a href="#skills">Skills</a>
+        <a href="#skills">Popular</a>
+        <a href="skills.html">All skills</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
         <a href="wrds-mcp.html">WRDS setup</a>

@@ -9,18 +9,20 @@ const FEATURED_IDS = [
 ];
 
 const CATEGORY_SHORT = {
-  "econometrics": "Econometrics",
+  econometrics: "Econometrics",
   "data-and-visualization": "Data & viz",
   "research-tools": "Research",
   "writing-and-review": "Writing",
 };
 
 const CATEGORY_FILTER_LABELS = {
-  "econometrics": "Econometrics",
+  econometrics: "Econometrics",
   "data-and-visualization": "Data & viz",
   "research-tools": "Research",
   "writing-and-review": "Writing",
 };
+
+const PAGE = document.body.dataset.page || "home";
 
 let catalog = null;
 let activeCategory = "all";
@@ -57,16 +59,24 @@ function skillDownloadUrl(skillId) {
   return `downloads/skills/${skillId}.zip`;
 }
 
+function cardIsExpandable(skill, { featured = false } = {}) {
+  const summary = skillSummary(skill);
+  const hasDetail = skillHasDetail(skill);
+  const clampAt = featured ? 72 : 80;
+  return descriptionNeedsClamp(summary, clampAt) || (hasDetail && descriptionNeedsClamp(skill.description, 100));
+}
+
 function skillCardMarkup(skill, { featured = false } = {}) {
   const tag = CATEGORY_SHORT[skill.category] || skill.category;
   const summary = skillSummary(skill);
   const hasDetail = skillHasDetail(skill);
-  const clampAt = featured ? 72 : 80;
-  const expandable =
-    descriptionNeedsClamp(summary, clampAt) || (hasDetail && descriptionNeedsClamp(skill.description, 100));
+  const expandable = cardIsExpandable(skill, { featured });
   const descClass = expandable ? "skill-card-desc is-clamped" : "skill-card-desc";
   const detailHtml = hasDetail
     ? `<p class="skill-card-detail">${escapeHtml(skill.description)}</p>`
+    : "";
+  const moreBtn = expandable
+    ? `<button type="button" class="skill-card-more" aria-expanded="false">More</button>`
     : "";
 
   return `
@@ -79,19 +89,31 @@ function skillCardMarkup(skill, { featured = false } = {}) {
       ${detailHtml}
     </div>
     <div class="skill-card-footer">
+      ${moreBtn}
       <a class="skill-card-download" href="${skillDownloadUrl(skill.id)}" download="${skill.id}.zip" aria-label="Download ${titleCase(skill.id)} zip">Download zip ↓</a>
     </div>
   `;
 }
 
 function applySkillCardClasses(card, skill, { featured = false } = {}) {
-  const summary = skillSummary(skill);
-  const hasDetail = skillHasDetail(skill);
-  const clampAt = featured ? 72 : 80;
-  if (descriptionNeedsClamp(summary, clampAt) || (hasDetail && descriptionNeedsClamp(skill.description, 100))) {
+  if (cardIsExpandable(skill, { featured })) {
     card.classList.add("is-expandable");
   }
+  card.classList.add(`skill-card--${skill.category}`);
   card.dataset.category = skill.category;
+}
+
+function bindSkillCardInteractions(root = document) {
+  root.querySelectorAll(".skill-card-interactive.is-expandable").forEach((card) => {
+    const more = card.querySelector(".skill-card-more");
+    if (!more) return;
+    more.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = card.classList.toggle("is-expanded");
+      more.setAttribute("aria-expanded", open ? "true" : "false");
+      more.textContent = open ? "Less" : "More";
+    });
+  });
 }
 
 function createSkillCard(skill, { featured = false, animationIndex = 0 } = {}) {
@@ -109,12 +131,14 @@ function createSkillCard(skill, { featured = false, animationIndex = 0 } = {}) {
 
 function renderFeatured() {
   const grid = document.getElementById("featured-grid");
+  if (!grid) return;
   grid.innerHTML = "";
   FEATURED_IDS.forEach((id) => {
     const skill = catalog.skills.find((s) => s.id === id);
     if (!skill) return;
     grid.appendChild(createSkillCard(skill, { featured: true }));
   });
+  bindSkillCardInteractions(grid);
 }
 
 function updateFilterAria(filters) {
@@ -123,36 +147,35 @@ function updateFilterAria(filters) {
   });
 }
 
-function renderFilters() {
-  const filters = document.getElementById("filters");
+function setActiveCategory(categoryId, filters) {
+  activeCategory = categoryId;
+  filters.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.category === categoryId);
+  });
+  updateFilterAria(filters);
+}
+
+function renderFilters(filters) {
+  filters.innerHTML = "";
   const allBtn = document.createElement("button");
-  allBtn.className = "filter-btn active";
+  allBtn.className = `filter-btn${activeCategory === "all" ? " active" : ""}`;
   allBtn.textContent = "All skills";
   allBtn.dataset.category = "all";
   allBtn.type = "button";
   allBtn.setAttribute("role", "tab");
-  allBtn.setAttribute("aria-selected", "true");
+  allBtn.setAttribute("aria-selected", activeCategory === "all" ? "true" : "false");
   filters.appendChild(allBtn);
 
   catalog.categories.forEach((cat) => {
     const btn = document.createElement("button");
-    btn.className = "filter-btn";
+    btn.className = `filter-btn${activeCategory === cat.id ? " active" : ""}`;
     btn.textContent = CATEGORY_FILTER_LABELS[cat.id] || cat.label;
     btn.title = cat.label;
     btn.dataset.category = cat.id;
     btn.type = "button";
     btn.setAttribute("role", "tab");
-    btn.setAttribute("aria-selected", "false");
+    btn.setAttribute("aria-selected", activeCategory === cat.id ? "true" : "false");
     filters.appendChild(btn);
-  });
-
-  filters.addEventListener("click", (e) => {
-    const btn = e.target.closest(".filter-btn");
-    if (!btn) return;
-    activeCategory = btn.dataset.category;
-    filters.querySelectorAll(".filter-btn").forEach((b) => b.classList.toggle("active", b === btn));
-    updateFilterAria(filters);
-    renderSkills();
   });
 }
 
@@ -193,6 +216,18 @@ function createCategoryHeading(categoryId) {
   return heading;
 }
 
+function emptyStateHtml() {
+  const hint = searchQuery
+    ? `No results for “${escapeHtml(searchQuery)}”.`
+    : "No skills in this category yet.";
+  return `
+    <div class="empty-state" role="status">
+      <div class="empty-state-icon" aria-hidden="true">⌕</div>
+      <p><strong>${hint}</strong></p>
+      <p>Try “Stata”, “LaTeX”, or “WRDS”, or choose <strong>All skills</strong>.</p>
+    </div>`;
+}
+
 function renderSkills() {
   const grid = document.getElementById("skill-grid");
   const meta = document.getElementById("results-meta");
@@ -203,11 +238,7 @@ function renderSkills() {
   grid.classList.toggle("skill-grid--grouped", grouped);
 
   if (visible.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state" role="status">
-        <p><strong>No skills match your search.</strong></p>
-        <p>Try a broader term like “Stata”, “LaTeX”, or “WRDS”, or choose “All skills”.</p>
-      </div>`;
+    grid.innerHTML = emptyStateHtml();
     return;
   }
 
@@ -218,6 +249,45 @@ function renderSkills() {
       lastCategory = skill.category;
     }
     grid.appendChild(createSkillCard(skill, { animationIndex: i }));
+  });
+  bindSkillCardInteractions(grid);
+}
+
+function syncUrlParams() {
+  if (PAGE !== "skills") return;
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get("q") || "";
+  const cat = params.get("category") || "all";
+  searchQuery = q;
+  if (catalog.categories.some((c) => c.id === cat) || cat === "all") {
+    activeCategory = cat;
+  }
+  const search = document.getElementById("search");
+  if (search) search.value = q;
+}
+
+function updateUrlParams() {
+  if (PAGE !== "skills") return;
+  const params = new URLSearchParams();
+  if (searchQuery) params.set("q", searchQuery);
+  if (activeCategory !== "all") params.set("category", activeCategory);
+  const qs = params.toString();
+  const next = `${window.location.pathname}${qs ? `?${qs}` : ""}`;
+  window.history.replaceState(null, "", next);
+}
+
+function initBrowseFilters() {
+  const filters = document.getElementById("filters");
+  if (!filters) return;
+
+  renderFilters(filters);
+
+  filters.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+    setActiveCategory(btn.dataset.category, filters);
+    updateUrlParams();
+    renderSkills();
   });
 }
 
@@ -340,48 +410,73 @@ function showSiteAlert(html) {
   alert.hidden = false;
 }
 
-async function init() {
-  initNav();
+async function loadCatalog() {
+  const res = await fetch("data/skills.json");
+  if (!res.ok) throw new Error(`skills.json HTTP ${res.status}`);
+  catalog = await res.json();
+  const el = document.getElementById("stat-skills");
+  if (el) el.textContent = catalog.skills.length;
+}
 
+async function initHomePage() {
+  if (window.location.protocol === "file:") {
+    showSiteAlert(
+      "<strong>Local preview needed.</strong> Open through a web server: " +
+      "<code>cd docs && python3 -m http.server 8080</code>"
+    );
+    return;
+  }
+
+  await loadCatalog();
+  renderFeatured();
+  initInstallTabs();
+  initScrollSpy();
+  activateInstallFromHash();
+  window.addEventListener("hashchange", activateInstallFromHash);
+}
+
+async function initSkillsPage() {
   const grid = document.getElementById("skill-grid");
   if (!grid) return;
 
   if (window.location.protocol === "file:") {
     showSiteAlert(
-      "<strong>Local preview needed.</strong> Open this site through a web server, not as a file. " +
-      "From the repo: <code>cd docs && python3 -m http.server 8080</code> then visit " +
-      "<code>http://localhost:8080</code>."
+      "<strong>Local preview needed.</strong> Open through a web server: " +
+      "<code>cd docs && python3 -m http.server 8080</code>"
     );
     const meta = document.getElementById("results-meta");
     if (meta) meta.textContent = "Skill catalog unavailable (file:// preview).";
     return;
   }
 
-  const res = await fetch("data/skills.json");
-  if (!res.ok) throw new Error(`skills.json HTTP ${res.status}`);
-  catalog = await res.json();
-  const el = document.getElementById("stat-skills");
-  if (el) el.textContent = catalog.skills.length;
-  renderFeatured();
-  renderFilters();
+  await loadCatalog();
+  syncUrlParams();
+  initBrowseFilters();
   renderSkills();
-  initInstallTabs();
-  initScrollSpy();
 
-  activateInstallFromHash();
-  window.addEventListener("hashchange", activateInstallFromHash);
-  document.getElementById("search").addEventListener("input", (e) => {
-    searchQuery = e.target.value;
-    renderSkills();
-  });
+  const search = document.getElementById("search");
+  if (search) {
+    search.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      updateUrlParams();
+      renderSkills();
+    });
+  }
+}
+
+async function init() {
+  initNav();
+  if (PAGE === "skills") {
+    await initSkillsPage();
+  } else {
+    await initHomePage();
+  }
 }
 
 init().catch((err) => {
   console.error(err);
   showSiteAlert(
-    "<strong>Could not load the skill catalog.</strong> If this is GitHub Pages, confirm the repo is pushed " +
-    "and Pages is enabled (<em>Settings → Pages → GitHub Actions</em>). For local preview run " +
-    "<code>cd docs && python3 -m http.server 8080</code>."
+    "<strong>Could not load the skill catalog.</strong> Confirm the repo is pushed and GitHub Pages is enabled."
   );
   const meta = document.getElementById("results-meta");
   if (meta) meta.textContent = "Could not load skill catalog.";

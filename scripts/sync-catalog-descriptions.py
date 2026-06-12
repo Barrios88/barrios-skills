@@ -67,11 +67,9 @@ def parse_frontmatter(text: str) -> dict[str, str]:
     return result
 
 
-def read_description(skill_md: Path) -> str | None:
+def read_skill_meta(skill_md: Path) -> dict[str, str]:
     text = skill_md.read_text(encoding="utf-8", errors="replace")
-    meta = parse_frontmatter(text)
-    desc = meta.get("description", "").strip()
-    return desc or None
+    return parse_frontmatter(text)
 
 
 def first_sentence(text: str) -> str:
@@ -142,11 +140,12 @@ def sync_skill(skill: dict) -> bool:
     if not skill_md.is_file():
         return False
 
-    desc = read_description(skill_md)
+    meta = read_skill_meta(skill_md)
+    desc = meta.get("description", "").strip()
     if not desc:
         return False
 
-    summary = make_summary(desc, skill["id"])
+    summary = meta.get("summary", "").strip() or make_summary(desc, skill["id"])
     changed = skill.get("description") != desc or skill.get("summary") != summary
     skill["description"] = desc
     skill["summary"] = summary

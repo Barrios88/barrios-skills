@@ -120,6 +120,11 @@ body.nav-open { overflow: hidden; }
 .btn:hover { transform: translateY(-1px); }
 .btn-primary { background: var(--accent); color: white; box-shadow: 0 8px 24px rgba(30, 77, 107, 0.25); }
 .btn-secondary { background: white; color: var(--accent); border: 1px solid var(--border); }
+.btn-outline-gold {
+  background: transparent; color: var(--gold); border: 1.5px solid rgba(184, 134, 11, 0.45);
+  box-shadow: none;
+}
+.btn-outline-gold:hover { background: rgba(184, 134, 11, 0.08); }
 .btn-ghost { border: 1px solid var(--border); color: var(--ink); padding: 0.45rem 0.9rem; border-radius: 999px; }
 
 .hero { padding: 4.5rem 0 3rem; }
@@ -134,12 +139,20 @@ body.nav-open { overflow: hidden; }
   font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.4rem);
   line-height: 1.08; margin: 0 0 1rem; font-weight: 700;
 }
-.lead { font-size: 1.08rem; color: var(--ink-soft); max-width: 38rem; margin: 0 0 1.5rem; }
 .hero-intro {
-  font-size: 1.02rem; color: var(--ink); max-width: 38rem; margin: 0 0 0.75rem; line-height: 1.55;
+  font-size: 1.05rem; color: var(--ink-soft); max-width: 36rem; margin: 0 0 1.25rem; line-height: 1.55;
 }
-.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-.hero-actions .btn-primary-alt { background: var(--gold); color: white; box-shadow: 0 8px 24px rgba(184, 134, 11, 0.25); }
+.hero-actions-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.75rem;
+  margin-bottom: 1.15rem;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.hero-search {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: stretch; max-width: 32rem;
+}
+.hero-search-field { flex: 1; min-width: 12rem; }
+.hero-search-field input { width: 100%; }
+.hero-search .btn { flex-shrink: 0; }
 .stats { display: flex; gap: 2rem; margin: 0; }
 .stats div { min-width: 4.5rem; }
 .stats dt { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--accent); margin: 0; }
@@ -201,14 +214,37 @@ section h2 {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0), white 85%);
   pointer-events: none;
 }
+.skill-card--econometrics { border-left: 3px solid var(--accent); }
+.skill-card--data-and-visualization { border-left: 3px solid var(--accent-light); }
+.skill-card--research-tools { border-left: 3px solid var(--gold); }
+.skill-card--writing-and-review { border-left: 3px solid #8a949e; }
+.feature-card.skill-card--econometrics { border-left-width: 3px; border-left-color: var(--accent); }
+.feature-card.skill-card--data-and-visualization { border-left-color: var(--accent-light); }
+.feature-card.skill-card--research-tools { border-left-color: var(--gold); }
+.feature-card.skill-card--writing-and-review { border-left-color: #8a949e; }
 .skill-card-footer {
   margin-top: auto; padding-top: 0.55rem; border-top: 1px solid var(--border);
-  display: flex; justify-content: flex-end;
+  display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
 }
+.skill-card-more {
+  display: none; border: 1px solid var(--border); background: white;
+  color: var(--accent-light); font: inherit; font-size: 0.78rem; font-weight: 600;
+  padding: 0.35rem 0.65rem; border-radius: 8px; cursor: pointer; min-height: 36px;
+}
+.skill-card-more:hover { background: var(--paper-2); }
+.skill-card-more:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+@media (hover: none) {
+  .skill-card-interactive.is-expandable .skill-card-more { display: inline-flex; align-items: center; }
+}
+.skill-card-interactive.is-expanded .skill-card-desc.is-clamped {
+  display: block; -webkit-line-clamp: unset; overflow: visible;
+}
+.skill-card-interactive.is-expanded .skill-card-desc.is-clamped::after { display: none; }
+.skill-card-interactive.is-expanded .skill-card-detail { display: block; }
 .skill-card-download {
   font-size: 0.82rem; font-weight: 600; color: var(--accent-light);
   text-decoration: none; padding: 0.35rem 0.55rem; border-radius: 8px;
-  min-height: 36px; display: inline-flex; align-items: center;
+  min-height: 36px; display: inline-flex; align-items: center; margin-left: auto;
 }
 .skill-card-download:hover { text-decoration: underline; background: rgba(30, 77, 107, 0.06); }
 .skill-card-download:focus-visible {
@@ -298,7 +334,11 @@ section h2 {
 .category-tag--writing-and-review { background: rgba(26, 35, 50, 0.08); color: var(--ink-soft); }
 .empty-state {
   grid-column: 1 / -1; background: white; border: 1px dashed var(--border);
-  border-radius: var(--radius); padding: 2rem 1.5rem; text-align: center;
+  border-radius: var(--radius); padding: 2.25rem 1.5rem; text-align: center;
+}
+.empty-state-icon {
+  font-size: 2rem; color: var(--accent-light); opacity: 0.55; margin-bottom: 0.65rem;
+  line-height: 1;
 }
 .empty-state p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
 .empty-state p + p { margin-top: 0.35rem; font-size: 0.85rem; }
@@ -397,6 +437,11 @@ section h2 {
   .nav-links a:hover { background: var(--paper-2); }
   .nav-links .btn { justify-content: center; margin-top: 0.25rem; }
   .dual-stats { gap: 1.5rem; }
+  .hero-actions-row { flex-direction: column; align-items: stretch; }
+  .dual-stats--inline { justify-content: flex-start; }
+  .compare-cards { grid-template-columns: 1fr; }
+  .browse-sticky-inner { flex-direction: column; align-items: stretch; }
+  .browse-sticky .filters { flex: 1 1 auto; }
   .browse-header { align-items: flex-start; }
   .controls { width: 100%; }
   .search-wrap { display: block; width: 100%; }
@@ -547,11 +592,46 @@ section h2 {
 .mcp-tool-card span { font-size: 0.8rem; color: var(--ink-soft); }
 .compare-band { padding: 2rem 0; border-block: 1px solid var(--border); background: white; }
 .compare-band .container { width: min(900px, calc(100% - 2rem)); }
-.compare-band h2 { font-family: var(--font-serif); font-size: 1.35rem; margin: 0 0 0.5rem; text-align: center; }
-.compare-band-note { text-align: center; color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 1rem; }
+.compare-band-title {
+  font-family: var(--font-serif); font-size: 1.35rem; margin: 0 0 1rem; text-align: center;
+}
+.compare-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.compare-card {
+  background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.15rem 1.2rem;
+}
+.compare-card h3 { margin: 0 0 0.45rem; font-size: 1.05rem; color: var(--ink); }
+.compare-card p { margin: 0 0 0.65rem; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
+.compare-card ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; color: var(--ink-soft); }
+.compare-card li { margin-bottom: 0.25rem; }
+.compare-card--skills { border-left: 3px solid var(--accent); }
+.compare-card--mcp { border-left: 3px solid var(--gold); }
+.skills-page-hero { padding: 2rem 0 0.5rem; }
+.skills-page-hero h1 {
+  font-family: var(--font-serif); font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+  margin: 0 0 0.5rem;
+}
+.skills-page-hero .section-intro { margin-bottom: 0; }
+.browse-sticky {
+  position: sticky; top: calc(3.5rem + env(safe-area-inset-top, 0px)); z-index: 90;
+  background: rgba(250, 248, 245, 0.94); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border); padding: 0.65rem 0;
+}
+.browse-sticky-inner {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem 1rem;
+}
+.browse-sticky .search-wrap { flex: 1; min-width: 200px; }
+.browse-sticky .search-wrap input { width: 100%; }
+.browse-sticky .filters { margin: 0; flex: 2 1 320px; }
+.browse--catalog { padding-top: 1rem; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .table-scroll .guide-table { min-width: 520px; }
 .dual-stats { display: flex; gap: 2.5rem; margin-top: 1.25rem; }
+.dual-stats--inline { margin: 0; gap: 1.75rem; }
+.dual-stats--inline div { text-align: left; flex: 0 0 auto; }
 .dual-stats div { text-align: center; flex: 1; }
 .dual-stats dt { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; margin: 0; }
 .dual-stats dt.skills-stat { color: var(--accent); }

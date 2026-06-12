@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#faf8f5">
+  <meta name="description" content="Browse and download 40 curated AI agent skills for economists and accountants.">
+  <title>All skills — Barrios Skills</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body data-page="skills">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">B</span>
+        <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Skills &amp; MCP servers</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="site-nav" aria-label="Main">
+        <a href="index.html#skills">Popular</a>
+        <a href="skills.html" aria-current="page">All skills</a>
+        <a href="index.html#mcp">MCP</a>
+        <a href="index.html#install">Install</a>
+        <a href="https://github.com/Barrios88/barrios-skills" class="btn btn-ghost">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop" hidden aria-hidden="true"></div>
+
+  <main id="main-content" class="skills-page">
+    <div class="site-alert" id="site-alert" hidden></div>
+
+    <section class="skills-page-hero">
+      <div class="container">
+        <a class="guide-back" href="index.html#skills">← Back to homepage</a>
+        <p class="section-label-skills">Skills · full catalog</p>
+        <h1>Browse all skills</h1>
+        <p class="section-intro">Filter by task, hover or tap <strong>More</strong> for details, then download when ready.</p>
+      </div>
+    </section>
+
+    <div class="browse-sticky" id="browse-sticky">
+      <div class="container browse-sticky-inner">
+        <label class="search-wrap">
+          <span class="sr-only">Search skills</span>
+          <input type="search" id="search" placeholder="Search skills… Stata, LaTeX, WRDS" autocomplete="off">
+        </label>
+        <div class="filters" id="filters" role="tablist" aria-label="Skill categories"></div>
+      </div>
+    </div>
+
+    <section class="browse browse--catalog">
+      <div class="container">
+        <p class="results-meta" id="results-meta" aria-live="polite"></p>
+        <div class="skill-grid" id="skill-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>MIT License · John Barrios · <code>skills/</code> + <code>mcp/</code></p>
+      <div class="footer-links">
+        <a href="index.html#skills">Popular</a>
+        <a href="skills.html">All skills</a>
+        <a href="index.html#mcp">MCP</a>
+        <a href="index.html#install">Install</a>
+        <a href="wrds-mcp.html">WRDS setup</a>
+        <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>
