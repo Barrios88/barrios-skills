@@ -121,21 +121,46 @@ function renderSkills() {
   });
 }
 
+function setNavOpen(nav, toggle, open) {
+  const backdrop = document.getElementById("nav-backdrop");
+  nav.classList.toggle("is-open", open);
+  toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  document.body.classList.toggle("nav-open", open);
+  if (backdrop) {
+    backdrop.hidden = !open;
+    backdrop.setAttribute("aria-hidden", open ? "false" : "true");
+  }
+}
+
 function initNav() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("site-nav");
+  const backdrop = document.getElementById("nav-backdrop");
   if (!toggle || !nav) return;
 
-  toggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setNavOpen(nav, toggle, !nav.classList.contains("is-open"));
   });
 
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", () => setNavOpen(nav, toggle, false));
+  });
+
+  if (backdrop) {
+    backdrop.addEventListener("click", () => setNavOpen(nav, toggle, false));
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(e.target) || toggle.contains(e.target)) return;
+    setNavOpen(nav, toggle, false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
+      setNavOpen(nav, toggle, false);
+    }
   });
 }
 
