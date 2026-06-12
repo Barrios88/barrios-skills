@@ -140,7 +140,10 @@ body.nav-open { overflow: hidden; }
   line-height: 1.08; margin: 0 0 1rem; font-weight: 700;
 }
 .hero-intro {
-  font-size: 1.05rem; color: var(--ink-soft); max-width: 36rem; margin: 0 0 1.25rem; line-height: 1.55;
+  font-size: 1.02rem; color: var(--ink); max-width: 38rem; margin: 0 0 0.75rem; line-height: 1.55;
+}
+.lead {
+  font-size: 1.05rem; color: var(--ink-soft); max-width: 38rem; margin: 0 0 1.25rem; line-height: 1.55;
 }
 .hero-actions-row {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.75rem;
