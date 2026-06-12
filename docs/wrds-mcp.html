@@ -11,23 +11,28 @@
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="page-bg" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
         <span class="brand-mark">B</span>
-        <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Econometrics &amp; empirical research</small></span>
+        <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Skills &amp; MCP servers</small></span>
       </a>
-      <nav class="nav-links">
-        <a href="index.html#browse">Browse</a>
-        <a href="index.html#mcp">Install</a>
-        <a href="wrds-mcp.html" aria-current="page">WRDS MCP</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="site-nav" aria-label="Main">
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#mcp">MCP</a>
+        <a href="index.html#install-skills">Install skills</a>
+        <a href="wrds-mcp.html" aria-current="page">WRDS setup</a>
         <a href="https://github.com/jmb432/barrios-skills" class="btn btn-ghost">GitHub</a>
       </nav>
     </div>
   </header>
 
-  <main class="guide-page">
+  <main class="guide-page" id="main-content">
     <div class="container">
       <a class="guide-back" href="index.html#mcp">← Back to install guide</a>
 
@@ -35,6 +40,14 @@
         <p class="eyebrow">John Barrios · wrds-mcp</p>
         <h1>WRDS MCP setup</h1>
         <p class="lead"><strong>This is an MCP server</strong> (<code>mcp/wrds-mcp/</code>) — not a skill. It connects Cursor or Claude to WRDS using your credentials. Pair with the <code>wrds</code> skill for query conventions.<br><br>Query Compustat, CRSP, Form 4, and other WRDS libraries from Cursor or Claude. You need <strong>your own</strong> WRDS account — username and password from Wharton — plus a one-time Duo approval per work session.</p>
+        <div class="callout">
+          <strong>Why MCP?</strong>
+          <ul>
+            <li>Live data in chat — browse schemas, run SQL, export CSV without leaving the agent</li>
+            <li>Structured tools — fewer wrong table names or hand-rolled connection code</li>
+            <li>Skills + MCP — the <code>wrds</code> skill sets conventions; MCP runs the query</li>
+          </ul>
+        </div>
       </header>
 
       <nav class="guide-toc" aria-label="On this page">
@@ -112,6 +125,7 @@ bash tunnel_up.sh
         <pre><code>bash tunnel_down.sh</code></pre>
         <p>Logs and PID files live in <code>~/.wrds-tunnel/</code>.</p>
 
+        <div class="table-scroll">
         <table class="guide-table">
           <thead><tr><th>Variable</th><th>Required</th><th>Default</th><th>Purpose</th></tr></thead>
           <tbody>
@@ -122,6 +136,7 @@ bash tunnel_up.sh
             <tr><td><code>WRDS_DUO_RESPONSE</code></td><td>No</td><td>push</td><td>Duo: push, phone, or passcode</td></tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section class="guide-section" id="step4">
@@ -168,6 +183,7 @@ bash tunnel_up.sh
 
       <section class="guide-section" id="tools">
         <h2>MCP tools available</h2>
+        <div class="table-scroll">
         <table class="guide-table">
           <thead><tr><th>Tool</th><th>Use for</th></tr></thead>
           <tbody>
@@ -182,10 +198,12 @@ bash tunnel_up.sh
             <tr><td><code>wrds_merge_crsp_compustat</code></td><td>CCM merge helper</td></tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section class="guide-section" id="troubleshooting">
         <h2>Troubleshooting</h2>
+        <div class="table-scroll">
         <table class="guide-table">
           <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
           <tbody>
@@ -197,6 +215,7 @@ bash tunnel_up.sh
             <tr><td>Bad query results</td><td>Use the wrds skill Compustat / CRSP filter checklist</td></tr>
           </tbody>
         </table>
+        </div>
         <p>Daemon logs: <code>~/.wrds-tunnel/daemon.log</code></p>
       </section>
     </div>
@@ -212,5 +231,6 @@ bash tunnel_up.sh
       </div>
     </div>
   </footer>
+  <script src="js/site.js"></script>
 </body>
 </html>

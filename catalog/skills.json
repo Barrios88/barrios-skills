@@ -180,6 +180,12 @@
           "name": "web-scrape",
           "path": "skills/research-tools/web-scrape",
           "description": ">"
+        },
+        {
+          "id": "paper-2-acfin-web",
+          "name": "paper-2-acfin-web",
+          "path": "skills/research-tools/paper-2-acfin-web",
+          "description": "Convert accounting and finance papers into interactive websites, seminar videos, and conference posters using Paper2All \u2014 tuned for identification, archival data, and AAA/MFA/WFA dissemination."
         }
       ]
     },
@@ -588,6 +594,14 @@
       "category": "writing-and-review",
       "path": "skills/writing-and-review/venue-templates",
       "description": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing manuscripts for journal submission, conference papers, research posters, or grant p",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "paper-2-acfin-web",
+      "name": "paper-2-acfin-web",
+      "path": "skills/research-tools/paper-2-acfin-web",
+      "description": "Convert accounting and finance papers into interactive websites, seminar videos, and conference posters using Paper2All \u2014 tuned for identification, archival data, and AAA/MFA/WFA dissemination.",
+      "category": "research-tools",
       "curated-by": "John Barrios"
     }
   ],

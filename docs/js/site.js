@@ -45,7 +45,7 @@ function renderFeatured() {
     a.href = githubPath(skill.path);
     a.target = "_blank";
     a.rel = "noopener";
-    a.innerHTML = `<h3>${titleCase(skill.id)}</h3><p>${truncate(skill.description, 110)}</p>`;
+    a.innerHTML = `<h3>${titleCase(skill.id)}</h3><p>${truncate(skill.description, 110)}</p><span class="feature-card-cta">Open on GitHub →</span>`;
     grid.appendChild(a);
   });
 }
@@ -93,31 +93,115 @@ function renderSkills() {
   meta.textContent = `${visible.length} skill${visible.length === 1 ? "" : "s"} shown`;
   grid.innerHTML = "";
 
+  if (visible.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state" role="status">
+        <p><strong>No skills match your search.</strong></p>
+        <p>Try a broader term like “Stata”, “LaTeX”, or “WRDS”, or choose “All skills”.</p>
+      </div>`;
+    return;
+  }
+
   visible.forEach((skill, i) => {
-    const card = document.createElement("article");
+    const card = document.createElement("a");
     card.className = "skill-card";
+    card.href = githubPath(skill.path);
+    card.target = "_blank";
+    card.rel = "noopener";
     card.style.animationDelay = `${Math.min(i * 0.02, 0.4)}s`;
     const tag = CATEGORY_SHORT[skill.category] || skill.category;
     card.innerHTML = `
       <div class="skill-card-head">
         <h3>${titleCase(skill.id)}</h3>
-        <span class="category-tag">${tag}</span>
+        <span class="category-tag category-tag--${skill.category}">${tag}</span>
       </div>
       <p>${truncate(skill.description)}</p>
-      <a href="${githubPath(skill.path)}" target="_blank" rel="noopener">View skill folder →</a>
+      <span class="skill-card-cta">Open on GitHub →</span>
     `;
     grid.appendChild(card);
   });
 }
 
+function initNav() {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("site-nav");
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+function initScrollSpy() {
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (!navLinks.length) return;
+
+  const sections = [...navLinks]
+    .map((link) => {
+      const id = link.getAttribute("href").slice(1);
+      return document.getElementById(id);
+    })
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach((link) => {
+          link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+        });
+      });
+    },
+    { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function showSiteAlert(html) {
+  const alert = document.getElementById("site-alert");
+  if (!alert) return;
+  alert.innerHTML = html;
+  alert.hidden = false;
+}
+
 async function init() {
+  initNav();
+
+  const grid = document.getElementById("skill-grid");
+  if (!grid) return;
+
+  if (window.location.protocol === "file:") {
+    showSiteAlert(
+      "<strong>Local preview needed.</strong> Open this site through a web server, not as a file. " +
+      "From the repo: <code>cd docs && python3 -m http.server 8080</code> then visit " +
+      "<code>http://localhost:8080</code>."
+    );
+    const meta = document.getElementById("results-meta");
+    if (meta) meta.textContent = "Skill catalog unavailable (file:// preview).";
+    return;
+  }
+
   const res = await fetch("data/skills.json");
+  if (!res.ok) throw new Error(`skills.json HTTP ${res.status}`);
   catalog = await res.json();
   const el = document.getElementById("stat-skills");
   if (el) el.textContent = catalog.skills.length;
   renderFeatured();
   renderFilters();
   renderSkills();
+  initScrollSpy();
   document.getElementById("search").addEventListener("input", (e) => {
     searchQuery = e.target.value;
     renderSkills();
@@ -126,5 +210,11 @@ async function init() {
 
 init().catch((err) => {
   console.error(err);
-  document.getElementById("results-meta").textContent = "Could not load skill catalog.";
+  showSiteAlert(
+    "<strong>Could not load the skill catalog.</strong> If this is GitHub Pages, confirm the repo is pushed " +
+    "and Pages is enabled (<em>Settings → Pages → GitHub Actions</em>). For local preview run " +
+    "<code>cd docs && python3 -m http.server 8080</code>."
+  );
+  const meta = document.getElementById("results-meta");
+  if (meta) meta.textContent = "Could not load skill catalog.";
 });

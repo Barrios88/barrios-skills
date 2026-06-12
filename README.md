@@ -31,10 +31,10 @@ Skills teach *how* to work. MCP servers give the agent *live tools* (e.g. run SQ
 |------|--------|--------------|
 | **Econometrics & empirical data** | 5 | Stata regressions, panel data, WRDS, R IV/DiD/RDD |
 | **Data & visualization** | 11 | Econ figures, matplotlib/seaborn, polars, statsmodels, PyMC |
-| **Research & literature** | 11 | Econ lit search, citations, FRED/APIs, web scraping |
+| **Research & literature** | 12 | Econ lit search, citations, FRED/APIs, web scraping, ac/fin paper dissemination |
 | **Writing & review** | 13 | Econ voice humanizer, LaTeX tables, peer review, Beamer |
 
-**40 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
+**41 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
 
 ## Quick start
 
@@ -122,6 +122,7 @@ Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and ta
 | [research-ideation](skills/research-tools/research-ideation) | Generate research questions from economic phenomena |
 | [research-lookup](skills/research-tools/research-lookup) | Look up current research information using Perplexity Sonar Pro Search or Sonar Reasoning Pro model… |
 | [web-scrape](skills/research-tools/web-scrape) |  |
+| [paper-2-acfin-web](skills/research-tools/paper-2-acfin-web) | Convert accounting and finance papers into websites, seminar videos, and conference posters (Paper2All) |
 
 ### Writing & review
 

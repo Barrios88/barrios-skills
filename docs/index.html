@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="page-bg" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
@@ -18,7 +19,10 @@
         <span class="brand-mark">B</span>
         <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Skills &amp; MCP servers</small></span>
       </a>
-      <nav class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="site-nav" aria-label="Main">
         <a href="#skills">Skills</a>
         <a href="#mcp">MCP</a>
         <a href="#install-skills">Install skills</a>
@@ -27,15 +31,17 @@
       </nav>
     </div>
   </header>
-  <main id="top">
-    <section class="hero">
+  <main id="main-content">
+    <div class="site-alert" id="site-alert" hidden></div>
+    <section class="hero" id="top">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">John Barrios · Curated collection</p>
           <h1>Skills and MCP servers for empirical research</h1>
-          <p class="lead"><strong>Skills</strong> teach your agent how to work (Stata, LaTeX, writing). <strong>MCP servers</strong> connect it to live data (WRDS). Same repo, different folders — equal parts of the toolkit.</p>
+          <p class="hero-intro">A free, open-source toolkit for economists and accountants using AI coding agents. Copy skills into Cursor, Claude, or Codex — or connect to WRDS with the bundled MCP server.</p>
+          <p class="lead"><strong>Skills</strong> teach your agent how to work (Stata, LaTeX, writing). <strong>MCP servers</strong> connect it to live data. Same repo, different folders.</p>
           <div class="hero-actions">
-            <a href="#skills" class="btn btn-primary">Browse 40 skills</a>
+            <a href="#skills" class="btn btn-primary">Browse skills</a>
             <a href="#mcp" class="btn btn-primary btn-primary-alt">WRDS MCP server</a>
           </div>
           <dl class="dual-stats">
@@ -62,8 +68,9 @@
     <section class="compare-band">
       <div class="container">
         <h2>Skills vs MCP</h2>
-        <p>Both are first-class parts of this collection — they install differently and solve different problems.</p>
-        <table class="guide-table">
+        <p class="compare-band-note">Both are first-class parts of this collection — they install differently and solve different problems.</p>
+        <div class="table-scroll">
+          <table class="guide-table">
           <thead><tr><th></th><th>Skills · <code>skills/</code></th><th>MCP · <code>mcp/</code></th></tr></thead>
           <tbody>
             <tr><td>What</td><td>Markdown instructions the agent reads</td><td>Python server the agent calls as tools</td></tr>
@@ -72,6 +79,7 @@
             <tr><td>Example</td><td>econ-humanizer, stata-regression</td><td>wrds-mcp → <code>wrds_run_sql</code></td></tr>
           </tbody>
         </table>
+        </div>
       </div>
     </section>
 
@@ -137,10 +145,16 @@
           <a href="wrds-mcp.html" class="btn btn-primary btn-primary-alt">Full setup guide</a>
         </div>
         <p class="section-intro">Install from <code>mcp/wrds-mcp/</code>. Requires <strong>your</strong> WRDS account, Duo MFA, and MCP registration in Cursor or Claude. Pair with the <code>wrds</code> skill for query filters.</p>
+        <ul class="mcp-why-list">
+          <li><strong>Runs queries</strong> — the agent calls tools like <code>wrds_run_sql</code>, not copy-paste SQL</li>
+          <li><strong>Your credentials</strong> — each user connects with their own WRDS account</li>
+          <li><strong>One Duo per session</strong> — the tunnel reuses a single approved connection</li>
+          <li><strong>Pairs with the wrds skill</strong> — MCP executes; the skill enforces Compustat and CRSP filters</li>
+        </ul>
 
         <div class="mcp-featured-grid">
           <a class="mcp-hero-card" href="wrds-mcp.html">
-            <p class="section-label-mcp" style="margin-bottom:0.5rem">Featured MCP server</p>
+            <p class="section-label-mcp mcp-card-label">Featured MCP server</p>
             <h3>wrds-mcp</h3>
             <p>Query Compustat, CRSP, Form 4, TRACE, TAQ, and other WRDS libraries through MCP tools. One Duo approval per session via the persistent tunnel.</p>
             <p><strong>→ Complete setup guide</strong> (credentials, tunnel, Cursor &amp; Claude)</p>
@@ -158,18 +172,20 @@
           </div>
         </div>
 
-        <h2 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 1rem">All wrds-mcp tools</h2>
-        <div class="mcp-tools-grid">
-          <div class="mcp-tool-card"><strong>wrds_list_libraries</strong><span>Browse WRDS schemas</span></div>
-          <div class="mcp-tool-card"><strong>wrds_list_tables</strong><span>Tables in a library</span></div>
-          <div class="mcp-tool-card"><strong>wrds_describe_table</strong><span>Columns and types</span></div>
-          <div class="mcp-tool-card"><strong>wrds_sample_data</strong><span>Preview rows</span></div>
-          <div class="mcp-tool-card"><strong>wrds_run_sql</strong><span>Read-only SQL</span></div>
-          <div class="mcp-tool-card"><strong>wrds_download_data</strong><span>CSV / Parquet / JSON</span></div>
-          <div class="mcp-tool-card"><strong>wrds_get_crsp_returns</strong><span>CRSP returns</span></div>
-          <div class="mcp-tool-card"><strong>wrds_get_compustat</strong><span>Compustat data</span></div>
-          <div class="mcp-tool-card"><strong>wrds_merge_crsp_compustat</strong><span>CCM merge</span></div>
-        </div>
+        <details class="mcp-tools-details">
+          <summary>View all 9 wrds-mcp tools</summary>
+          <div class="mcp-tools-grid">
+            <div class="mcp-tool-card"><strong>wrds_list_libraries</strong><span>Browse WRDS schemas</span></div>
+            <div class="mcp-tool-card"><strong>wrds_list_tables</strong><span>Tables in a library</span></div>
+            <div class="mcp-tool-card"><strong>wrds_describe_table</strong><span>Columns and types</span></div>
+            <div class="mcp-tool-card"><strong>wrds_sample_data</strong><span>Preview rows</span></div>
+            <div class="mcp-tool-card"><strong>wrds_run_sql</strong><span>Read-only SQL</span></div>
+            <div class="mcp-tool-card"><strong>wrds_download_data</strong><span>CSV / Parquet / JSON</span></div>
+            <div class="mcp-tool-card"><strong>wrds_get_crsp_returns</strong><span>CRSP returns</span></div>
+            <div class="mcp-tool-card"><strong>wrds_get_compustat</strong><span>Compustat data</span></div>
+            <div class="mcp-tool-card"><strong>wrds_merge_crsp_compustat</strong><span>CCM merge</span></div>
+          </div>
+        </details>
       </div>
     </section>
 

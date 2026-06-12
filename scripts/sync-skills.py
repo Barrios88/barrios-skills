@@ -43,6 +43,7 @@ CATEGORY_MAP = {
     "lit-review-assistant": "research-tools",
     "literature-review": "research-tools",
     "openalex-api": "research-tools",
+    "paper-2-acfin-web": "research-tools",
     "research-ideation": "research-tools",
     "research-lookup": "research-tools",
     "web-scrape": "research-tools",
