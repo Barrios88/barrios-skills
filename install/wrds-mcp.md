@@ -1,4 +1,4 @@
-> **Web guide:** [docs/wrds-mcp.html](../docs/wrds-mcp.html) (GitHub Pages: `https://YOUR_USERNAME.github.io/barrios-skills/wrds-mcp.html`)
+> **Web guide:** [docs/wrds-mcp.html](../docs/wrds-mcp.html) (GitHub Pages: `https://barrios88.github.io/barrios-skills/wrds-mcp.html`)
 
 # WRDS MCP setup (John Barrios)
 

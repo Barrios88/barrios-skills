@@ -4,7 +4,7 @@ John Barrios's curated AI agent skills for **economists and accountants** — fo
 
 ## Website
 
-Browse the collection: `https://YOUR_USERNAME.github.io/barrios-skills/`
+Browse the collection: `https://barrios88.github.io/barrios-skills/`
 
 Enable GitHub Pages: repo **Settings → Pages → Build from GitHub Actions**.
 

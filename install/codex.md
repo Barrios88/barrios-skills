@@ -23,7 +23,7 @@ Structure:
 Codex includes a built-in skill installer for curated skills from GitHub:
 
 ```
-$skill-installer install the wrds skill from https://github.com/YOUR_USERNAME/barrios-skills/tree/main/skills/econometrics/wrds
+$skill-installer install the wrds skill from https://github.com/Barrios88/barrios-skills/tree/main/skills/econometrics/wrds
 ```
 
 ## Verify

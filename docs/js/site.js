@@ -31,7 +31,7 @@ function truncate(text, n = 140) {
 }
 
 function githubPath(path) {
-  return `https://github.com/jmb432/barrios-skills/tree/main/${path}`;
+  return `https://github.com/Barrios88/barrios-skills/tree/main/${path}`;
 }
 
 function renderFeatured() {
