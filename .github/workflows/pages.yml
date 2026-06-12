@@ -22,8 +22,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Sync catalog to site
-        run: cp catalog/skills.json docs/data/skills.json
+      - name: Build site assets
+        run: |
+          cp catalog/skills.json docs/data/skills.json
+          python3 scripts/build-skill-zips.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -29,8 +29,16 @@ function truncate(text, n = 140) {
   return clean.length > n ? clean.slice(0, n - 1) + "…" : clean;
 }
 
-function githubPath(path) {
-  return `https://github.com/Barrios88/barrios-skills/tree/main/${path}`;
+function skillDownloadUrl(skillId) {
+  return `downloads/skills/${skillId}.zip`;
+}
+
+function applySkillDownloadLink(anchor, skill) {
+  anchor.href = skillDownloadUrl(skill.id);
+  anchor.download = `${skill.id}.zip`;
+  anchor.removeAttribute("target");
+  anchor.removeAttribute("rel");
+  anchor.setAttribute("aria-label", `Download ${titleCase(skill.id)} skill`);
 }
 
 function renderFeatured() {
@@ -41,10 +49,8 @@ function renderFeatured() {
     if (!skill) return;
     const a = document.createElement("a");
     a.className = "feature-card";
-    a.href = githubPath(skill.path);
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.innerHTML = `<h3>${titleCase(skill.id)}</h3><p>${truncate(skill.description, 110)}</p><span class="feature-card-cta">Open on GitHub →</span>`;
+    applySkillDownloadLink(a, skill);
+    a.innerHTML = `<h3>${titleCase(skill.id)}</h3><p>${truncate(skill.description, 110)}</p><span class="feature-card-cta">Download zip →</span>`;
     grid.appendChild(a);
   });
 }
@@ -104,9 +110,7 @@ function renderSkills() {
   visible.forEach((skill, i) => {
     const card = document.createElement("a");
     card.className = "skill-card";
-    card.href = githubPath(skill.path);
-    card.target = "_blank";
-    card.rel = "noopener";
+    applySkillDownloadLink(card, skill);
     card.style.animationDelay = `${Math.min(i * 0.02, 0.4)}s`;
     const tag = CATEGORY_SHORT[skill.category] || skill.category;
     card.innerHTML = `
@@ -115,7 +119,7 @@ function renderSkills() {
         <span class="category-tag category-tag--${skill.category}">${tag}</span>
       </div>
       <p>${truncate(skill.description)}</p>
-      <span class="skill-card-cta">Open on GitHub →</span>
+      <span class="skill-card-cta">Download zip →</span>
     `;
     grid.appendChild(card);
   });

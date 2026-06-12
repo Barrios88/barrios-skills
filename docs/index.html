@@ -95,7 +95,7 @@
           </div>
           <a href="#browse" class="btn btn-secondary">View all skills</a>
         </div>
-        <p class="section-intro">Copy any folder from <code>skills/</code> into your agent. No credentials required.</p>
+        <p class="section-intro">Click a skill to download its folder as a zip, then copy into your agent. No credentials required.</p>
         <div class="featured-grid" id="featured-grid"></div>
       </div>
     </section>
@@ -105,7 +105,7 @@
         <div class="browse-header">
           <div>
             <h2>Browse skills by task</h2>
-            <p class="section-intro">Filter by what you want to accomplish.</p>
+            <p class="section-intro">Filter by task — click any skill to download a zip.</p>
           </div>
           <div class="controls">
             <label class="search-wrap">
@@ -126,8 +126,8 @@
         <h2>Install skills in three steps</h2>
         <div class="steps">
           <article class="step-card"><span class="step-num">1</span><h3>Clone the repo</h3><pre><code>git clone https://github.com/Barrios88/barrios-skills.git</code></pre></article>
-          <article class="step-card"><span class="step-num">2</span><h3>Copy a skill folder</h3><pre><code>cp -R barrios-skills/skills/econometrics/stata-regression \
-  ~/.cursor/skills/</code></pre></article>
+          <article class="step-card"><span class="step-num">2</span><h3>Unzip and copy the skill</h3><pre><code>unzip stata-regression.zip
+cp -R stata-regression ~/.cursor/skills/</code></pre></article>
           <article class="step-card"><span class="step-num">3</span><h3>Ask naturally</h3><p>The agent loads the skill when your request matches its description.</p></article>
         </div>
         <div class="platform-cards">
