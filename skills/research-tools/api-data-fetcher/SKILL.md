@@ -26,6 +26,19 @@ collection: barrios-skills
 
 This skill helps economists fetch data from major economic data APIs including FRED (Federal Reserve Economic Data), World Bank, IMF, BLS, and OECD. It generates clean, documented Python code with proper error handling.
 
+## MCP first (interactive agents)
+
+When the user is exploring indicators in Cursor/Claude and an economic-data MCP is configured, **prefer live MCP tools** over handwritten API code:
+
+| Priority | MCP | Setup |
+|----------|-----|-------|
+| 1 | **OpenEcon Data** (FRED, World Bank, IMF, …) | [install/openecon-data-mcp.md](../../../install/openecon-data-mcp.md) |
+| 2 | **FRED MCP** (FRED only, local API key) | [install/external-mcps.md](../../../install/external-mcps.md) |
+
+Still use this skill’s Python patterns when building a **replication package** or project script that must run offline with pinned series IDs. After any MCP pull, record series IDs, source URLs, and download dates in the project README.
+
+For firm filings and XBRL, use [`sec-edgar`](../sec-edgar/) — not FRED/OpenEcon.
+
 ## When to Use
 
 - Downloading macroeconomic indicators

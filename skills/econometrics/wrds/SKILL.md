@@ -18,6 +18,8 @@ John Barrios's **wrds-mcp** server exposes WRDS to Cursor, Claude, and other MCP
 3. Start the tunnel: `bash mcp/wrds-mcp/tunnel/tunnel_up.sh` and approve **Duo MFA** once per session
 4. Register the MCP with `WRDS_TUNNEL_PORT=49600` in Cursor or Claude config
 
+**When to use WRDS instead / with EDGAR:** Compustat fundamentals panels, CRSP returns, CCM links, ExecuComp, ISS, TRACE/TAQ — use this skill + wrds-mcp. For live filing text, XBRL facts, and public Forms 3/4/5 without WRDS panel infrastructure, use the [`sec-edgar`](../../research-tools/sec-edgar/) skill + [SEC EDGAR MCP](../../../install/sec-edgar-mcp.md).
+
 When MCP tools are available (`wrds_run_sql`, `wrds_get_compustat`, etc.), **prefer MCP over raw Python connections**. Still apply all filter rules in this skill.
 
 If the user has not configured MCP credentials, **stop and walk them through** [install/wrds-mcp.md](../../../install/wrds-mcp.md) — do not guess usernames or passwords.

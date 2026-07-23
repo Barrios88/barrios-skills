@@ -29,12 +29,12 @@ Skills teach *how* to work. MCP servers give the agent *live tools* (e.g. run SQ
 
 | Area | Skills | What you get |
 |------|--------|--------------|
-| **Econometrics & empirical data** | 5 | Stata regressions, panel data, WRDS, R IV/DiD/RDD |
+| **Econometrics & empirical data** | 6 | Stata, R, Python panels, pyfixest, WRDS |
 | **Data & visualization** | 11 | Econ figures, matplotlib/seaborn, polars, statsmodels, PyMC |
-| **Research & literature** | 12 | Econ lit search, citations, FRED/APIs, web scraping, ac/fin paper dissemination |
-| **Writing & review** | 12 | Econ voice humanizer, LaTeX tables, Beamer |
+| **Research & literature** | 14 | Lit search, EDGAR, FRED/OpenEcon, financial NLP, scraping |
+| **Writing & review** | 15 | econ-write, humanizer, slides, referee, LaTeX |
 
-**40 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
+**46 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
 
 ## Quick start
 
@@ -48,29 +48,34 @@ Skills teach *how* to work. MCP servers give the agent *live tools* (e.g. run SQ
 
 ## MCP servers (separate from skills)
 
-MCP servers are **not** skills. They live in [`mcp/`](mcp/) and require installation, MCP registration, and often **your own account credentials**.
+MCP servers are **not** skills. They require installation, MCP registration, and often **your own account credentials**. See [`mcp/README.md`](mcp/README.md).
 
-### WRDS MCP (query Compustat, CRSP, and more)
+### WRDS MCP (vendored) — Compustat, CRSP, and more
 
-This repo includes **[wrds-mcp](mcp/wrds-mcp/)** — an MCP server by John Barrios for Wharton WRDS.
+**[wrds-mcp](mcp/wrds-mcp/)** — John Barrios's server for Wharton WRDS.
 
-**You need your own WRDS account.** Setup (install, your username/password, Duo tunnel, Cursor/Claude config):
+→ **[WRDS MCP setup (web)](docs/wrds-mcp.html)** · [Markdown version](install/wrds-mcp.md) · pair with [`wrds`](skills/econometrics/wrds/)
 
-→ **[WRDS MCP setup (web)](docs/wrds-mcp.html)** · [Markdown version](install/wrds-mcp.md)
+### External MCPs (install from upstream)
 
-Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and table conventions.
+| MCP | Setup | Skill |
+|-----|-------|-------|
+| SEC EDGAR | [install/sec-edgar-mcp.md](install/sec-edgar-mcp.md) | [`sec-edgar`](skills/research-tools/sec-edgar/) |
+| OpenEcon Data | [install/openecon-data-mcp.md](install/openecon-data-mcp.md) | [`api-data-fetcher`](skills/research-tools/api-data-fetcher/) |
+| FRED / Stata-MCP | [install/external-mcps.md](install/external-mcps.md) | Stata skills / api-data-fetcher |
 
 ## Featured skills
 
 | Skill | What it does |
 |-------|--------------|
 | [stata-regression](skills/econometrics/stata-regression) | Run regression analyses in Stata with publication-ready output tables |
-| [wrds](skills/econometrics/wrds) | This skill should be used when the user asks to "query WRDS", "access Compustat", "get CRSP data", "pull Form 4 insider… |
-| [python-panel-data](skills/econometrics/python-panel-data) | Panel data analysis with Python using linearmodels and pandas |
-| [econ-humanizer-plus](skills/writing-and-review/econ-humanizer-plus) | Supplements the econ-humanizer skill with a more exhaustive and specific rule set for eliminating AI-generated writing … |
-| [latex-tables](skills/writing-and-review/latex-tables) | Generate publication-ready regression tables in LaTeX |
-| [econ-lit-search](skills/research-tools/econ-lit-search) | Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstr… |
-| [econ-visualization](skills/data-and-visualization/econ-visualization) | Create publication-quality charts and graphs for economics papers |
+| [wrds](skills/econometrics/wrds) | Query WRDS — Compustat, CRSP, TRACE, TAQ — with agent-ready filters |
+| [sec-edgar](skills/research-tools/sec-edgar) | SEC filings, XBRL, and Form 4 for accounting/finance research |
+| [pyfixest](skills/econometrics/pyfixest) | Fast high-dimensional FE regression in Python (fixest-like) |
+| [econ-write](skills/writing-and-review/econ-write) | Cochrane/McCloskey/Shapiro-style drafting for econ, finance, accounting |
+| [econ-humanizer-plus](skills/writing-and-review/econ-humanizer-plus) | Stronger rules for removing AI tells in economics and finance prose |
+| [econ-lit-search](skills/research-tools/econ-lit-search) | Search ~51k economics papers with full-text search and citation sorting |
+| [econ-visualization](skills/data-and-visualization/econ-visualization) | Publication-quality charts and graphs for economics papers |
 
 ## Browse by task
 
@@ -84,6 +89,7 @@ Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and ta
 | [stata-data-cleaning](skills/econometrics/stata-data-cleaning) | Clean and transform messy data in Stata with reproducible workflows |
 | [r-econometrics](skills/econometrics/r-econometrics) | Run IV, DiD, and RDD analyses in R with proper diagnostics |
 | [python-panel-data](skills/econometrics/python-panel-data) | Panel data analysis with Python using linearmodels and pandas. |
+| [pyfixest](skills/econometrics/pyfixest) | Fast high-dimensional FE regression in Python (fixest-like) for firm–year panels. |
 | [wrds](skills/econometrics/wrds) | This skill should be used when the user asks to "query WRDS", "access Compustat", "get CRSP data", … |
 
 ### Data & visualization
@@ -110,6 +116,8 @@ Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and ta
 
 | Skill | Description |
 |-------|-------------|
+| [sec-edgar](skills/research-tools/sec-edgar) | SEC filings, XBRL, and Form 4 via EDGAR MCP for accounting research. |
+| [financial-text-nlp](skills/research-tools/financial-text-nlp) | FinBERT and domain NLP for 10-K, calls, and central-bank text. |
 | [api-data-fetcher](skills/research-tools/api-data-fetcher) | Fetch economic data from FRED, World Bank, and other APIs |
 | [citation-management](skills/research-tools/citation-management) | Comprehensive citation management for academic research. Search Google Scholar and PubMed for paper… |
 | [datacommons-client](skills/research-tools/datacommons-client) | Work with Data Commons, a platform providing programmatic access to public statistical data from gl… |
@@ -129,6 +137,9 @@ Pair with the [`wrds` skill](skills/econometrics/wrds/) for query filters and ta
 
 | Skill | Description |
 |-------|-------------|
+| [econ-write](skills/writing-and-review/econ-write) | Cochrane/McCloskey/Shapiro-style drafting for econ, finance, and accounting. |
+| [econ-slides](skills/writing-and-review/econ-slides) | Paper-to-Beamer talks with honest numbers and speaker scripts. |
+| [econ-referee](skills/writing-and-review/econ-referee) | Pre-submission referee reports with verified comments and a revision plan. |
 | [academic-paper-writer](skills/writing-and-review/academic-paper-writer) | Draft economics papers with proper structure and academic style |
 | [beamer-presentation](skills/writing-and-review/beamer-presentation) | Create academic presentations in Beamer with professional themes |
 | [econ-humanizer](skills/writing-and-review/econ-humanizer) | Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear… |

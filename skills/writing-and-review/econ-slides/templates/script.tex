@@ -1,0 +1,202 @@
+% econ-slides empirical speaker-script starter — a rehearsal instrument.
+% One \scriptframe per main-deck frame, keyed to the EXACT frame title.
+% Reorder/add/delete blocks with the paper-dependent deck; this is not a
+% mandatory content sequence. Add substance, never filler, to meet the clock.
+% Check and compile:
+%   python3 <skill-dir>/scripts/check_script.py script.tex --deck talk.tex \
+%       --slot-minutes TOTAL
+%   # Or, only when the user explicitly gave presentation time:
+%   python3 <skill-dir>/scripts/check_script.py script.tex --deck talk.tex \
+%       --speaking-minutes ALLOCATION
+%   python3 <skill-dir>/scripts/compile_deck.py script.tex
+\documentclass[11pt]{article}
+\usepackage[margin=0.78in,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{needspace}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\input{results.tex} % the same file used by paper-talk.tex
+
+\definecolor{ScriptBlue}{HTML}{1F4E79}
+\definecolor{ScriptGray}{HTML}{666666}
+\setstretch{1.12}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{ScriptGray}{\PaperShortTitle}}
+\rhead{\small\textcolor{ScriptGray}{Rehearsal script}}
+\cfoot{\thepage}
+
+% Use \Click only when a visual build changes evidence or reasoning.
+\newcommand{\Click}[1]{\textcolor{ScriptBlue}{\textbf{[Click #1]}}}
+\newcommand{\Pause}{\textcolor{ScriptGray}{\textit{[pause]}}}
+\newcommand{\Cue}[1]{\par\nobreak\smallskip\noindent\textcolor{ScriptGray}{\footnotesize
+  \textbf{Live cue:} #1}\par}
+
+% The checker reports actual words and cumulative time. In #2, record the
+% rehearsal allocation, e.g. "1.4 min"; do not use it to hide extra words.
+\newcommand{\scriptopening}[2]{%
+  \Needspace{10\baselineskip}%
+  \section*{Opening \hfill\normalfont\small\textcolor{ScriptGray}{#1}}
+  #2\par}
+\newcommand{\scriptframe}[3]{%
+  \Needspace{9\baselineskip}%
+  \par\medskip\noindent\textcolor{ScriptBlue}{\rule{\linewidth}{0.55pt}}%
+  \par\smallskip\noindent
+  \textbf{#1}\hfill\textcolor{ScriptGray}{\small #2}\par\smallskip
+  #3\par}
+\newcommand{\ScriptAppendix}{%
+  \clearpage
+  \section*{\mbox{Q\&A appendix} \hfill
+    \normalfont\small\textcolor{ScriptGray}{conditional; excluded from talk time}}}
+
+\title{Speaker script\\[0.25em]\large \PaperTitle}
+\author{\PaperAuthors}
+\date{\VenueDate\quad [slot] minutes}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+% Keep this natural opening at roughly 40--70 words. It introduces the paper;
+% the substantive result first appears on the synchronized ``This paper'' block.
+\scriptopening{about 0.5 min}{%
+  Good morning. I am \PresenterName, and today I will present
+  \emph{\PaperTitle}, joint work with \CoauthorsSpoken, here at \VenueShort.
+  \TitleDisclaimer\ The paper asks [state the Key question in one short
+  sentence]. [Describe the paper-specific path through the argument in one
+  sentence, matching the actual deck rather than a stock sequence.]
+  \Cue{Greeting; title; coauthors; disclaimer; Key question; actual talk path.}
+}
+
+% Keep this title synchronized with paper-talk.tex. If the question is too long
+% for a frame title, change both files to the literal {Key question} fallback
+% and state \KeyQuestion in the frame body and spoken opening.
+\scriptframe{\KeyQuestion}{about 1.2 min}{%
+  [Open with the Key question in plain language. Give one source-supported fact
+  that explains why the margin matters for behavior, welfare, or policy. Then
+  name the central selection, equilibrium, or measurement problem and the
+  comparison a convincing answer must defend. Save the result for the next
+  block.]
+  \Cue{Key question; why care; obstacle; comparison to defend.}
+}
+
+\scriptframe{This paper}{about 1.5 min}{%
+  Here is what we do. [State the paper's empirical move in one natural
+  sentence.] We find \ResultHeadlineSpoken. [Explain its economic meaning and
+  why it matters.] The supporting result is \ResultSupportSpoken. [Explain how
+  that evidence sharpens the interpretation without overstating a mechanism.]
+  Close with the positive implication, \ResultImplicationSpoken, and connect to
+  the next substantive step. Save an interpretation-changing boundary for the
+  first design or result block where the audience can understand it.
+  \Cue{What we do; main result; support; implication; next step.}
+}
+
+\scriptframe{Roadmap}{about 0.3 min}{%
+  I will make three stops. First, I will describe the setting and data. Second,
+  I will explain the design and main result. Third, I will show the
+  supporting evidence and close with the interpretation.
+  \Cue{Three stops; under twenty seconds; move directly to Data.}
+}
+
+\scriptframe{Data}{about 1.1 min}{%
+  [Name every source and linkage, the observation unit, period, sample size,
+  and consequential restriction. Define the outcome construction and units,
+  treatment or exposure and assignment level, and any nonstandard
+  heterogeneity measure. Say what is observed and what is not. Finish by
+  stating whom the data and resulting comparison represent.]
+  \Cue{Sources; unit; period; N; restriction; outcome; exposure; key measure.}
+}
+
+\scriptframe{[The design creates the comparison of interest]}{about 1.3 min}{%
+  [Explain the comparison in ordinary language before naming a specification.
+  State what the comparison groups would otherwise do and the source evidence
+  that supports or tests it. Then give the preferred specification, where
+  treatment varies, and how uncertainty is measured. End by telling the audience which diagnostic to watch in
+  the main result.]
+  \Cue{Comparison; assumption; implementation; diagnostic.}
+}
+
+\scriptframe{[The main result in warranted language]}{about 1.8 min}{%
+  [Introduce the source exhibit before interpreting it: define the axes or
+  table columns, the sample, and the uncertainty shown. Direct attention to the
+  load-bearing comparison, state \ResultHeadlineSpoken, and translate it into
+  economic language. Explain the most informative contrast. State the one
+  boundary here only if this is where it first becomes relevant; otherwise do
+  not repeat it. Then bridge to the supporting result.]
+  \Cue{Exhibit orientation; main comparison; magnitude; limit; support.}
+}
+
+\scriptframe{[The supporting result sharpens the interpretation]}{about 1.3 min}{%
+  [Orient the audience to the supporting source exhibit. State
+  \ResultSupportSpoken, then separate what the evidence directly shows from the
+  channel it is merely consistent with. Give the leading alternative
+  interpretation only if it is consequential. End with the economic reading
+  that belongs in the conclusion.]
+  \Cue{Exhibit; supporting result; warranted channel; conclusion bridge.}
+}
+
+% Add or remove blocks to match the deck exactly. The checker fails missing,
+% extra, duplicated, or reordered main blocks.
+
+\begin{samepage}
+\scriptframe{Conclusion}{about 1 min}{%
+  [Answer the Key question in the same language used on ``This paper.'' Restate
+  \ResultHeadlineSpoken and one useful support in plain language. Recall the
+  boundary only if leaving it out would make the final claim false. Do not repeat sample dates,
+  specification ranges, or robustness bookkeeping. End with
+  \ResultImplicationSpoken. The final line is the contribution, not a request
+  for questions or a meta-comment about the talk.]
+  \Cue{Main result; support; boundary if needed; implication; final contribution.}
+}
+\end{samepage}
+
+\ScriptAppendix
+
+\scriptframe{Summary statistics and sample construction}{if asked}{%
+  [Explain the population, consequential restrictions, delivered sample, and
+  observation count. Say which population the comparison represents and which
+  entrants, exits, or units it omits. If a source field is inconsistent, state
+  the conflict briefly, then rely only on the internally traceable quantities.]
+}
+
+\scriptframe{Robustness and unresolved design checks}{if asked}{%
+  [Start with the main design question, then explain what each robustness check
+  actually changes. Distinguish numerical stability from identification. Name
+  where treatment varies and how uncertainty is measured, and say whether the
+  preferred uncertainty estimate changes the substantive reading. Concede any unresolved
+  conflict before stating what survives.]
+}
+
+\scriptframe{Related literature}{if asked}{%
+  [Name two or three verified closest antecedents and the outcome, design, or
+  mechanism each contributes. State the narrow margin this paper adds without
+  making an unverified priority claim. Keep bibliographic repair in the backup
+  discussion unless it changes the paper's substantive positioning.]
+}
+
+\Needspace{7\baselineskip}
+\section*{Standing Q\&A stance}
+Hear the whole question and count to three. Answer its strongest version in
+one sentence before adding detail. Concede a genuine limitation directly,
+then distinguish what the evidence establishes from what remains to be shown.
+
+% Keep the one-column cue layer with the Q&A stance when space permits; it is
+% compact enough to scan live and should not create a nearly empty final page.
+\Needspace{8\baselineskip}
+\section*{Live cue layer}
+\raggedright\small
+\begin{enumerate}\setlength{\itemsep}{0.45em}
+  \item \textbf{\KeyQuestion} --- [Opening sentence.]
+  \item \textbf{This paper} --- [Main result in one spoken sentence.]
+  \item \textbf{Roadmap} --- [Three stops in one breath.]
+  \item \textbf{Data} --- [Sources, sample, outcome, exposure, key measure.]
+  \item \textbf{[The design creates the comparison of interest]} --- [Opening sentence.]
+  \item \textbf{[The main result in warranted language]} --- [Opening sentence.]
+  \item \textbf{[The supporting result sharpens the interpretation]} --- [Opening sentence.]
+  \item \textbf{Conclusion} --- [Final contribution sentence.]
+\end{enumerate}
+
+\end{document}

@@ -21,6 +21,12 @@ SUMMARY_OVERRIDES: dict[str, str] = {
     "venue-templates": "LaTeX templates and submission rules for major journals and conferences.",
     "matplotlib": "Fine-grained static plots for publication — full control over every chart element.",
     "research-lookup": "Look up recent research with Perplexity Sonar via OpenRouter, with citations.",
+    "sec-edgar": "SEC filings, XBRL financials, and Form 4 via EDGAR MCP — with CIK discipline for accounting research.",
+    "pyfixest": "Fast high-dimensional FE regression in Python (fixest-like) for firm–year accounting and finance panels.",
+    "financial-text-nlp": "FinBERT and domain models for 10-K, earnings-call, and central-bank text features.",
+    "econ-write": "Cochrane/McCloskey/Shapiro-style paper drafting for economics, finance, and accounting.",
+    "econ-slides": "Paper-to-Beamer talks with honest numbers, discussant decks, and speaker scripts.",
+    "econ-referee": "Pre-submission referee reports with verified comments and a revision plan for econ/finance/accounting.",
 }
 
 AGENT_HEAVY_RE = re.compile(

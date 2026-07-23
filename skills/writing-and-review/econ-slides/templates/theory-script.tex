@@ -1,0 +1,256 @@
+% econ-slides pure-theory speaker-script starter -- a rehearsal instrument.
+% It follows theory-talk.tex only to demonstrate synchronization.  Reorder,
+% add, merge, or delete blocks with the paper-dependent deck.  The Roadmap,
+% application, and backup blocks are optional; never keep them to fill time.
+% Diagnose the mechanism before choosing blocks: singular may need one;
+% complementary links may share a clear sequence; competing forces normally
+% need parallel blocks with the same explanatory skeleton and a synthesis.
+% The minute labels describe the prose currently on the page.  Rehearse and
+% replace them after adding the paper's substantive argument; do not stretch
+% these generic prompts to fill a 15--90 minute session.
+% Check and compile:
+%   python3 <skill-dir>/scripts/check_script.py theory-script.tex \
+%       --deck theory-talk.tex --slot-minutes TOTAL
+%   # Or, only when the user explicitly gave presentation time:
+%   python3 <skill-dir>/scripts/check_script.py theory-script.tex \
+%       --deck theory-talk.tex --speaking-minutes ALLOCATION
+%   python3 <skill-dir>/scripts/compile_deck.py theory-script.tex
+\documentclass[11pt]{article}
+\usepackage[margin=0.78in,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{needspace}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\input{results.tex} % the same file used by theory-talk.tex
+
+\definecolor{ScriptBlue}{HTML}{1F4E79}
+\definecolor{ScriptGray}{HTML}{666666}
+\setstretch{1.12}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{ScriptGray}{\PaperShortTitle}}
+\rhead{\small\textcolor{ScriptGray}{Theory-talk rehearsal script}}
+\cfoot{\thepage}
+
+\newcommand{\Pause}{\textcolor{ScriptGray}{\textit{[pause]}}}
+\newcommand{\Cue}[1]{\par\nobreak\smallskip\noindent
+  \textcolor{ScriptGray}{\footnotesize\textbf{Live cue:} #1}\par}
+\newcommand{\scriptopening}[2]{%
+  \Needspace{10\baselineskip}%
+  \section*{Opening \hfill\normalfont\small\textcolor{ScriptGray}{#1}}
+  #2\par}
+\newcommand{\scriptframe}[3]{%
+  \Needspace{9\baselineskip}%
+  \par\medskip\noindent\textcolor{ScriptBlue}{\rule{\linewidth}{0.55pt}}%
+  \par\smallskip\noindent
+  \textbf{#1}\hfill\textcolor{ScriptGray}{\small #2}\par\smallskip
+  #3\par}
+\newcommand{\ScriptAppendix}{%
+  \clearpage
+  \section*{\mbox{Q\&A appendix} \hfill
+    \normalfont\small\textcolor{ScriptGray}{conditional; excluded from talk time}}}
+
+\title{Theory-talk speaker script\\[0.25em]\large \PaperTitle}
+\author{\PaperAuthors}
+\date{\VenueDate\quad [total session] minutes}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+% Replace every bracketed prompt with source-faithful language.  The prose
+% explains the intellectual job of each block; it is not a word-count target.
+\scriptopening{about 0.4 min}{%
+  Good morning. I am \PresenterName, and today I will present
+  \emph{\PaperTitle}, joint work with \CoauthorsSpoken, here at \VenueShort.
+  \TitleDisclaimer\ The paper asks [state the Key question in one sentence].
+  The answer turns on [name the economic tension], and I will show why that
+  force matters before stating the formal result.
+  \Cue{Greeting; paper and coauthors; Key question; economic tension.}
+}
+
+% Keep this title synchronized with theory-talk.tex. If the question is too
+% long for a frame title, change both files to the literal {Key question}
+% fallback and state \KeyQuestion in the body and spoken opening.
+\scriptframe{\KeyQuestion}{about 0.8 min}{%
+  The paper starts from a simple tension. [State the behavior, allocation, or
+  policy margin in concrete terms.] One force pushes the relevant choice in
+  one direction: [explain the first force]. A second force pushes back:
+  [explain the opposing force]. Existing results do not settle which force
+  dominates because [name the missing equilibrium margin or restriction].
+
+  The question is therefore [repeat the Key question in the same language as
+  the deck]. The object we need is [name the equilibrium, policy, or welfare
+  object]. This formulation matters because it distinguishes a private
+  response from the equilibrium response the paper studies. The next block
+  gives the answer before we build the model that supports it.
+  \Cue{The paper starts from a simple tension.}
+}
+
+% Select and order the paper's real formal payoffs rather than forcing a fixed
+% result/mechanism/application count.  Possibilities include tractability,
+% decomposition, representation, comparative statics, welfare, and policy.
+\scriptframe{This paper}{about 0.8 min}{%
+  Here is what we do and what we find. \ResultHeadlineSpoken. In economic terms, [say who
+  changes which choice and in response to what]. The mechanism is [state the
+  force in one clause]. It works because [give the causal logic in words,
+  without notation].
+
+  The paper also shows \ResultSupportSpoken. That comparison matters because
+  [explain what it reveals about the mechanism or scope]. Save technical
+  conditions for the proposition or environment block, where the audience can
+  understand what they do. The implication is \ResultImplicationSpoken.
+  \Cue{Here is what we do and what we find.}
+}
+
+\scriptframe{Roadmap}{about 0.3 min}{%
+  I will make three stops. I will set out the environment and the economic
+  tension, isolate the mechanism behind the main proposition, and then show
+  the comparative static or application that gives the result its meaning.
+  \Cue{I will make three stops.}
+}
+
+\scriptframe{Environment}{about 0.8 min}{%
+  The environment has [name the agents] and [name the payoff-relevant state].
+  First, [describe the initial move and what is known]. Then [describe the
+  next move, information, and any uncertainty]. Each agent chooses [action]
+  subject to [resource, technology, or incentive constraint].
+
+  The solution concept is [name and explain the equilibrium or optimum]. In
+  ordinary language, it requires [state what beliefs, prices, strategies, or
+  allocations must be mutually consistent]. The key assumption is
+  [state it precisely]. Economically, that assumption does one job: [explain
+  the margin it disciplines]. Everything else can remain in the appendix
+  unless it changes how the audience should read the proposition.
+  \Cue{The environment has [name the agents] and [name the payoff-relevant state].}
+}
+
+% This is the singular/default mechanism block.  Duplicate it for competing
+% forces, keep the same object/current-decision/equilibrium-effect/sign order,
+% and add a synthesis block before the proposition.  Do not split a compact
+% complementary chain merely for symmetry.
+\scriptframe{Mechanism}{about 0.8 min}{%
+  Now isolate the mechanism. The condition on the screen compares [economic
+  gain] with [economic cost or wedge]. I will not read the notation. The first
+  term says [give its economic meaning]; the second captures [give its
+  economic meaning].
+
+  [For a higher-order result, describe two future states, hold today's state
+  and the relevant mean fixed, and widen the spread. Say whose current choice
+  changes and why the expected payoff, price, or return is nonlinear.]
+
+  Holding equilibrium objects fixed, [primitive] changes the agent's choice
+  through [direct force]. But other agents or prices respond as well. That
+  response changes [the relevant payoff, constraint, or strategic incentive].
+  Under the key assumption, the feedback is [stronger or weaker]
+  than the direct force, so the net effect has the sign stated on the next
+  frame. The useful intuition is [give a short concrete analogy or limiting
+  case supported by the model].
+  \Cue{Now isolate the mechanism.}
+}
+
+\scriptframe{Main proposition}{about 0.9 min}{%
+  The proposition says \ResultHeadlineSpoken. That is the statement in words.
+  The formal line makes two points precise: [name the object being compared]
+  and [name the condition under which the sign or ordering holds]. Define any
+  symbol the audience has not already heard by its economic meaning.
+
+  Why is the proposition true? Start from [the agent's best response or value
+  comparison]. The mechanism changes [the first key margin]. Equilibrium then
+  changes [the feedback margin]. The key condition lets us order
+  those two changes, which delivers the result. The full proof is in the
+  appendix. What matters here is the economic step that signs the proposition,
+  not the algebra used to verify regularity.
+  \Cue{The proposition says \ResultHeadlineSpoken.}
+}
+
+\scriptframe{Economic interpretation}{about 0.7 min}{%
+  Now let me show where the proposition matters. \ResultSupportSpoken. [Explain the
+  comparative static, welfare result, or application without introducing a
+  new model.] The result changes [agent]'s choice because [mechanism].
+  % Add one short contrast only when the room is likely to confuse the object;
+  % do not force a defensive ``not X'' sentence into every script.
+
+  The economically relevant comparison is [state the benchmark or special
+  case]. Relative to that benchmark, [describe the direction and, when the
+  paper supplies one, the scale]. This tells us [state what the result changes
+  for behavior, welfare, or policy]. That is why the formal proposition matters
+  outside the proof.
+  % Add one spoken boundary sentence here only if omitting it would materially
+  % misstate this interpretation; do not keep a generic scope prompt.
+  \Cue{Now let me show where the proposition matters.}
+}
+
+\begin{samepage}
+\scriptframe{Conclusion}{about 0.7 min}{%
+  Let me close with the answer. \ResultHeadlineSpoken. The result follows from
+  [name the mechanism in one sentence], and \ResultSupportSpoken{} shows where
+  that force is strongest or most useful. Recall the scope condition only if
+  leaving it out would make the conclusion false.
+
+  The broader implication is \ResultImplicationSpoken. The paper's
+  contribution is to show how [primitive or friction] changes [equilibrium or
+  welfare object] once [feedback or strategic response] is allowed to operate.
+  End on that economic contribution. Do not reopen the proof or introduce a
+  new extension.
+  \Cue{Let me close with the answer.}
+}
+\end{samepage}
+
+\ScriptAppendix
+
+\scriptframe{Proof logic}{if asked}{%
+  Begin with [best response, envelope condition, or value comparison]. The
+  first step establishes [intermediate result]. The second step imposes
+  equilibrium consistency, which changes [key feedback margin]. The
+  key condition then signs that change. The remaining steps verify
+  existence, regularity, or boundary cases; they do not create the economic
+  result. Point to the exact lemma or proposition in the paper if more detail
+  is requested.
+}
+
+\scriptframe{Alternative assumption}{if asked}{%
+  The baseline assumption is [state it], and it controls [economic margin].
+  Under [weaker or different assumption], the mechanism still changes
+  [object], so [part of the result] survives. What may change is [sign, scope,
+  uniqueness, or comparative-static strength]. This separates a convenient
+  sufficient condition from the economic force itself and makes clear which
+  conclusion is robust to the alternative.
+}
+
+\scriptframe{Extension or benchmark}{if asked}{%
+  The extension adds [agent, state, friction, or instrument]. Relative to the
+  benchmark, it changes [incentive or equilibrium feedback]. The original
+  mechanism is preserved when [condition], but it can weaken or reverse when
+  [condition]. The point of the extension is therefore not extra generality
+  by itself. It shows which part of the main result comes from the core force
+  and which part depends on the baseline environment.
+}
+
+\Needspace{7\baselineskip}
+\section*{Standing Q\&A stance}
+Hear the full question and count to three. State the economic answer first,
+then add notation only if it makes the answer more precise. Concede a genuine
+scope condition directly and separate the mechanism from convenient proof
+assumptions.
+
+\Needspace{8\baselineskip}
+\section*{Live cue layer}
+% This list shares a page with the Q&A stance; use the largest size that keeps
+% the complete cue layer together after rendering.
+\raggedright\footnotesize
+\begin{enumerate}\setlength{\itemsep}{0.18em}
+  \item \textbf{\KeyQuestion} --- The paper starts from a simple tension.
+  \item \textbf{This paper} --- Here is what we do and what we find.
+  \item \textbf{Roadmap} --- I will make three stops.
+  \item \textbf{Environment} --- The environment has [name the agents] and [name the payoff-relevant state].
+  \item \textbf{Mechanism} --- Now isolate the mechanism.
+  \item \textbf{Main proposition} --- The proposition says \ResultHeadlineSpoken.
+  \item \textbf{Economic interpretation} --- Now let me show where the proposition matters.
+  \item \textbf{Conclusion} --- Let me close with the answer.
+\end{enumerate}
+
+\end{document}

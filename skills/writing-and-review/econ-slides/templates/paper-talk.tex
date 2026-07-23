@@ -1,0 +1,230 @@
+% econ-slides empirical author-talk starter, not a mandatory sequence.
+% Order, merge, split, or delete frame roles according to the paper's audience
+% dependencies and the user's request. Preserve the claim status in the plan.
+% Compile: python3 <skill-dir>/scripts/compile_deck.py this-file.tex
+\documentclass[11pt, aspectratio=169]{beamer}
+\usepackage{econ-slides-house}
+\input{results.tex} % shared title and result phrases; keep beside deck + script
+
+% COLOR LEDGER (replace with this paper's recurring objects and use the aliases
+% everywhere the objects recur; familiar/baseline objects normally stay black):
+%   treatment or new exposure = cTreatment   key outcome = cOutcome
+\colorlet{cTreatment}{cAccentA}
+\colorlet{cOutcome}{cAccentC}
+
+\newcommand{\TODO}[1]{\textcolor{cAccentB}{\textbf{TODO: #1}}}
+\newcommand{\SourceExhibitPlaceholder}[2][0.36\textheight]{%
+  \fbox{\parbox[c][#1][c]{0.84\textwidth}{\centering
+    \textbf{#2}\par\smallskip
+    \footnotesize Reuse or crop the paper's load-bearing exhibit. Rebuild it
+    only from exact source inputs when readability requires it.}}}
+
+% Keep the paper's exact title. Do not invent an editorial or results subtitle.
+% If the published title contains a subtitle, include it inside \PaperTitle.
+\title[\PaperShortTitle]{\PaperTitle}
+\author[\AuthorShort]{\TitleAuthorBlock}
+\institute{\TitleAffiliationBlock}
+\date[\VenueShort]{\VenueDate}
+
+\begin{document}
+
+% Metadata only: exact paper title, authors, affiliations, venue, and date.
+\begin{frame}[plain]
+  \titlepage
+  % If a disclaimer is required, uncomment this single quiet bottom line:
+  % \vfill\centering\scriptsize\textit{\TitleDisclaimer}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+% ---- 1. Key question: motivation and question in one audience-facing frame. ----
+% A source-native motivation figure may precede this when the audience needs
+% it. A concise question belongs in the title. If it cannot be made concise,
+% use {Key question} and place \KeyQuestion in the body instead. Give the
+% answer as soon as it is intelligible; do not force a fixed slot.
+\begin{frame}[t]{\KeyQuestion}
+  \medskip
+  \RunIn{Why this matters:}
+  \begin{itemize}\setlength{\itemsep}{0.55em}
+    \item {[One source-supported fact establishing scale or importance]}
+    \item {[How this margin changes behavior, welfare, or policy]}
+  \end{itemize}
+
+  \medskip
+  \RunIn{What makes it hard:}
+  \begin{itemize}\setlength{\itemsep}{0.55em}
+    \item {[The central selection, equilibrium, or measurement problem]}
+    \item {[The comparison a convincing answer must defend]}
+  \end{itemize}
+  \medskip
+  \graycite{[Two to four verified closest antecedents, inline.]}
+\end{frame}
+
+% ---- 3. Punchline: positive author framing; no SEs or stars here. ----
+\begin{frame}{This paper}
+  \medskip
+  [One framing line: setting, sample, units, and period.]
+  \bigskip
+  \begin{enumerate}\setlength{\itemsep}{1.0em}
+    \item \KeyIdea{[Main result.]} \ResultHeadlineSlide
+      \vspace{0.14em}
+      \begin{itemize}\setlength{\itemsep}{0.38em}
+        \item {[Economic meaning in one plain-language line]}
+      \end{itemize}
+    \item \textbf{[Supporting pattern.]} \ResultSupportSlide
+      \vspace{0.14em}
+      \begin{itemize}\setlength{\itemsep}{0.38em}
+        \item {[Why this pattern sharpens the interpretation]}
+      \end{itemize}
+    % Add a third item only when the emphasis ledger contains a genuinely
+    % distinct second support. Do not create an equal-weight contribution slot.
+  \end{enumerate}
+  \bigskip
+  \textbf{Implication:} \ResultImplicationSlide
+\end{frame}
+
+% ---- 3. Quick roadmap: a 10--20 second audience contract. ----
+\begin{frame}{Roadmap}
+  \begin{enumerate}\setlength{\itemsep}{1.1em}
+    \item Setting and data
+    \item Design and main result
+    \item Supporting evidence and interpretation
+  \end{enumerate}
+\end{frame}
+
+% ---- 4. Data: every empirical object needed to read later results. ----
+\begin{frame}{Data}
+  \framesubtitle{[Sources and linkage; who or what is observed; sample period]}
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.62em}
+    \item \RunIn{Sample:} [Who or what is observed, period, N, and consequential restriction]
+      \begin{itemize}
+        \item {[Who the resulting comparison represents]}
+      \end{itemize}
+    \item \RunIn{Outcome:} [Construction, units, timing, and source]
+      \begin{itemize}
+        \item {[The economic object captured by the measure]}
+      \end{itemize}
+    \item \RunIn{Treatment or exposure:}
+      \textcolor{cTreatment}{[Measured object and assignment level]}
+      \begin{itemize}
+        \item {[What is observed, and what is not observed]}
+      \end{itemize}
+    \item \RunIn{Key measure:} [How any nonstandard comparison measure is constructed]
+  \end{itemize}
+  \hypertarget{main:sumstats}{}%
+  \PlaceNav{\hyperlink{app:sumstats}{\beamergotobutton{Sample details}}}
+\end{frame}
+
+% ---- 5. Design: comparison, assumption, and diagnostic; no stock diagram. ----
+\begin{frame}[t]{[The design creates the comparison of interest]}
+  \framesubtitle{[Assignment or model logic, stated precisely]}
+  \medskip
+  \RunIn{Comparison:}
+  \begin{itemize}\setlength{\itemsep}{0.52em}
+    \item {[Explain the identifying or model comparison in plain language]}
+  \end{itemize}
+
+  \medskip
+  \RunIn{What must be true:}
+  \begin{itemize}\setlength{\itemsep}{0.52em}
+    \item {[State in words what the comparison groups would otherwise do]}
+    \item {[Name the source evidence that supports or tests it]}
+  \end{itemize}
+
+  \medskip
+  \RunIn{How it is estimated:}
+  \begin{itemize}\setlength{\itemsep}{0.52em}
+    \item {[Preferred specification, where treatment varies, and how uncertainty is measured]}
+    \item {[The one diagnostic the audience should watch]}
+  \end{itemize}
+
+  % If a source-native equation is essential, place it here and define every
+  % nonstandard object on this slide. Otherwise leave the design in words.
+\end{frame}
+
+% ---- 6. Main result: one load-bearing source exhibit and one reading. ----
+\begin{frame}{[The main result in warranted language]}
+  \framesubtitle{[Outcome, specification, sample, and uncertainty]}
+  \centering
+  \SourceExhibitPlaceholder{Main source figure or surgically rebuilt table}
+  % If the final render has extra room, use the optional local gap below;
+  % do not enlarge \ExhibitReadingGap globally for one sparse frame.
+  \TakeawayWithNav[\ExhibitReadingGapRoomy]{[Translate the load-bearing estimate into economic language.]}
+  \hypertarget{main:robust}{}%
+  \PlaceNav{\hyperlink{app:robust}{\beamergotobutton{Robustness}}\;\hyperlink{app:literature}{\beamergotobutton{Literature}}}
+\end{frame}
+
+% ---- 7. Supporting result: evidence first, channel language second. ----
+\begin{frame}{[The supporting result sharpens the interpretation]}
+  \framesubtitle{[Heterogeneity, mechanism evidence, or model implication]}
+  \centering
+  \SourceExhibitPlaceholder[0.42\textheight]{Supporting source exhibit, native table, or exact-input rebuild}
+  \Takeaway{[Direct reading first; then the warranted channel interpretation.]}
+\end{frame}
+
+% ---- 8. Conclusion: a shorter landing, never a duplicate or link hub. ----
+\begin{frame}{Conclusion}
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{1.0em}
+    \item \KeyIdea{[Answer to the Key question in one sentence.]}
+    \item \textbf{[Who, when, or where:]}
+      [One supporting result in plain language.]
+  \end{itemize}
+  \bigskip
+  \textbf{Implication:} \ResultImplicationSlide
+  % Deliberately no navigation on the final slide.
+\end{frame}
+
+% ================= Appendix =================
+\AppendixStart
+
+\begin{frame}[t]{Summary statistics and sample construction}
+  \hypertarget{app:sumstats}{}%
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.62em}
+    \item \RunIn{Population:} [Original population and source]
+      \begin{itemize}
+        \item {[Coverage of the source data and unit of observation]}
+        \item {[Which target population the raw data represent]}
+      \end{itemize}
+    \item \RunIn{Restrictions:} [Consequential inclusion and exclusion rules]
+      \begin{itemize}
+        \item {[The restriction most likely to change selection]}
+        \item {[Who is removed and why that matters]}
+      \end{itemize}
+    \item \RunIn{Delivered sample:} [Units, years, and observations]
+      \begin{itemize}
+        \item {[Confirm the observation count from units times periods]}
+      \end{itemize}
+    \item \RunIn{Sensitivity:} [What changes when the key restriction is relaxed]
+      \begin{itemize}
+        \item {[How the estimand or result moves]}
+      \end{itemize}
+  \end{itemize}
+  \BackButton{main:sumstats}
+\end{frame}
+
+\begin{frame}{Robustness and unresolved design checks}
+  \hypertarget{app:robust}{}%
+  \centering
+  \SourceExhibitPlaceholder[0.45\textheight]{Source robustness exhibit or exact-input rebuild}
+  \Takeaway{[What remains stable, and which design question remains open.]}
+  \BackButton{main:robust}
+\end{frame}
+
+\begin{frame}{Related literature}
+  \hypertarget{app:literature}{}%
+  \begin{itemize}\setlength{\itemsep}{0.65em}
+    \item \RunIn{[Antecedent 1]:} [Closest design or mechanism]
+      \begin{itemize}\item {[The narrow distinction this paper adds]}\end{itemize}
+    \item \RunIn{[Antecedent 2]:} [Closest setting or result]
+      \begin{itemize}\item {[Why the present evidence is complementary]}\end{itemize}
+    \item \RunIn{[Antecedent 3]:} [Closest policy or theory application]
+      \begin{itemize}\item {[Which margin remains distinct]}\end{itemize}
+  \end{itemize}
+  \bigskip
+  \textbf{Positioning:} [One narrow contribution; no unverified ``first.'']
+  \BackButton{main:robust}
+\end{frame}
+
+\end{document}

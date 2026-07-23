@@ -1,0 +1,37 @@
+% Shared title metadata and result phrases for paper-talk.tex and script.tex.
+% Replace every prompt with source-traceable text. Add a table/page comment to
+% every real magnitude and keep this file beside both generated artifacts.
+
+% Preserve the paper's exact title; do not invent an editorial subtitle.
+\newcommand{\PaperTitle}{[Exact paper title]}
+\newcommand{\PaperShortTitle}{[Short paper title]}
+\newcommand{\PaperAuthors}{[Plain author list for scripts and PDF metadata]}
+\newcommand{\AuthorShort}{[Author surname]}
+\newcommand{\PresenterName}{[Presenter]}
+\newcommand{\CoauthorsSpoken}{[Coauthors]}
+\newcommand{\PaperAffiliations}{[One shared affiliation, or leave empty]}
+\newcommand{\TitleAuthorBlock}{\PaperAuthors}
+\newcommand{\TitleAffiliationBlock}{\PaperAffiliations}
+% When affiliations differ, replace \TitleAuthorBlock with \AuthorAffil blocks
+% and leave \TitleAffiliationBlock empty. For example, three authors:
+% \renewcommand{\TitleAuthorBlock}{%
+%   \begin{tabular}{@{}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{}}
+%     \AuthorAffil{Author A}{Institution A} &
+%     \AuthorAffil{Author B}{Institution B} &
+%     \AuthorAffil{Author C}{Institution C}
+%   \end{tabular}}
+% Four authors normally use a balanced 2-by-2 grid; see style-guide.md.
+\newcommand{\KeyQuestion}{[State the research question in one plain-English line.]}
+\newcommand{\VenueDate}{[Venue, Month Year]}
+\newcommand{\VenueShort}{[Venue]}
+\newcommand{\TitleDisclaimer}{}
+% For a central-bank or public-institution author, use the institution's
+% established wording from the paper or a prior deck.
+
+% Slide and spoken forms share provenance but use audience-appropriate wording.
+\newcommand{\ResultHeadlineSlide}{[Headline magnitude and comparison in words]} % Source: p._, Table/Figure _
+\newcommand{\ResultHeadlineSpoken}{[Rounded headline magnitude and comparison]} % Same source; oral form
+\newcommand{\ResultSupportSlide}{[Supporting magnitude or qualitative pattern]} % Source: p._, Table/Figure _
+\newcommand{\ResultSupportSpoken}{[Rounded supporting result or pattern]} % Same source; oral form
+\newcommand{\ResultImplicationSlide}{[Short evidence-supported implication]}
+\newcommand{\ResultImplicationSpoken}{[Natural spoken form of the same implication]}

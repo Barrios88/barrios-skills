@@ -39,6 +39,13 @@
           "path": "skills/econometrics/wrds",
           "description": "This skill should be used when the user asks to \"query WRDS\", \"access Compustat\", \"get CRSP data\", \"pull Form 4 insider data\", \"query ISS compensation\", \"download SEC EDGAR filings\", \"get ExecuComp data\", \"access Capital IQ\", \"query TRACE bond data\", \"clean TRACE\", \"merge FISD\", \"query TAQ\", \"pull intraday trades or quotes\", \"build NBBO\", \"compute effective spread\", or needs WRDS PostgreSQL query patterns.",
           "summary": "Query WRDS libraries \u2014 Compustat, CRSP, TRACE, TAQ, and more \u2014 with agent-ready SQL patterns."
+        },
+        {
+          "id": "pyfixest",
+          "name": "pyfixest",
+          "path": "skills/econometrics/pyfixest",
+          "description": "Fast high-dimensional fixed-effects regression in Python with pyfixest (fixest-like syntax). Use for OLS/IV/Poisson with many FEs, cluster-robust SEs, modern DiD (did2s, Sun-Abraham), and publication tables \u2014 the Python counterpart to Stata reghdfe/fixest for accounting and finance panels.",
+          "summary": "Fast high-dimensional FE regression in Python (fixest-like) for firm\u2013year accounting and finance panels."
         }
       ]
     },
@@ -214,6 +221,20 @@
           "path": "skills/research-tools/paper-2-acfin-web",
           "description": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters. Use when turning a JAR/JAE/TAR, JF/JFE/RFS, or empirical arch manuscript (LaTeX or PDF) into a Paper2Web homepage, Paper2Video talk, or Paper2Poster for AAA, FARS, MFA, WFA, or journal promotion.",
           "summary": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters."
+        },
+        {
+          "id": "sec-edgar",
+          "name": "sec-edgar",
+          "path": "skills/research-tools/sec-edgar",
+          "description": "Pull SEC EDGAR filings, XBRL financials, and Form 3/4/5 insider trades for accounting and finance research. Prefer the SEC EDGAR MCP for live lookups; use WRDS for panel Compustat/CRSP merges. Enforces CIK discipline, User-Agent rules, and sample inspection before claiming results.",
+          "summary": "SEC filings, XBRL financials, and Form 4 via EDGAR MCP \u2014 with CIK discipline for accounting research."
+        },
+        {
+          "id": "financial-text-nlp",
+          "name": "financial-text-nlp",
+          "path": "skills/research-tools/financial-text-nlp",
+          "description": "Measure sentiment and stance in financial and economic text \u2014 10-K/10-Q MD&A, earnings calls, Fed/ECB communications \u2014 using FinBERT, FinVADER, and domain models. Use for accounting and finance NLP features, not general chat sentiment.",
+          "summary": "FinBERT and domain models for 10-K, earnings-call, and central-bank text features."
         }
       ]
     },
@@ -305,6 +326,27 @@
           "path": "skills/writing-and-review/venue-templates",
           "description": "Access comprehensive LaTeX templates, formatting requirements, and submission guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE, ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing manuscripts for journal submission, conference papers, research posters, or grant proposals and need venue-specific formatting requirements and templates.",
           "summary": "LaTeX templates and submission rules for major journals and conferences."
+        },
+        {
+          "id": "econ-write",
+          "name": "econ-write",
+          "path": "skills/writing-and-review/econ-write",
+          "description": "Draft and revise economics, finance, and accounting papers using Cochrane/McCloskey/Shapiro-style craft: triangular introductions, concrete magnitudes, identification-first structure. Use with econ-humanizer and econ-writing-plus.",
+          "summary": "Cochrane/McCloskey/Shapiro-style paper drafting for economics, finance, and accounting."
+        },
+        {
+          "id": "econ-slides",
+          "name": "econ-slides",
+          "path": "skills/writing-and-review/econ-slides",
+          "description": "Turn an economics, finance, or accounting paper into a professional Beamer talk with honest numbers, discussant decks, and timed speaker scripts. Prefer over basic beamer-presentation for paper-to-talk jobs.",
+          "summary": "Paper-to-Beamer talks with honest numbers, discussant decks, and speaker scripts."
+        },
+        {
+          "id": "econ-referee",
+          "name": "econ-referee",
+          "path": "skills/writing-and-review/econ-referee",
+          "description": "Pre-submission referee report for economics, finance, and accounting papers \u2014 verified comments tied to page/table evidence, separate editing notes, and a prioritized revision plan. Barrios-original workflow for JAR/TAR/JAE/JF/JFE/RFS/AEA-style empirics. For general science checklists use peer-review; for scoring rubrics use scholar-evaluation.",
+          "summary": "Pre-submission referee reports with verified comments and a revision plan for econ/finance/accounting."
         }
       ]
     }
@@ -669,6 +711,60 @@
       "category": "research-tools",
       "curated-by": "John Barrios",
       "summary": "Convert accounting and finance papers into dissemination assets \u2014 interactive project websites, seminar videos, and conference posters."
+    },
+    {
+      "id": "pyfixest",
+      "name": "pyfixest",
+      "path": "skills/econometrics/pyfixest",
+      "description": "Fast high-dimensional fixed-effects regression in Python with pyfixest (fixest-like syntax). Use for OLS/IV/Poisson with many FEs, cluster-robust SEs, modern DiD (did2s, Sun-Abraham), and publication tables \u2014 the Python counterpart to Stata reghdfe/fixest for accounting and finance panels.",
+      "summary": "Fast high-dimensional FE regression in Python (fixest-like) for firm\u2013year accounting and finance panels.",
+      "category": "econometrics",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "sec-edgar",
+      "name": "sec-edgar",
+      "path": "skills/research-tools/sec-edgar",
+      "description": "Pull SEC EDGAR filings, XBRL financials, and Form 3/4/5 insider trades for accounting and finance research. Prefer the SEC EDGAR MCP for live lookups; use WRDS for panel Compustat/CRSP merges. Enforces CIK discipline, User-Agent rules, and sample inspection before claiming results.",
+      "summary": "SEC filings, XBRL financials, and Form 4 via EDGAR MCP \u2014 with CIK discipline for accounting research.",
+      "category": "research-tools",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "financial-text-nlp",
+      "name": "financial-text-nlp",
+      "path": "skills/research-tools/financial-text-nlp",
+      "description": "Measure sentiment and stance in financial and economic text \u2014 10-K/10-Q MD&A, earnings calls, Fed/ECB communications \u2014 using FinBERT, FinVADER, and domain models. Use for accounting and finance NLP features, not general chat sentiment.",
+      "summary": "FinBERT and domain models for 10-K, earnings-call, and central-bank text features.",
+      "category": "research-tools",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "econ-write",
+      "name": "econ-write",
+      "path": "skills/writing-and-review/econ-write",
+      "description": "Draft and revise economics, finance, and accounting papers using Cochrane/McCloskey/Shapiro-style craft: triangular introductions, concrete magnitudes, identification-first structure. Use with econ-humanizer and econ-writing-plus.",
+      "summary": "Cochrane/McCloskey/Shapiro-style paper drafting for economics, finance, and accounting.",
+      "category": "writing-and-review",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "econ-slides",
+      "name": "econ-slides",
+      "path": "skills/writing-and-review/econ-slides",
+      "description": "Turn an economics, finance, or accounting paper into a professional Beamer talk with honest numbers, discussant decks, and timed speaker scripts. Prefer over basic beamer-presentation for paper-to-talk jobs.",
+      "summary": "Paper-to-Beamer talks with honest numbers, discussant decks, and speaker scripts.",
+      "category": "writing-and-review",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "econ-referee",
+      "name": "econ-referee",
+      "path": "skills/writing-and-review/econ-referee",
+      "description": "Pre-submission referee report for economics, finance, and accounting papers \u2014 verified comments tied to page/table evidence, separate editing notes, and a prioritized revision plan. Barrios-original workflow for JAR/TAR/JAE/JF/JFE/RFS/AEA-style empirics. For general science checklists use peer-review; for scoring rubrics use scholar-evaluation.",
+      "summary": "Pre-submission referee reports with verified comments and a revision plan for econ/finance/accounting.",
+      "category": "writing-and-review",
+      "curated-by": "John Barrios"
     }
   ],
   "collection": {

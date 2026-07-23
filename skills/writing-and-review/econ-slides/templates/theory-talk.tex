@@ -1,0 +1,234 @@
+% econ-slides pure-theory author-talk starter, not a mandatory sequence.
+% Reorder, merge, split, or delete frame roles to match the paper's dependency
+% graph and the user's request.  In particular, keep the Roadmap and
+% application frame only when they help this audience understand the result.
+% A pure theory paper has no Data slide unless data enter the actual paper.
+% Before drafting, classify the mechanism as singular, complementary, or
+% competing.  A singular force may need one frame; a legible complementary
+% chain may share one frame; competing forces normally need parallel frames
+% with the same skeleton plus a synthesis.  Do not force any branch.
+% Compile: python3 <skill-dir>/scripts/compile_deck.py this-file.tex
+\documentclass[11pt, aspectratio=169]{beamer}
+\usepackage{econ-slides-house}
+\input{results.tex} % shared title and result phrases; keep beside deck + script
+
+% COLOR LEDGER (replace with the paper's recurring objects and use the aliases
+% everywhere they return; standard/old benchmark objects stay neutral):
+%   paper's new object = cAccentB   channel A = cAccentC   channel B = cAccentD
+\colorlet{cNewObject}{cAccentB}
+\colorlet{cChannelA}{cAccentC}
+\colorlet{cChannelB}{cAccentD}
+
+\newcommand{\TODO}[1]{\textcolor{cAccentB}{\textbf{TODO: #1}}}
+
+% Keep the paper's exact title.  Do not add a results subtitle.
+\title[\PaperShortTitle]{\PaperTitle}
+\author[\AuthorShort]{\TitleAuthorBlock}
+\institute{\TitleAffiliationBlock}
+\date[\VenueShort]{\VenueDate}
+
+\begin{document}
+
+% Metadata only: exact title, authors, affiliations, venue, and date.
+\begin{frame}[plain]
+  \titlepage
+  % If required, uncomment this single quiet bottom line:
+  % \vfill\centering\scriptsize\textit{\TitleDisclaimer}
+\end{frame}
+\addtocounter{framenumber}{-1}
+
+% ---- Opening: state the economic object and the tension that makes it hard. ----
+% A concise question belongs in the title. If it cannot be made concise, use
+% {Key question} and place \KeyQuestion in the body.
+\begin{frame}[t]{\KeyQuestion}
+  \medskip
+  \RunIn{Why this matters:}
+  \begin{itemize}\setlength{\itemsep}{0.55em}
+    \item {[The behavior, allocation, or policy margin at stake]}
+    \item {[Why the answer is not immediate]}
+  \end{itemize}
+
+  \medskip
+  \RunIn{The theoretical tension:}
+  \begin{itemize}\setlength{\itemsep}{0.55em}
+    \item {[The two economic forces that point in different directions]}
+    \item {[The equilibrium object or comparative static the paper resolves]}
+  \end{itemize}
+  \medskip
+  \graycite{[Two to four verified closest antecedents, inline.]}
+\end{frame}
+
+% ---- Punchline: select the paper's actual formal payoffs. ----
+% Possible roles include theorem, tractability/reduction, mechanism,
+% representation, comparative static, welfare/policy, and application.  Keep
+% only the roles that form the paper's argument; add, delete, or reorder lines
+% rather than forcing a fixed number of contributions.
+\begin{frame}{This paper}
+  \medskip
+  [One framing line: model class, central friction, and equilibrium object.]
+  \bigskip
+  \begin{itemize}\setlength{\itemsep}{1.0em}
+    \item \KeyIdea{[Primary formal payoff.]} \ResultHeadlineSlide
+      \vspace{0.14em}
+      \begin{itemize}\setlength{\itemsep}{0.38em}
+        \item {[Why this payoff changes what the audience can learn or do]}
+      \end{itemize}
+    \item \textbf{[Optional second payoff.]} \ResultSupportSlide
+      \vspace{0.14em}
+      \begin{itemize}\setlength{\itemsep}{0.38em}
+        \item {[How it advances the same argument rather than starting another]}
+      \end{itemize}
+  \end{itemize}
+  % If a condition must be disclosed before the formal result, add one quiet
+  % Scope line here.  Do not repeat it on every later frame.
+
+  \bigskip
+  \textbf{Implication:} \ResultImplicationSlide
+\end{frame}
+
+% ---- Optional: use only for a talk with several genuine modules. ----
+\begin{frame}{Roadmap}
+  \begin{enumerate}\setlength{\itemsep}{1.1em}
+    \item Environment and economic tension
+    \item Mechanism and main proposition
+    \item Comparative static or application
+  \end{enumerate}
+\end{frame}
+
+% ---- Required primitives before the first proposition; labels may change. ----
+\begin{frame}{Environment}
+  \framesubtitle{[Economic setting and equilibrium or solution concept]}
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.64em}
+    \item \RunIn{Agents:} [Decision makers and payoff-relevant state]
+    \item \RunIn{Timing and information:} [What is known before each move]
+    \item \RunIn{Choices and constraints:} [Actions, resources, and feasibility]
+    \item \RunIn{Solution:} [Equilibrium or optimization object]
+    \item \RunIn{New object:} \textcolor{cNewObject}{[The paper's new state, friction, or wedge]}
+  \end{itemize}
+
+  \bigskip
+  \KeyIdea{Key assumption:} [State it in words and explain its role.]
+  \hypertarget{main:assumption}{}%
+  \PlaceNav{\hyperlink{app:assumption}{\beamergotobutton{Alternative assumption}}}
+\end{frame}
+
+% ---- Mechanism: words first; retain the equation only when it clarifies. ----
+% This active frame is the singular/default case.  For competing mechanisms,
+% duplicate its object/current-decision/equilibrium-effect/sign skeleton for
+% each force, then add one synthesis frame that resolves the net effect before
+% the proposition.  For complementary links, keep one causal sequence when it
+% remains legible.
+\begin{frame}{Mechanism}
+  \framesubtitle{[The force, or one branch of the mechanism]}
+  \medskip
+  % Replace this with one source-native condition, or omit it if words are clearer.
+  \[
+    \text{[One source-native condition that isolates the mechanism]}
+  \]
+  \begin{itemize}\setlength{\itemsep}{0.58em}
+    \item \textcolor{cChannelA}{\RunIn{Direct force:}} [How the primitive changes the private choice]
+    \item \textcolor{cChannelB}{\RunIn{Equilibrium feedback:}} [How other agents or prices respond]
+    \item \RunIn{Sign:} [Why one force dominates under the key assumption]
+  \end{itemize}
+
+  \medskip
+  \textbf{Intuition:} [Explain the result without reading the equation.]
+\end{frame}
+
+% ---- Proposition: words first; formal statement only to the needed precision. ----
+\begin{frame}{Main proposition}
+  \framesubtitle{[Result object, relevant equilibrium, and scope]}
+  \begin{ResultBox}[Main proposition]
+    \textbf{In words.} \ResultHeadlineSlide
+
+    \smallskip
+    \textbf{Conditions.} [Only the assumptions that change the result's scope.]
+
+    \smallskip
+    {\small [Optional concise formal statement; define new notation here.]}
+  \end{ResultBox}
+  \hypertarget{main:proof}{}%
+  \TakeawayWithNav{\textbf{Intuition:} [The economic reason the proposition is true.]}
+  \PlaceNav{\hyperlink{app:proof}{\beamergotobutton{Proof logic}}}
+\end{frame}
+
+% ---- Optional: choose the paper's decisive implication, not a generic filler. ----
+\begin{frame}{Economic interpretation}
+  \framesubtitle{[Comparative static, welfare result, or application]}
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.75em}
+    \item \RunIn{Comparative static:} \ResultSupportSlide
+    \item \RunIn{Economic meaning:} [Who changes which choice, and why]
+    \item \RunIn{Application:} [What the result changes in the relevant setting]
+  \end{itemize}
+
+  % Add one short Boundary line only when it changes the interpretation and
+  % has not already been established on the proposition frame.
+  \hypertarget{main:extension}{}%
+  \PlaceNav{\hyperlink{app:extension}{\beamergotobutton{Extension}}}
+\end{frame}
+
+% ---- Conclusion: a compressed landing with no navigation. ----
+\begin{frame}{Conclusion}
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.95em}
+    \item \KeyIdea{[Answer the Key question in one sentence.]}
+    \item \textbf{Mechanism:} [The economic force that delivers the result.]
+    % Add one short Scope item only when omitting it invites overreading.
+  \end{itemize}
+
+  \bigskip
+  \textbf{Implication:} \ResultImplicationSlide
+  % Deliberately no appendix links on the final slide.
+\end{frame}
+
+% ================= Appendix =================
+\AppendixStart
+
+% Navigation is paired one-to-one below: each main origin has one matching
+% backup and that backup returns to the same origin.  A genuinely shared backup
+% needs explicit labeled return choices or separate copies, never one generic
+% Back target for several origins.
+
+\begin{frame}{Proof logic}
+  \hypertarget{app:proof}{}%
+  \medskip
+  \begin{enumerate}\setlength{\itemsep}{0.7em}
+    \item {[Characterize the relevant best response or value function.]}
+    \item {[Show how the equilibrium feedback changes the key margin.]}
+    \item {[Apply the key condition to sign the result.]}
+  \end{enumerate}
+
+  \bigskip
+  \textbf{What does the work:} [Name the step that contains the economic idea.]
+  \BackButton{main:proof}
+\end{frame}
+
+\begin{frame}{Alternative assumption}
+  \hypertarget{app:assumption}{}%
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.68em}
+    \item \RunIn{Baseline:} [The maintained assumption and its role]
+    \item \RunIn{Alternative:} [A weaker or different assumption]
+    \item \RunIn{What survives:} [The result that remains unchanged]
+    \item \RunIn{What changes:} [The comparative static or scope that moves]
+  \end{itemize}
+  \BackButton{main:assumption}
+\end{frame}
+
+\begin{frame}{Extension or benchmark}
+  \hypertarget{app:extension}{}%
+  \medskip
+  \begin{itemize}\setlength{\itemsep}{0.72em}
+    \item \RunIn{Extension:} [New agent, state, friction, or policy instrument]
+    \item \RunIn{Benchmark:} [The closest special case or existing result]
+    \item \RunIn{New implication:} [What changes economically and why]
+  \end{itemize}
+
+  \bigskip
+  \textbf{Reading:} [State whether the mechanism is preserved or overturned.]
+  \BackButton{main:extension}
+\end{frame}
+
+\end{document}
