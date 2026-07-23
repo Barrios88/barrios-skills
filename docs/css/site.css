@@ -76,17 +76,12 @@ body.nav-open { overflow: hidden; }
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.75rem 0; gap: 1rem; min-height: 60px;
 }
-.brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #fff; }
-.brand-mark {
-  width: 40px; height: 40px; border-radius: 10px;
-  display: grid; place-items: center;
-  background: rgba(255, 255, 255, 0.12);
-  color: white; font-family: var(--font-serif); font-size: 0.82rem; font-weight: 600;
-  letter-spacing: -0.02em;
+.wordmark {
+  font-family: var(--font-serif); font-size: 1.18rem; font-weight: 600;
+  letter-spacing: 0.005em; white-space: nowrap;
 }
-.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-.brand-text strong { font-size: 1.05rem; font-family: var(--font-serif); font-weight: 600; }
-.brand-text small { color: rgba(255, 255, 255, 0.72); font-size: 0.76rem; }
+.wordmark a { color: #fff; text-decoration: none; }
+.wordmark a:hover { color: #c8dcf0; }
 .nav-links { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 .nav-links a {
   color: rgba(255, 255, 255, 0.72); text-decoration: none;
@@ -518,7 +513,6 @@ section h2 {
   .dual-stats div { text-align: left; }
   .dual-stats dd { overflow-wrap: anywhere; }
   .step-card pre, .terminal pre, .guide-section pre { font-size: 0.72rem; }
-  .brand-text small { font-size: 0.72rem; }
   .compare-band, .install, .browse, .mcp-section { padding-inline: 0; }
   .guide-page { padding-top: 1.75rem; }
   .guide-page .container { width: calc(100% - 1.25rem); }
