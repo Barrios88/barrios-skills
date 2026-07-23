@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#faf8f5">
+  <meta name="theme-color" content="#00356b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="description" content="Set up wrds-mcp with your own WRDS username and password — Duo tunnel, Cursor and Claude configuration.">
   <title>WRDS MCP Setup — Barrios Skills</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Inter:wght@400..650&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <span class="brand-mark">B</span>
+        <span class="brand-mark">JB</span>
         <span class="brand-text"><strong>Barrios Skills</strong><small>John Barrios · Skills &amp; MCP servers</small></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -30,6 +31,7 @@
         <a href="index.html#mcp">MCP</a>
         <a href="index.html#install">Install</a>
         <a href="wrds-mcp.html" aria-current="page">WRDS setup</a>
+        <a href="https://johnmbarrios.com">Main site</a>
         <a href="https://github.com/Barrios88/barrios-skills" class="btn btn-ghost">GitHub</a>
       </nav>
     </div>
@@ -38,9 +40,8 @@
 
   <main class="guide-page" id="main-content">
     <div class="container">
-      <a class="guide-back" href="index.html#mcp">← Back to install guide</a>
-
       <header class="guide-hero">
+        <a class="guide-back" href="index.html#mcp">← Back to install guide</a>
         <p class="eyebrow">John Barrios · wrds-mcp</p>
         <h1>WRDS MCP setup</h1>
         <p class="lead"><strong>This is an MCP server</strong> (<code>mcp/wrds-mcp/</code>) — not a skill. It connects Cursor or Claude to WRDS using your credentials. Pair with the <code>wrds</code> skill for query conventions.<br><br>Query Compustat, CRSP, Form 4, and other WRDS libraries from Cursor or Claude. You need <strong>your own</strong> WRDS account — username and password from Wharton — plus a one-time Duo approval per work session.</p>
@@ -231,6 +232,7 @@ bash tunnel_up.sh
       <div class="footer-links">
         <a href="https://github.com/Barrios88/barrios-skills/blob/main/SECURITY.md">Security</a>
         <a href="index.html#mcp">Install</a>
+        <a href="https://johnmbarrios.com">Main site</a>
         <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
       </div>
     </div>
