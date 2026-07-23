@@ -1,9 +1,10 @@
 const FEATURED_IDS = [
   "stata-regression",
   "wrds",
-  "python-panel-data",
+  "sec-edgar",
+  "pyfixest",
+  "econ-write",
   "econ-humanizer-plus",
-  "latex-tables",
   "econ-lit-search",
   "econ-visualization",
 ];
@@ -386,6 +387,9 @@ async function initHomePage() {
 
   await loadCatalog();
   renderFeatured();
+  document.querySelectorAll("[data-skill-count]").forEach((el) => {
+    el.textContent = String(catalog.skills.length);
+  });
   initInstallTabs();
   initScrollSpy();
   activateInstallFromHash();

@@ -35,22 +35,22 @@
         <div class="hero-copy">
           <p class="eyebrow">John Barrios · Curated collection</p>
           <h1>Skills and MCP servers for empirical research</h1>
-          <p class="hero-intro">A free, open-source toolkit for economists and accountants using AI coding agents. Copy skills into Cursor, Claude, or Codex — or connect to WRDS with the bundled MCP server.</p>
+          <p class="hero-intro">A free, open-source toolkit for economists and accountants using AI coding agents. Copy skills into Cursor, Claude, or Codex — and connect to WRDS, SEC EDGAR, and macro data via MCP.</p>
           <p class="lead"><strong>Skills</strong> teach your agent how to work (Stata, LaTeX, writing). <strong>MCP servers</strong> connect it to live data. Same repo, different folders.</p>
           <div class="hero-actions-row">
             <div class="hero-actions">
               <a href="skills.html" class="btn btn-primary">Browse all skills</a>
-              <a href="#mcp" class="btn btn-outline-gold">WRDS MCP server</a>
+              <a href="#mcp" class="btn btn-outline-gold">MCP servers</a>
             </div>
             <dl class="dual-stats dual-stats--inline">
-              <div><dt class="skills-stat" id="stat-skills">40</dt><dd>Skills</dd></div>
-              <div><dt class="mcp-stat">1</dt><dd>MCP server</dd></div>
+              <div><dt class="skills-stat" id="stat-skills" data-skill-count>46</dt><dd>Skills</dd></div>
+              <div><dt class="mcp-stat">4+</dt><dd>MCP guides</dd></div>
             </dl>
           </div>
           <form class="hero-search" action="skills.html" method="get" role="search">
             <label class="search-wrap hero-search-field">
               <span class="sr-only">Search skills</span>
-              <input type="search" name="q" placeholder="Search all skills… Stata, LaTeX, WRDS" autocomplete="off">
+              <input type="search" name="q" placeholder="Search all skills… Stata, EDGAR, pyfixest" autocomplete="off">
             </label>
             <button type="submit" class="btn btn-secondary">Search</button>
           </form>
@@ -62,10 +62,9 @@
 <span class="t-cmd">cp -R</span> skills/econometrics/stata-regression \
      ~/.cursor/skills/
 
-<span class="t-muted"># MCP — install + your credentials</span>
+<span class="t-muted"># MCP — WRDS (vendored) or SEC EDGAR (uvx)</span>
 <span class="t-cmd">pip install -e</span> mcp/wrds-mcp
-<span class="t-str">export WRDS_USERNAME="your_username"</span>
-<span class="t-str">export WRDS_PASSWORD="your_password"</span></code></pre>
+<span class="t-cmd">uvx</span> sec-edgar-mcp</code></pre>
           </div>
         </div>
       </div>
@@ -87,10 +86,10 @@
           <article class="compare-card compare-card--mcp">
             <p class="section-label-mcp">MCP · <code>mcp/</code></p>
             <h3>Live data connections</h3>
-            <p>Python servers the agent calls as tools — query WRDS with your own account.</p>
+            <p>Servers the agent calls as tools — WRDS, SEC EDGAR, OpenEcon macro data, and more.</p>
             <ul>
-              <li><code>pip install</code> + MCP config + credentials</li>
-              <li>e.g. wrds-mcp → <code>wrds_run_sql</code></li>
+              <li><code>pip install</code> / <code>uvx</code> + MCP config + credentials</li>
+              <li>e.g. wrds-mcp, sec-edgar-mcp, OpenEcon Data</li>
             </ul>
           </article>
         </div>
@@ -104,7 +103,7 @@
             <p class="section-label-skills">Skills · agent instructions</p>
             <h2>Popular skills</h2>
           </div>
-          <a href="skills.html" class="btn btn-secondary">View all 40 skills</a>
+          <a href="skills.html" class="btn btn-secondary">View all <span data-skill-count>46</span> skills</a>
         </div>
         <p class="section-intro">Hover for details on desktop, tap <strong>More</strong> on mobile, then <strong>Download zip</strong>.</p>
         <div class="featured-grid" id="featured-grid"></div>
@@ -116,37 +115,41 @@
         <div class="pillar-header">
           <div>
             <p class="section-label-mcp">MCP servers · live data connections</p>
-            <h2>WRDS MCP</h2>
+            <h2>Connect agents to research data</h2>
           </div>
-          <a href="wrds-mcp.html" class="btn btn-outline-gold">Full setup guide</a>
+          <a href="wrds-mcp.html" class="btn btn-outline-gold">WRDS setup</a>
         </div>
-        <p class="section-intro">Install from <code>mcp/wrds-mcp/</code>. Requires <strong>your</strong> WRDS account, Duo MFA, and MCP registration in Cursor or Claude. Pair with the <code>wrds</code> skill for query filters.</p>
-        <ul class="mcp-why-list">
-          <li><strong>Runs queries</strong> — the agent calls tools like <code>wrds_run_sql</code>, not copy-paste SQL</li>
-          <li><strong>Your credentials</strong> — each user connects with their own WRDS account</li>
-          <li><strong>One Duo per session</strong> — the tunnel reuses a single approved connection</li>
-          <li><strong>Pairs with the wrds skill</strong> — MCP executes; the skill enforces Compustat and CRSP filters</li>
-        </ul>
+        <p class="section-intro"><strong>wrds-mcp</strong> is vendored in this repo. SEC EDGAR, OpenEcon, FRED, and Stata-MCP install from upstream — each has a setup page and a matching skill where it helps.</p>
 
-        <a class="mcp-hero-card" href="wrds-mcp.html">
-          <p class="section-label-mcp mcp-card-label">Featured MCP server</p>
-          <h3>wrds-mcp</h3>
-          <p>Query Compustat, CRSP, Form 4, TRACE, TAQ, and other WRDS libraries through MCP tools. One Duo approval per session via the persistent tunnel.</p>
-          <p><strong>→ Complete setup guide</strong> (credentials, tunnel, Cursor &amp; Claude)</p>
-        </a>
+        <div class="mcp-grid mcp-grid--three">
+          <a class="mcp-hero-card" href="wrds-mcp.html">
+            <p class="section-label-mcp mcp-card-label">Vendored · featured</p>
+            <h3>WRDS MCP</h3>
+            <p>Compustat, CRSP, Form 4, TRACE, TAQ. Your WRDS account + Duo tunnel. Pairs with the <code>wrds</code> skill.</p>
+            <p><strong>→ Full setup guide</strong></p>
+          </a>
+          <a class="mcp-hero-card" href="sec-edgar-mcp.html">
+            <p class="section-label-mcp mcp-card-label">External · accounting</p>
+            <h3>SEC EDGAR MCP</h3>
+            <p>Filings, XBRL financials, Form 3/4/5. Install with <code>uvx</code>. Pairs with the <code>sec-edgar</code> skill.</p>
+            <p><strong>→ Setup guide</strong></p>
+          </a>
+          <a class="mcp-hero-card" href="openecon-data-mcp.html">
+            <p class="section-label-mcp mcp-card-label">External · macro</p>
+            <h3>OpenEcon Data</h3>
+            <p>330k+ indicators from FRED, World Bank, IMF, and more via natural language. Pairs with <code>api-data-fetcher</code>.</p>
+            <p><strong>→ Setup guide</strong></p>
+          </a>
+        </div>
 
         <details class="mcp-tools-details">
-          <summary>All 9 wrds-mcp tools</summary>
+          <summary>Also: FRED MCP &amp; Stata-MCP</summary>
+          <p class="section-intro" style="margin-top:0.75rem">See <a href="https://github.com/Barrios88/barrios-skills/blob/main/install/external-mcps.md">install/external-mcps.md</a> for FRED-only and Stata-MCP links. Prefer OpenEcon when you need multi-source macro data.</p>
           <div class="mcp-tools-grid">
-            <div class="mcp-tool-card"><strong>wrds_list_libraries</strong><span>Browse WRDS schemas</span></div>
-            <div class="mcp-tool-card"><strong>wrds_list_tables</strong><span>Tables in a library</span></div>
-            <div class="mcp-tool-card"><strong>wrds_describe_table</strong><span>Columns and types</span></div>
-            <div class="mcp-tool-card"><strong>wrds_sample_data</strong><span>Preview rows</span></div>
-            <div class="mcp-tool-card"><strong>wrds_run_sql</strong><span>Read-only SQL</span></div>
-            <div class="mcp-tool-card"><strong>wrds_download_data</strong><span>CSV / Parquet / JSON</span></div>
-            <div class="mcp-tool-card"><strong>wrds_get_crsp_returns</strong><span>CRSP returns</span></div>
-            <div class="mcp-tool-card"><strong>wrds_get_compustat</strong><span>Compustat data</span></div>
-            <div class="mcp-tool-card"><strong>wrds_merge_crsp_compustat</strong><span>CCM merge</span></div>
+            <div class="mcp-tool-card"><strong>wrds_run_sql</strong><span>WRDS read-only SQL</span></div>
+            <div class="mcp-tool-card"><strong>wrds_get_compustat</strong><span>Compustat fundamentals</span></div>
+            <div class="mcp-tool-card"><strong>SEC filings</strong><span>10-K / 10-Q / 8-K / XBRL</span></div>
+            <div class="mcp-tool-card"><strong>OpenEcon</strong><span>FRED · WB · IMF · …</span></div>
           </div>
         </details>
       </div>
@@ -177,22 +180,22 @@ cp -R stata-regression ~/.cursor/skills/</code></pre></article>
         </div>
 
         <div class="install-panel" id="install-panel-mcp" role="tabpanel" aria-labelledby="install-tab-mcp" hidden>
-          <p class="install-panel-note">Use <strong>your own</strong> WRDS username and password throughout. See the <a href="wrds-mcp.html">detailed guide</a> for troubleshooting.</p>
+          <p class="install-panel-note">Pick a server: <a href="wrds-mcp.html">WRDS</a> (your account + Duo), <a href="sec-edgar-mcp.html">SEC EDGAR</a> (<code>uvx</code> + email User-Agent), or <a href="openecon-data-mcp.html">OpenEcon Data</a> (hosted SSE).</p>
           <div class="steps">
-            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">1</span><h3>Install the server</h3><pre><code>cd barrios-skills/mcp/wrds-mcp
+            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">1</span><h3>WRDS (vendored)</h3><pre><code>cd barrios-skills/mcp/wrds-mcp
 python3 -m venv ~/.wrds-mcp-env
 source ~/.wrds-mcp-env/bin/activate
 pip install -e .</code></pre></article>
-            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">2</span><h3>Set your credentials &amp; tunnel</h3><pre><code>export WRDS_USERNAME="your_wrds_username"
-export WRDS_PASSWORD="your_wrds_password"
-bash mcp/wrds-mcp/tunnel/tunnel_up.sh</code></pre></article>
-            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">3</span><h3>Register in Cursor or Claude</h3><pre><code># Add WRDS_USERNAME, WRDS_PASSWORD,
-# WRDS_TUNNEL_PORT=49600 to MCP config</code></pre></article>
+            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">2</span><h3>SEC EDGAR (external)</h3><pre><code># Add to ~/.cursor/mcp.json
+# command: uvx  args: ["sec-edgar-mcp"]
+# SEC_EDGAR_USER_AGENT="Name (email)"</code></pre></article>
+            <article class="step-card step-card--mcp"><span class="step-num step-num--mcp">3</span><h3>OpenEcon (hosted)</h3><pre><code># Cursor MCP SSE:
+# https://data.openecon.ai/mcp</code></pre></article>
           </div>
           <div class="platform-cards">
-            <a class="platform-card" href="wrds-mcp.html#step4"><h4>Cursor config</h4><p><code>~/.cursor/mcp.json</code></p></a>
-            <a class="platform-card" href="wrds-mcp.html#step4"><h4>Claude Code</h4><p><code>claude mcp add</code></p></a>
-            <a class="platform-card" href="wrds-mcp.html#troubleshooting"><h4>Troubleshooting</h4><p>Duo, tunnel, auth</p></a>
+            <a class="platform-card" href="wrds-mcp.html"><h4>WRDS setup</h4><p>Tunnel · Duo · tools</p></a>
+            <a class="platform-card" href="sec-edgar-mcp.html"><h4>SEC EDGAR</h4><p>Filings · XBRL</p></a>
+            <a class="platform-card" href="openecon-data-mcp.html"><h4>OpenEcon</h4><p>FRED · WB · IMF</p></a>
           </div>
         </div>
       </div>
@@ -206,7 +209,9 @@ bash mcp/wrds-mcp/tunnel/tunnel_up.sh</code></pre></article>
         <a href="skills.html">All skills</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
-        <a href="wrds-mcp.html">WRDS setup</a>
+        <a href="wrds-mcp.html">WRDS</a>
+        <a href="sec-edgar-mcp.html">EDGAR</a>
+        <a href="openecon-data-mcp.html">OpenEcon</a>
         <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
       </div>
     </div>

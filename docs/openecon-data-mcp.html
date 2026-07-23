@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#00356b">
+  <meta name="description" content="Connect Cursor or Claude to OpenEcon Data — 330k+ FRED, World Bank, IMF indicators via MCP.">
+  <title>OpenEcon Data MCP Setup — Barrios Skills</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Inter:wght@400..650&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="wordmark"><a href="https://johnmbarrios.com">John Manuel Barrios</a></div>
+      <nav class="site-nav" id="site-nav" aria-label="Barrios Skills">
+        <a href="index.html#skills">Popular</a>
+        <a href="skills.html">All skills</a>
+        <a href="index.html#mcp">MCP</a>
+        <a href="index.html#install">Install</a>
+        <a href="openecon-data-mcp.html" class="active">OpenEcon setup</a>
+        <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="guide-page" id="main-content">
+    <div class="container">
+      <header class="guide-hero">
+        <a class="guide-back" href="index.html#mcp">← Back to MCP servers</a>
+        <p class="eyebrow">External MCP · macro data</p>
+        <h1>OpenEcon Data MCP setup</h1>
+        <p class="lead">Natural-language access to 330k+ indicators from FRED, World Bank, IMF, Eurostat, and more. Upstream: <a href="https://github.com/hanlulong/openecon-data">hanlulong/openecon-data</a> / <a href="https://openecon.ai/">openecon.ai</a>. Prefer the MCP for interactive agent queries; use the <code>api-data-fetcher</code> skill for reproducible project scripts with pinned series IDs.</p>
+        <div class="callout">
+          <strong>Why this MCP?</strong>
+          <ul>
+            <li>Stops agents from inventing stale GDP/CPI numbers</li>
+            <li>One endpoint for many official sources</li>
+            <li>Hosted SSE — no local API keys for the default setup</li>
+          </ul>
+        </div>
+      </header>
+
+      <nav class="guide-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#hosted">Hosted MCP</a></li>
+          <li><a href="#cursor">Cursor</a></li>
+          <li><a href="#claude">Claude Code &amp; Codex</a></li>
+          <li><a href="#verify">Verify</a></li>
+          <li><a href="#fred">FRED-only alternative</a></li>
+        </ol>
+      </nav>
+
+      <section class="guide-section" id="hosted">
+        <h2>Hosted MCP (simplest)</h2>
+        <p>Endpoint: <code>https://data.openecon.ai/mcp</code> (SSE transport). First queries may work without an account; create a free OpenEcon account if rate-limited.</p>
+      </section>
+
+      <section class="guide-section" id="cursor">
+        <h2>Cursor</h2>
+        <p>Add an MCP server entry pointing at the SSE endpoint:</p>
+        <pre><code>{
+  "mcpServers": {
+    "openecon-data": {
+      "url": "https://data.openecon.ai/mcp",
+      "transport": "sse"
+    }
+  }
+}</code></pre>
+        <p>Reload MCP servers in Cursor after saving <code>~/.cursor/mcp.json</code>.</p>
+      </section>
+
+      <section class="guide-section" id="claude">
+        <h2>Claude Code &amp; Codex</h2>
+        <pre><code>claude mcp add --transport sse openecon-data https://data.openecon.ai/mcp --scope user
+
+codex mcp add openecon-data --url https://data.openecon.ai/mcp</code></pre>
+      </section>
+
+      <section class="guide-section" id="verify">
+        <h2>Verify</h2>
+        <p>Ask: <em>“US unemployment rate monthly since 2015 from FRED — return the series id and last observation date.”</em> Confirm against <a href="https://fred.stlouisfed.org/">fred.stlouisfed.org</a>.</p>
+      </section>
+
+      <section class="guide-section" id="fred">
+        <h2>FRED-only alternative</h2>
+        <p>If you only need FRED and want a local API-key server, see <a href="https://github.com/Barrios88/barrios-skills/blob/main/install/external-mcps.md"><code>install/external-mcps.md</code></a> (stefanoamorelli/fred-mcp-server). For multi-source macro work, OpenEcon is the better default.</p>
+        <p>Self-host OpenEcon with upstream <code>./scripts/setup.sh</code> only if you need air-gapped or custom keys.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>MIT License · John Barrios · OpenEcon is an external project</p>
+      <div class="footer-links">
+        <a href="index.html#mcp">MCP</a>
+        <a href="wrds-mcp.html">WRDS</a>
+        <a href="sec-edgar-mcp.html">EDGAR</a>
+        <a href="openecon-data-mcp.html">OpenEcon</a>
+        <a href="skills.html">All skills</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#00356b">
+  <meta name="description" content="Set up SEC EDGAR MCP for filings, XBRL financials, and Form 4 — uvx install for Cursor and Claude.">
+  <title>SEC EDGAR MCP Setup — Barrios Skills</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Inter:wght@400..650&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="wordmark"><a href="https://johnmbarrios.com">John Manuel Barrios</a></div>
+      <nav class="site-nav" id="site-nav" aria-label="Barrios Skills">
+        <a href="index.html#skills">Popular</a>
+        <a href="skills.html">All skills</a>
+        <a href="index.html#mcp">MCP</a>
+        <a href="index.html#install">Install</a>
+        <a href="sec-edgar-mcp.html" class="active">EDGAR setup</a>
+        <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="guide-page" id="main-content">
+    <div class="container">
+      <header class="guide-hero">
+        <a class="guide-back" href="index.html#mcp">← Back to MCP servers</a>
+        <p class="eyebrow">External MCP · accounting &amp; finance</p>
+        <h1>SEC EDGAR MCP setup</h1>
+        <p class="lead"><strong>This is an MCP server</strong> from <a href="https://github.com/stefanoamorelli/sec-edgar-mcp">stefanoamorelli/sec-edgar-mcp</a> (AGPL-3.0) — not vendored in Barrios Skills. It connects Cursor or Claude to EDGAR filings, XBRL statements, and Form 3/4/5. Pair with the <code>sec-edgar</code> skill for CIK discipline and WRDS-vs-EDGAR guidance.</p>
+        <div class="callout">
+          <strong>When to use EDGAR vs WRDS</strong>
+          <ul>
+            <li><strong>EDGAR</strong> — filing text, XBRL facts, public insider Forms 3/4/5</li>
+            <li><strong>WRDS</strong> — Compustat/CRSP panels, CCM, ExecuComp, TRACE/TAQ → <a href="wrds-mcp.html">wrds-mcp</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <nav class="guide-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#cursor">Cursor config (uvx)</a></li>
+          <li><a href="#docker">Docker alternative</a></li>
+          <li><a href="#verify">Verify</a></li>
+          <li><a href="#skill">Pair with the skill</a></li>
+        </ol>
+      </nav>
+
+      <section class="guide-section" id="prerequisites">
+        <h2>Prerequisites</h2>
+        <ul>
+          <li>Python 3.11+ with <a href="https://github.com/astral-sh/uv"><code>uv</code></a> (recommended — no Docker required)</li>
+          <li>A contact email for the SEC User-Agent string (fair-access requirement)</li>
+        </ul>
+        <div class="callout callout-warn">
+          <strong>Important:</strong> Use <strong>your</strong> name and institutional email in <code>SEC_EDGAR_USER_AGENT</code>. Do not share another researcher&apos;s contact string.
+        </div>
+      </section>
+
+      <section class="guide-section" id="cursor">
+        <h2>Cursor config (uvx — recommended)</h2>
+        <p>Add to <code>~/.cursor/mcp.json</code>:</p>
+        <pre><code>{
+  "mcpServers": {
+    "sec-edgar-mcp": {
+      "command": "uvx",
+      "args": ["sec-edgar-mcp"],
+      "env": {
+        "SEC_EDGAR_USER_AGENT": "Your Name (you@university.edu)"
+      }
+    }
+  }
+}</code></pre>
+        <p>Reload MCP servers in Cursor. First run downloads the package via <code>uvx</code>.</p>
+      </section>
+
+      <section class="guide-section" id="docker">
+        <h2>Docker alternative</h2>
+        <pre><code>{
+  "mcpServers": {
+    "sec-edgar-mcp": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-e", "SEC_EDGAR_USER_AGENT=Your Name (you@university.edu)",
+        "stefanoamorelli/sec-edgar-mcp:latest"
+      ]
+    }
+  }
+}</code></pre>
+      </section>
+
+      <section class="guide-section" id="verify">
+        <h2>Verify</h2>
+        <p>Ask the agent: <em>“Resolve the CIK for Apple Inc. and list the latest 10-K accession.”</em> Confirm company name and filing date before trusting further pulls.</p>
+      </section>
+
+      <section class="guide-section" id="skill">
+        <h2>Pair with the skill</h2>
+        <p>Install or copy <a href="https://github.com/Barrios88/barrios-skills/tree/main/skills/research-tools/sec-edgar"><code>sec-edgar</code></a> into your agent skills folder. The skill enforces CIK resolution, sample inspection, and when to prefer WRDS panels.</p>
+        <p>Markdown install notes also live in the repo: <a href="https://github.com/Barrios88/barrios-skills/blob/main/install/sec-edgar-mcp.md"><code>install/sec-edgar-mcp.md</code></a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>MIT License · John Barrios · upstream SEC EDGAR MCP is AGPL-3.0</p>
+      <div class="footer-links">
+        <a href="index.html#mcp">MCP</a>
+        <a href="wrds-mcp.html">WRDS</a>
+        <a href="sec-edgar-mcp.html">EDGAR</a>
+        <a href="openecon-data-mcp.html">OpenEcon</a>
+        <a href="skills.html">All skills</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

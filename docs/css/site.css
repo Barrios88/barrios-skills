@@ -554,6 +554,12 @@ section h2 {
   text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
 }
 .mcp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+.mcp-grid--three { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.mcp-grid--three .mcp-hero-card h3 { font-size: 1.25rem; }
+.mcp-grid--three .mcp-hero-card { margin-bottom: 0; height: 100%; }
+@media (max-width: 960px) {
+  .mcp-grid--three { grid-template-columns: 1fr; }
+}
 .mcp-card-large {
   background: white; border: 1px solid rgba(30, 77, 107, 0.2); border-radius: var(--radius);
   padding: 1.35rem 1.4rem; text-decoration: none; color: inherit;
