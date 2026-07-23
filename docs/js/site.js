@@ -331,51 +331,8 @@ function activateInstallFromHash() {
   else if (hash === "#install-skills") activateInstallPanel("skills");
 }
 
-function setNavOpen(nav, toggle, open) {
-  const backdrop = document.getElementById("nav-backdrop");
-  nav.classList.toggle("is-open", open);
-  toggle.setAttribute("aria-expanded", open ? "true" : "false");
-  document.body.classList.toggle("nav-open", open);
-  if (backdrop) {
-    backdrop.hidden = !open;
-    backdrop.setAttribute("aria-hidden", open ? "false" : "true");
-  }
-}
-
-function initNav() {
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.getElementById("site-nav");
-  const backdrop = document.getElementById("nav-backdrop");
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setNavOpen(nav, toggle, !nav.classList.contains("is-open"));
-  });
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setNavOpen(nav, toggle, false));
-  });
-
-  if (backdrop) {
-    backdrop.addEventListener("click", () => setNavOpen(nav, toggle, false));
-  }
-
-  document.addEventListener("click", (e) => {
-    if (!nav.classList.contains("is-open")) return;
-    if (nav.contains(e.target) || toggle.contains(e.target)) return;
-    setNavOpen(nav, toggle, false);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && nav.classList.contains("is-open")) {
-      setNavOpen(nav, toggle, false);
-    }
-  });
-}
-
 function initScrollSpy() {
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
   if (!navLinks.length) return;
 
   const sections = [...navLinks]
@@ -393,7 +350,7 @@ function initScrollSpy() {
         if (!entry.isIntersecting) return;
         const id = entry.target.id;
         navLinks.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+          link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
         });
       });
     },
@@ -465,7 +422,6 @@ async function initSkillsPage() {
 }
 
 async function init() {
-  initNav();
   if (PAGE === "skills") {
     await initSkillsPage();
   } else {
