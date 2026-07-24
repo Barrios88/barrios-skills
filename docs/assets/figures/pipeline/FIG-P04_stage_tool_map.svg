@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" role="img" aria-labelledby="p04-title p04-desc">
+  <title id="p04-title">Stage-to-tool map: default skills and MCP servers for the nine stages</title>
+  <desc id="p04-desc">Table of nine pipeline stages with default skill picks and MCP servers. Stage 3 Pull uses wrds-mcp, SEC EDGAR, and OpenEcon or FRED MCP; stage 5 Text uses SEC EDGAR MCP; stage 7 Estimate can optionally use Stata-MCP; all other stages are skills only.</desc>
+  <style>
+    .t-title { font-family: "Source Serif 4", Georgia, serif; font-size: 24px; font-weight: 600; fill: #00356b; }
+    .t-sub   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .t-head  { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff; }
+    .t-stage { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #0f1115; }
+    .t-num   { font-family: Inter, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    .t-chip  { font-family: ui-monospace, Menlo, monospace; font-size: 16px; fill: #00356b; text-anchor: middle; }
+    .t-mcp   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #1d63d8; text-anchor: middle; }
+    .t-none  { font-family: Inter, -apple-system, sans-serif; font-size: 18px; fill: #9aa3ad; }
+    .t-muted { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .chip    { fill: #eef3f8; stroke: #c6d4e2; stroke-width: 1; }
+    .mcpb    { fill: #e8f0fc; stroke: #1d63d8; stroke-width: 1; }
+    .rowline { stroke: #e7e9ec; stroke-width: 1; }
+  </style>
+
+  <text class="t-title" x="28" y="38">Stage &#8594; tool map: default picks</text>
+  <text class="t-sub" x="28" y="64">Three or four default skills per stage; alternatives live in the catalog. MCP appears only where live access earns its keep.</text>
+
+  <!-- Header band -->
+  <rect x="28" y="84" width="944" height="36" rx="8" fill="#00356b"/>
+  <text class="t-head" x="44" y="108">Stage</text>
+  <text class="t-head" x="296" y="108">Default skills</text>
+  <text class="t-head" x="776" y="108">MCP</text>
+
+  <!-- Row shading (even rows) -->
+  <rect x="28" y="188" width="944" height="68" fill="#f8f9fa"/>
+  <rect x="28" y="324" width="944" height="68" fill="#f8f9fa"/>
+  <rect x="28" y="460" width="944" height="68" fill="#f8f9fa"/>
+  <rect x="28" y="596" width="944" height="68" fill="#f8f9fa"/>
+
+  <!-- Row separators -->
+  <line class="rowline" x1="28" y1="188" x2="972" y2="188"/>
+  <line class="rowline" x1="28" y1="256" x2="972" y2="256"/>
+  <line class="rowline" x1="28" y1="324" x2="972" y2="324"/>
+  <line class="rowline" x1="28" y1="392" x2="972" y2="392"/>
+  <line class="rowline" x1="28" y1="460" x2="972" y2="460"/>
+  <line class="rowline" x1="28" y1="528" x2="972" y2="528"/>
+  <line class="rowline" x1="28" y1="596" x2="972" y2="596"/>
+  <line class="rowline" x1="28" y1="664" x2="972" y2="664"/>
+  <line class="rowline" x1="28" y1="732" x2="972" y2="732"/>
+  <!-- Column separators -->
+  <line class="rowline" x1="288" y1="120" x2="288" y2="732"/>
+  <line class="rowline" x1="768" y1="120" x2="768" y2="732"/>
+
+  <!-- Row 1: Question & literature -->
+  <circle cx="52" cy="154" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="159">1</text>
+  <text class="t-stage" x="74" y="160">Question &amp; literature</text>
+  <rect class="chip" x="296" y="126" width="162" height="26" rx="13"/>
+  <text class="t-chip" x="377" y="144">econ-lit-search</text>
+  <rect class="chip" x="466" y="126" width="181" height="26" rx="13"/>
+  <text class="t-chip" x="556" y="144">research-ideation</text>
+  <rect class="chip" x="296" y="156" width="200" height="26" rx="13"/>
+  <text class="t-chip" x="396" y="174">citation-management</text>
+  <text class="t-none" x="776" y="160">&#8212;</text>
+
+  <!-- Row 2: Six-part prompt -->
+  <circle cx="52" cy="222" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="227">2</text>
+  <text class="t-stage" x="74" y="228">Six-part prompt</text>
+  <rect class="chip" x="296" y="209" width="56" height="26" rx="13"/>
+  <text class="t-chip" x="324" y="227">wrds</text>
+  <rect class="chip" x="360" y="209" width="104" height="26" rx="13"/>
+  <text class="t-chip" x="412" y="227">sec-edgar</text>
+  <rect class="chip" x="472" y="209" width="258" height="26" rx="13"/>
+  <text class="t-chip" x="601" y="227">exploratory-data-analysis</text>
+  <text class="t-none" x="776" y="228">&#8212;</text>
+
+  <!-- Row 3: Pull live data -->
+  <circle cx="52" cy="290" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="295">3</text>
+  <text class="t-stage" x="74" y="296">Pull live data</text>
+  <rect class="chip" x="296" y="277" width="56" height="26" rx="13"/>
+  <text class="t-chip" x="324" y="295">wrds</text>
+  <rect class="chip" x="360" y="277" width="104" height="26" rx="13"/>
+  <text class="t-chip" x="412" y="295">sec-edgar</text>
+  <rect class="chip" x="472" y="277" width="172" height="26" rx="13"/>
+  <text class="t-chip" x="558" y="295">api-data-fetcher</text>
+  <rect class="mcpb" x="776" y="262" width="94" height="26" rx="13"/>
+  <text class="t-mcp" x="823" y="280">wrds-mcp</text>
+  <rect class="mcpb" x="878" y="262" width="66" height="26" rx="13"/>
+  <text class="t-mcp" x="911" y="280">EDGAR</text>
+  <rect class="mcpb" x="776" y="292" width="150" height="26" rx="13"/>
+  <text class="t-mcp" x="851" y="310">OpenEcon / FRED</text>
+
+  <!-- Row 4: Clean, join, attrition -->
+  <circle cx="52" cy="358" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="363">4</text>
+  <text class="t-stage" x="74" y="364">Clean, join, attrition</text>
+  <rect class="chip" x="296" y="330" width="200" height="26" rx="13"/>
+  <text class="t-chip" x="396" y="348">stata-data-cleaning</text>
+  <rect class="chip" x="504" y="330" width="76" height="26" rx="13"/>
+  <text class="t-chip" x="542" y="348">polars</text>
+  <rect class="chip" x="296" y="360" width="181" height="26" rx="13"/>
+  <text class="t-chip" x="386" y="378">python-panel-data</text>
+  <text class="t-none" x="776" y="364">&#8212;</text>
+
+  <!-- Row 5: Text measures (optional) -->
+  <circle cx="52" cy="426" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="431">5</text>
+  <text class="t-stage" x="74" y="424">Text measures</text>
+  <text class="t-muted" x="74" y="444">(optional)</text>
+  <rect class="chip" x="296" y="413" width="104" height="26" rx="13"/>
+  <text class="t-chip" x="348" y="431">sec-edgar</text>
+  <rect class="chip" x="408" y="413" width="191" height="26" rx="13"/>
+  <text class="t-chip" x="503" y="431">financial-text-nlp</text>
+  <rect class="chip" x="607" y="413" width="114" height="26" rx="13"/>
+  <text class="t-chip" x="664" y="431">web-scrape</text>
+  <rect class="mcpb" x="776" y="413" width="108" height="26" rx="13"/>
+  <text class="t-mcp" x="830" y="431">SEC EDGAR</text>
+
+  <!-- Row 6: Measures & sanity EDA -->
+  <circle cx="52" cy="494" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="499">6</text>
+  <text class="t-stage" x="74" y="500">Measures &amp; sanity EDA</text>
+  <rect class="chip" x="296" y="466" width="258" height="26" rx="13"/>
+  <text class="t-chip" x="425" y="484">exploratory-data-analysis</text>
+  <rect class="chip" x="562" y="466" width="191" height="26" rx="13"/>
+  <text class="t-chip" x="657" y="484">econ-visualization</text>
+  <rect class="chip" x="296" y="496" width="210" height="26" rx="13"/>
+  <text class="t-chip" x="401" y="514">statistical-analysis</text>
+  <text class="t-none" x="776" y="500">&#8212;</text>
+
+  <!-- Row 7: Estimate & identify -->
+  <circle cx="52" cy="562" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="567">7</text>
+  <text class="t-stage" x="74" y="568">Estimate &amp; identify</text>
+  <rect class="chip" x="296" y="549" width="95" height="26" rx="13"/>
+  <text class="t-chip" x="343" y="567">pyfixest</text>
+  <rect class="chip" x="399" y="549" width="162" height="26" rx="13"/>
+  <text class="t-chip" x="480" y="567">stata-regression</text>
+  <rect class="chip" x="569" y="549" width="152" height="26" rx="13"/>
+  <text class="t-chip" x="645" y="567">r-econometrics</text>
+  <rect class="mcpb" x="776" y="549" width="104" height="26" rx="13" stroke-dasharray="5 3"/>
+  <text class="t-mcp" x="828" y="567">Stata-MCP</text>
+  <text class="t-muted" x="888" y="567">optional</text>
+
+  <!-- Row 8: Tables, figures, trail -->
+  <circle cx="52" cy="630" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="635">8</text>
+  <text class="t-stage" x="74" y="636">Tables, figures, trail</text>
+  <rect class="chip" x="296" y="602" width="133" height="26" rx="13"/>
+  <text class="t-chip" x="362" y="620">latex-tables</text>
+  <rect class="chip" x="437" y="602" width="191" height="26" rx="13"/>
+  <text class="t-chip" x="532" y="620">econ-visualization</text>
+  <rect class="chip" x="296" y="632" width="162" height="26" rx="13"/>
+  <text class="t-chip" x="377" y="650">venue-templates</text>
+  <text class="t-none" x="776" y="636">&#8212;</text>
+
+  <!-- Row 9: Write, verify, present -->
+  <circle cx="52" cy="698" r="14" fill="#00356b"/>
+  <text class="t-num" x="52" y="703">9</text>
+  <text class="t-stage" x="74" y="704">Write, verify, present</text>
+  <rect class="chip" x="296" y="670" width="114" height="26" rx="13"/>
+  <text class="t-chip" x="353" y="688">econ-write</text>
+  <rect class="chip" x="418" y="670" width="152" height="26" rx="13"/>
+  <text class="t-chip" x="494" y="688">econ-humanizer</text>
+  <rect class="chip" x="578" y="670" width="124" height="26" rx="13"/>
+  <text class="t-chip" x="640" y="688">econ-slides</text>
+  <rect class="chip" x="296" y="700" width="133" height="26" rx="13"/>
+  <text class="t-chip" x="362" y="718">econ-referee</text>
+  <text class="t-none" x="776" y="704">&#8212;</text>
+
+  <text class="t-muted" x="28" y="762">Chips are skills (conventions installed locally); badges are MCP servers (live access, credentials in .env).</text>
+</svg>

@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#00356b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="Nine stages of an archival accounting paper: the skill that teaches the convention, the MCP server that runs the live query, and the verification gate at every step.">
+  <title>Accounting Research Pipeline — Barrios Skills</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Inter:wght@400..650&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    /* ---- pipeline page only ---- */
+    .pipeline-page .container { width: min(880px, calc(100% - 2rem)); counter-reset: psec; }
+
+    /* editorial section numbering (01–04, mirrors the TOC) */
+    .pipeline-page .guide-section > h2::before {
+      counter-increment: psec;
+      content: "0" counter(psec);
+      display: block;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.2em; color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    /* on-page TOC as a numbered grid */
+    .pipeline-page .guide-toc ol {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.4rem; margin: 0; padding: 0; list-style: none; counter-reset: ptoc;
+    }
+    .pipeline-page .guide-toc li { counter-increment: ptoc; margin: 0; }
+    .pipeline-page .guide-toc a {
+      display: flex; align-items: baseline; gap: 0.55rem;
+      padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid transparent;
+      color: var(--yale); font-weight: 600; font-size: 0.92rem;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .pipeline-page .guide-toc a::before {
+      content: "0" counter(ptoc);
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--gold); flex-shrink: 0;
+    }
+    .pipeline-page .guide-toc a:hover {
+      background: var(--paper-2); border-color: var(--border);
+      color: var(--blue); text-decoration: none;
+    }
+
+    .fig { margin: 1.5rem 0; }
+    .fig img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--radius); background: white; }
+    .fig figcaption { margin-top: 0.5rem; font-size: 0.82rem; color: var(--muted); }
+    .guide-hero .fig img { border-color: rgba(255,255,255,0.25); }
+    .guide-hero .fig figcaption { color: rgba(255,255,255,0.7); }
+
+    /* inline SVG figures (FIG-P01, FIG-P04) — clickable stage nodes / skill chips / MCP badges */
+    .fig svg { display: block; width: 100%; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--radius); background: white; }
+    .guide-hero .fig svg { border-color: rgba(255,255,255,0.25); }
+    .fig svg a { cursor: pointer; }
+    .fig svg a rect { transition: fill 0.15s ease, stroke 0.15s ease; }
+    .fig svg a:hover .p1-node, .fig svg a:hover .p1-node-opt { fill: #f6f9fc; }
+    .fig svg a:hover .p1-name, .fig svg a:focus-visible .p1-name,
+    .fig svg a:hover .p4-chip, .fig svg a:focus-visible .p4-chip,
+    .fig svg a:hover .p4-mcp, .fig svg a:focus-visible .p4-mcp { text-decoration: underline; }
+    .fig svg a:hover .p1-node, .fig svg a:hover .p1-node-opt { stroke: #1d63d8; stroke-width: 2; }
+    .fig svg a:hover .p4-chipbg { fill: #dde8f3; stroke: #00356b; }
+    .fig svg a:hover .p4-mcpb { fill: #d5e3fa; stroke-width: 1.6; }
+    .fig svg a:focus { outline: none; }
+    .fig svg a:focus-visible .p1-node, .fig svg a:focus-visible .p1-node-opt { stroke: #1d63d8; stroke-width: 2.6; }
+    .fig svg a:focus-visible .p4-chipbg { fill: #dde8f3; stroke: #00356b; stroke-width: 2.2; }
+    .fig svg a:focus-visible .p4-mcpb { fill: #d5e3fa; stroke-width: 2.2; }
+
+    /* skill chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.35rem 0 0; }
+    .chip {
+      display: inline-flex; align-items: stretch; border: 1px solid var(--border);
+      border-radius: 999px; background: white; overflow: hidden; font-size: 0.8rem;
+    }
+    .chip a { text-decoration: none; display: inline-flex; align-items: center; }
+    .chip-name { padding: 0.22rem 0.15rem 0.22rem 0.65rem; color: var(--yale); }
+    .chip-name code { background: none; padding: 0; font-family: var(--font-mono); font-size: 0.78rem; color: inherit; }
+    .chip-name:hover { color: var(--blue); text-decoration: underline; }
+    .chip-dl { padding: 0.22rem 0.6rem 0.22rem 0.35rem; color: var(--accent-light); font-weight: 700; }
+    .chip-dl:hover { background: rgba(29, 99, 216, 0.08); }
+    .chip--alt { background: var(--paper-2); }
+    .chip--alt .chip-name { color: var(--ink-soft); }
+
+    /* MCP badges */
+    .mcp-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      border: 1px solid rgba(29, 99, 216, 0.35); border-radius: 999px;
+      padding: 0.22rem 0.7rem; font-size: 0.78rem; font-weight: 600;
+      color: var(--blue); background: rgba(29, 99, 216, 0.05); text-decoration: none;
+    }
+    .mcp-badge:hover { background: rgba(29, 99, 216, 0.12); }
+    .mcp-badge::before { content: "⚡"; font-size: 0.72rem; }
+    .mcp-none { font-size: 0.8rem; color: var(--muted); }
+
+    /* stage cards — lane color on the left edge, calm hover lift */
+    .stage-card {
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      border-left-width: 3px;
+      padding: 1.25rem 1.35rem 1.15rem; margin: 1.1rem 0;
+      scroll-margin-top: calc(118px + env(safe-area-inset-top, 0px));
+      transition: box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    .stage-card:hover { box-shadow: 0 16px 36px rgba(15, 17, 21, 0.07); }
+    .stage-card[data-flow^="question"] { border-left-color: var(--gold); }
+    .stage-card[data-flow^="data"]     { border-left-color: var(--blue); }
+    .stage-card[data-flow^="text"]     { border-left-color: var(--gold-soft); }
+    .stage-card[data-flow^="estimate"] { border-left-color: var(--yale); }
+    .stage-card[data-flow^="write"]    { border-left-color: #8a949e; }
+    .stage-card:target { border-color: rgba(29, 99, 216, 0.5); box-shadow: 0 16px 36px rgba(15, 17, 21, 0.07); }
+    /* scroll-reveal — class added only by JS when IntersectionObserver exists and motion is allowed */
+    .js-reveal { opacity: 0; transform: translateY(14px); }
+    .js-reveal.is-seen { opacity: 1; transform: none; transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.22s ease, border-color 0.22s ease; }
+    .stage-head { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .stage-num {
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+      background: var(--yale); color: white; display: grid; place-items: center;
+      font-weight: 700; font-size: 0.85rem; align-self: center;
+    }
+    .stage-head h3 { margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--ink); }
+    .stage-flow-tag {
+      margin-left: auto; align-self: center; font-family: var(--font-mono);
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); white-space: nowrap;
+    }
+    .stage-card > p { margin: 0 0 0.75rem; }
+    .tools-row { margin: 0.65rem 0 0; }
+    .tools-label {
+      display: block; font-family: var(--font-mono); font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.15rem;
+    }
+    .stage-alt { margin: 0.7rem 0 0; }
+    .stage-alt summary {
+      cursor: pointer; font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); list-style: none;
+    }
+    .stage-alt summary::-webkit-details-marker { display: none; }
+    .stage-alt summary::after { content: " ↓"; color: var(--muted); }
+    .stage-alt[open] summary::after { content: " ↑"; }
+
+    /* verify gate */
+    .verify-gate {
+      margin: 1rem 0 0; padding: 0.85rem 1rem; border: 1px solid rgba(138, 101, 8, 0.35);
+      border-left: 4px solid #8a6508; border-radius: 10px;
+      background: linear-gradient(180deg, #fdf8ec, #fbf3dd);
+    }
+    .verify-gate .gate-label {
+      display: block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em; color: #8a6508; margin-bottom: 0.25rem;
+    }
+    .verify-gate .gate-label::before {
+      content: "✓"; display: inline-grid; place-items: center;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: #8a6508; color: #fff; font-size: 0.58rem;
+      margin-right: 0.45rem; vertical-align: -2px;
+    }
+    .verify-gate p { margin: 0; font-size: 0.9rem; color: var(--ink); }
+
+    /* reach / skip */
+    .reach-skip { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.9rem; }
+    .reach-skip > div {
+      border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; background: var(--paper-2);
+    }
+    .reach-skip h4 {
+      margin: 0 0 0.25rem; font-size: 0.72rem; font-family: var(--font-mono);
+      text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;
+    }
+    .reach-skip .reach h4 { color: var(--yale); }
+    .reach-skip .skip h4 { color: var(--muted); }
+    .reach-skip p { margin: 0; font-size: 0.85rem; color: var(--ink-soft); }
+    @media (max-width: 640px) { .reach-skip { grid-template-columns: 1fr; } }
+
+    /* six-part prompt checklist */
+    .prompt-list { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.45rem; counter-reset: prompt; }
+    .prompt-list li {
+      counter-increment: prompt; display: flex; gap: 0.7rem; align-items: baseline;
+      background: var(--paper-2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 0.55rem 0.8rem; margin: 0; font-size: 0.88rem;
+    }
+    .prompt-list li::before {
+      content: counter(prompt); flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--yale); color: white; display: grid; place-items: center;
+      font-size: 0.72rem; font-weight: 700; align-self: center;
+    }
+    .prompt-list strong { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--ink); }
+
+    /* stage filter chips — sticky beneath the site header while browsing the nine cards */
+    .stage-filters {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+      margin: 1.25rem 0 0.25rem; padding: 0.6rem 0;
+      position: sticky; top: calc(60px + env(safe-area-inset-top, 0px)); z-index: 40;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .stage-filters .filters-label {
+      font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted);
+      margin-right: 0.35rem;
+    }
+    .stage-filters .filter-count {
+      margin-left: auto; font-size: 0.8rem; color: var(--muted);
+      font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+
+    /* habits list */
+    .habit-list { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.45rem; }
+    .habit-list li {
+      display: flex; gap: 0.6rem; align-items: baseline; background: white;
+      border: 1px solid var(--border); border-left: 4px solid #8a6508; border-radius: 10px;
+      padding: 0.55rem 0.85rem; margin: 0; font-size: 0.9rem;
+    }
+    .habit-list li::before { content: "✓"; color: #8a6508; font-weight: 700; }
+
+    .hero-cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.15rem; }
+    .guide-hero .btn-outline-gold { color: #fff; border-color: rgba(255, 255, 255, 0.45); }
+    .guide-hero .btn-outline-gold:hover {
+      background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.7); color: #fff;
+    }
+
+    /* chip affordance */
+    .chip { transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+    .chip:hover { border-color: rgba(29, 99, 216, 0.45); box-shadow: 0 2px 8px rgba(15, 17, 21, 0.06); }
+
+    /* stage progress rail — injected by JS, desktop only */
+    .stage-rail {
+      position: fixed; left: max(14px, calc(50vw - 440px - 86px)); top: 50%;
+      transform: translateY(-50%); z-index: 60;
+      display: flex; flex-direction: column; gap: 0.35rem;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s;
+    }
+    .stage-rail.is-visible { opacity: 1; visibility: visible; }
+    .stage-rail a {
+      position: relative; display: grid; place-items: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid var(--rule-dark); background: white; color: var(--ink-soft);
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .stage-rail a:hover { border-color: var(--blue); color: var(--blue); }
+    .stage-rail a.active { background: var(--yale); border-color: var(--yale); color: #fff; }
+    .stage-rail a:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+    .stage-rail a::after {
+      content: attr(data-label); position: absolute; left: calc(100% + 10px); top: 50%;
+      transform: translateY(-50%); white-space: nowrap;
+      background: var(--yale); color: #fff;
+      font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600;
+      padding: 0.25rem 0.6rem; border-radius: 6px;
+      opacity: 0; pointer-events: none; transition: opacity 0.15s ease;
+    }
+    .stage-rail a:hover::after, .stage-rail a:focus-visible::after { opacity: 1; }
+    @media (max-width: 1180px) { .stage-rail { display: none; } }
+
+    /* back to top — injected by JS */
+    .back-top {
+      position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+      z-index: 60; width: 42px; height: 42px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--yale); color: #fff; border: 1px solid var(--yale);
+      text-decoration: none; font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(15, 17, 21, 0.18);
+      opacity: 0; visibility: hidden; transform: translateY(8px);
+      transition: opacity 0.2s ease, visibility 0.2s, transform 0.2s ease, background 0.15s;
+    }
+    .back-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+    .back-top:hover { background: var(--blue); border-color: var(--blue); }
+    .back-top:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+
+    @media print {
+      .js-reveal { opacity: 1 !important; transform: none !important; }
+      .stage-rail, .back-top, .stage-filters { display: none !important; }
+    }
+
+    /* narrow viewports: keep exhibit text legible by scrolling, not shrinking */
+    @media (max-width: 640px) {
+      .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .fig svg, .fig img { min-width: 680px; }
+      .fig figcaption { position: sticky; left: 0; max-width: calc(100vw - 3rem); }
+      .stage-flow-tag { display: none; }
+      .stage-head { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="wordmark"><a href="https://johnmbarrios.com">John Manuel Barrios</a></div>
+      <nav class="site-nav" id="site-nav" aria-label="Barrios Skills">
+        <a href="index.html#skills">Popular</a>
+        <a href="skills.html">All skills</a>
+        <a href="pipeline.html" class="active">Pipeline</a>
+        <a href="index.html#mcp">MCP</a>
+        <a href="index.html#install">Install</a>
+        <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="guide-page pipeline-page" id="main-content">
+    <div class="container">
+      <header class="guide-hero">
+        <a class="guide-back" href="index.html">← Back to Barrios Skills</a>
+        <p class="eyebrow">John Barrios · empirical workflow</p>
+        <h1>Accounting research pipeline: skills, MCP, and verification</h1>
+        <p class="lead">Skills teach <strong>how</strong>: Compustat filters, CIK discipline, attrition rows, what a defensible DiD write-up looks like. MCP servers run <strong>live access</strong>: authenticated WRDS queries, EDGAR filings, macro series. Credentials stay in <code>.env</code>, never in chat. Neither replaces <strong>verification</strong>. Agents make pipelines cheap to produce. The costly part stays on you: joins, filters, construct validity, every number in the manuscript. Files on disk are the unit of work; chat is disposable.</p>
+        <!-- Inline SVG derived from assets/figures/pipeline/FIG-P01_empirical_loop_stages.svg
+             (standalone file kept unchanged); inlined so each stage node links to its #stage-N card. -->
+        <figure class="fig">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 512" width="1000" height="512" role="img" aria-labelledby="p01-title p01-desc">
+            <title id="p01-title">Nine pipeline stages from research question to verified manuscript, each node labeled skill, MCP, or both, with the empirical loop highlighted in the middle</title>
+            <desc id="p01-desc">Horizontal flow of nine pipeline stages in two rows; each stage node links to its detail card below. Stages 1 Question, 2 Prompt, 4 Clean/join, 6 Measures, 8 Tables/figs, and 9 Write/verify use skills only; stages 3 Pull and 5 Text use both a skill and an MCP server; stage 7 Estimate uses a skill plus an optional Stata MCP. Stage 5 is a dashed optional branch that can be skipped.</desc>
+            <defs>
+              <marker id="p01-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#6b7280"/>
+              </marker>
+            </defs>
+            <style>
+              .p1-title { font-family: "Source Serif 4", Georgia, serif; font-size: 24px; font-weight: 600; fill: #00356b; }
+              .p1-sub   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+              .p1-name  { font-family: Inter, -apple-system, sans-serif; font-size: 17px; font-weight: 600; fill: #0f1115; }
+              .p1-opt   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 400; fill: #6b7280; }
+              .p1-num   { font-family: Inter, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+              .p1-badge      { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; }
+              .p1-legend     { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #3f4650; }
+              .p1-note       { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+              .p1-node    { fill: #ffffff; stroke: #c9d3dd; stroke-width: 1.4; }
+              .p1-node-opt { fill: #ffffff; stroke: #8aa5c0; stroke-width: 1.4; stroke-dasharray: 6 4; }
+              .p1-badge-skill { fill: #eaf0f6; stroke: #00356b; stroke-width: 1.2; }
+              .p1-badge-both  { fill: #00356b; }
+              .p1-badge-both-opt { fill: #ffffff; stroke: #1d63d8; stroke-width: 1.4; stroke-dasharray: 5 3; }
+              .p1-flow    { stroke: #6b7280; stroke-width: 1.6; fill: none; }
+              .p1-flow-opt { stroke: #6b7280; stroke-width: 1.6; fill: none; stroke-dasharray: 5 4; }
+            </style>
+
+            <text class="p1-title" x="28" y="38">The empirical loop &#8212; nine stages</text>
+            <text class="p1-sub" x="28" y="64">Empty folder to seminar-ready draft. Badges mark where a skill, an MCP server, or both carry the stage.</text>
+
+            <!-- Row 1: stages 1-5 -->
+            <a href="#stage-1" aria-label="Stage 1: Question — jump to details">
+              <rect class="p1-node" x="28" y="92" width="176" height="104" rx="10"/>
+              <circle cx="54" cy="126" r="13" fill="#00356b"/>
+              <text class="p1-num" x="54" y="131">1</text>
+              <text class="p1-name" x="74" y="132">Question</text>
+              <rect class="p1-badge-skill" x="44" y="156" width="62" height="26" rx="13"/>
+              <text class="p1-badge" x="75" y="174" fill="#00356b">skill</text>
+            </a>
+            <a href="#stage-2" aria-label="Stage 2: Prompt — jump to details">
+              <rect class="p1-node" x="220" y="92" width="176" height="104" rx="10"/>
+              <circle cx="246" cy="126" r="13" fill="#00356b"/>
+              <text class="p1-num" x="246" y="131">2</text>
+              <text class="p1-name" x="266" y="132">Prompt</text>
+              <rect class="p1-badge-skill" x="236" y="156" width="62" height="26" rx="13"/>
+              <text class="p1-badge" x="267" y="174" fill="#00356b">skill</text>
+            </a>
+            <a href="#stage-3" aria-label="Stage 3: Pull — jump to details">
+              <rect class="p1-node" x="412" y="92" width="176" height="104" rx="10"/>
+              <circle cx="438" cy="126" r="13" fill="#00356b"/>
+              <text class="p1-num" x="438" y="131">3</text>
+              <text class="p1-name" x="458" y="132">Pull</text>
+              <rect class="p1-badge-both" x="428" y="156" width="118" height="26" rx="13"/>
+              <text class="p1-badge" x="487" y="174" fill="#ffffff">skill + MCP</text>
+            </a>
+            <a href="#stage-4" aria-label="Stage 4: Clean and join — jump to details">
+              <rect class="p1-node" x="604" y="92" width="176" height="104" rx="10"/>
+              <circle cx="630" cy="126" r="13" fill="#00356b"/>
+              <text class="p1-num" x="630" y="131">4</text>
+              <text class="p1-name" x="650" y="132">Clean/join</text>
+              <rect class="p1-badge-skill" x="620" y="156" width="62" height="26" rx="13"/>
+              <text class="p1-badge" x="651" y="174" fill="#00356b">skill</text>
+            </a>
+            <a href="#stage-5" aria-label="Stage 5: Text, optional branch — jump to details">
+              <rect class="p1-node-opt" x="796" y="92" width="176" height="104" rx="10"/>
+              <circle cx="822" cy="126" r="13" fill="#00356b"/>
+              <text class="p1-num" x="822" y="131">5</text>
+              <text class="p1-name" x="842" y="132">Text<tspan class="p1-opt"> (optional)</tspan></text>
+              <rect class="p1-badge-both" x="812" y="156" width="118" height="26" rx="13"/>
+              <text class="p1-badge" x="871" y="174" fill="#ffffff">skill + MCP</text>
+            </a>
+
+            <!-- Row 1 arrows -->
+            <line class="p1-flow" x1="205" y1="144" x2="216" y2="144" marker-end="url(#p01-arr)"/>
+            <line class="p1-flow" x1="397" y1="144" x2="408" y2="144" marker-end="url(#p01-arr)"/>
+            <line class="p1-flow" x1="589" y1="144" x2="600" y2="144" marker-end="url(#p01-arr)"/>
+            <line class="p1-flow" x1="781" y1="144" x2="792" y2="144" marker-end="url(#p01-arr)"/>
+
+            <!-- Wrap connector 5 -> 6 -->
+            <path class="p1-flow" d="M884 196 V222 H212 V254" marker-end="url(#p01-arr)"/>
+            <!-- Bypass 4 -> 6 (skip stage 5) -->
+            <path class="p1-flow-opt" d="M692 196 V240 H250 V254" marker-end="url(#p01-arr)"/>
+            <rect x="375" y="230" width="190" height="20" fill="#ffffff"/>
+            <text class="p1-note" x="470" y="245" text-anchor="middle">no text? skip stage 5</text>
+
+            <!-- Row 2: stages 6-9 -->
+            <a href="#stage-6" aria-label="Stage 6: Measures — jump to details">
+              <rect class="p1-node" x="124" y="260" width="176" height="104" rx="10"/>
+              <circle cx="150" cy="294" r="13" fill="#00356b"/>
+              <text class="p1-num" x="150" y="299">6</text>
+              <text class="p1-name" x="170" y="300">Measures</text>
+              <rect class="p1-badge-skill" x="140" y="324" width="62" height="26" rx="13"/>
+              <text class="p1-badge" x="171" y="342" fill="#00356b">skill</text>
+            </a>
+            <a href="#stage-7" aria-label="Stage 7: Estimate — jump to details">
+              <rect class="p1-node" x="316" y="260" width="176" height="104" rx="10"/>
+              <circle cx="342" cy="294" r="13" fill="#00356b"/>
+              <text class="p1-num" x="342" y="299">7</text>
+              <text class="p1-name" x="362" y="300">Estimate</text>
+              <rect class="p1-badge-both-opt" x="332" y="324" width="118" height="26" rx="13"/>
+              <text class="p1-badge" x="391" y="342" fill="#1d63d8">skill + MCP</text>
+            </a>
+            <a href="#stage-8" aria-label="Stage 8: Tables and figures — jump to details">
+              <rect class="p1-node" x="508" y="260" width="176" height="104" rx="10"/>
+              <circle cx="534" cy="294" r="13" fill="#00356b"/>
+              <text class="p1-num" x="534" y="299">8</text>
+              <text class="p1-name" x="554" y="300">Tables/figs</text>
+              <rect class="p1-badge-skill" x="524" y="324" width="62" height="26" rx="13"/>
+              <text class="p1-badge" x="555" y="342" fill="#00356b">skill</text>
+            </a>
+            <a href="#stage-9" aria-label="Stage 9: Write and verify — jump to details">
+              <rect class="p1-node" x="700" y="260" width="176" height="104" rx="10"/>
+              <circle cx="726" cy="294" r="13" fill="#00356b"/>
+              <text class="p1-num" x="726" y="299">9</text>
+              <text class="p1-name" x="746" y="300">Write/verify</text>
+              <rect class="p1-badge-skill" x="716" y="324" width="62" height="26" rx="13"/>
+              <text class="p1-badge" x="747" y="342" fill="#00356b">skill</text>
+            </a>
+
+            <!-- Row 2 arrows -->
+            <line class="p1-flow" x1="301" y1="312" x2="312" y2="312" marker-end="url(#p01-arr)"/>
+            <line class="p1-flow" x1="493" y1="312" x2="504" y2="312" marker-end="url(#p01-arr)"/>
+            <line class="p1-flow" x1="685" y1="312" x2="696" y2="312" marker-end="url(#p01-arr)"/>
+
+            <!-- Legend -->
+            <rect class="p1-badge-skill" x="28" y="392" width="62" height="26" rx="13"/>
+            <text class="p1-badge" x="59" y="410" fill="#00356b">skill</text>
+            <text class="p1-legend" x="102" y="410">conventions installed locally</text>
+            <rect class="p1-badge-both" x="430" y="392" width="118" height="26" rx="13"/>
+            <text class="p1-badge" x="489" y="410" fill="#ffffff">skill + MCP</text>
+            <text class="p1-legend" x="560" y="410">pair conventions with live, authenticated access</text>
+
+            <rect class="p1-badge-both-opt" x="28" y="428" width="118" height="26" rx="13"/>
+            <text class="p1-badge" x="87" y="446" fill="#1d63d8">skill + MCP</text>
+            <text class="p1-legend" x="158" y="446">stage 7: Stata-MCP only if the agent drives Stata</text>
+            <rect class="p1-node-opt" x="620" y="430" width="44" height="22" rx="6"/>
+            <text class="p1-legend" x="676" y="446">dashed node = optional branch</text>
+
+            <text class="p1-legend" x="28" y="488">Every stage ends at a verification gate: results live as files on disk, never chat-only.</text>
+          </svg>
+          <figcaption>The nine stages of an archival accounting paper, from empty folder to seminar-ready draft. Click a stage node to jump to its card.</figcaption>
+        </figure>
+        <div class="hero-cta-row">
+          <a class="btn btn-secondary" href="#mvp">Start with the minimum stack →</a>
+          <a class="btn btn-outline-gold" href="#stages">Browse the nine stages ↓</a>
+        </div>
+      </header>
+
+      <nav class="guide-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#decide">Skill vs MCP vs both</a></li>
+          <li><a href="#stages">The nine stages</a></li>
+          <li><a href="#debt">Verification debt</a></li>
+          <li><a href="#mvp">Minimum viable stack</a></li>
+        </ol>
+      </nav>
+
+      <!-- ============ DECISION ============ -->
+      <section class="guide-section" id="decide">
+        <h2>Skill vs MCP vs both</h2>
+        <p>If the bottleneck is <em>knowing the convention</em>, use a skill. If the bottleneck is <em>talking to a remote system with secrets or rate limits</em>, use MCP. If both, install both, and keep credentials in env files the MCP reads, never in prompts.</p>
+        <figure class="fig">
+          <img src="assets/figures/pipeline/FIG-P02_skill_vs_mcp_swimlanes.svg" alt="Two swimlanes — skills carry conventions, MCP servers carry live authenticated access — both producing files on disk that pass through verification gates">
+          <figcaption>Skills and MCP run in parallel lanes; both end in files on disk that you verify.</figcaption>
+        </figure>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Research task</th><th>Skill</th><th>MCP</th><th>Use</th></tr></thead>
+            <tbody>
+              <tr><td>Compustat / CRSP / CCM pull</td><td><code>wrds</code></td><td><a href="wrds-mcp.html">wrds-mcp</a></td><td><strong>Both</strong>: skill for filters and query patterns; MCP for auth and live SQL</td></tr>
+              <tr><td>EDGAR filings, Form 4, XBRL facts</td><td><code>sec-edgar</code></td><td><a href="sec-edgar-mcp.html">SEC EDGAR MCP</a></td><td><strong>Both</strong>: CIK and rate-limit conventions plus live fetch</td></tr>
+              <tr><td>FinBERT / 10-K text features</td><td><code>financial-text-nlp</code></td><td>EDGAR MCP only to obtain text</td><td><strong>Skill</strong> (+ MCP upstream)</td></tr>
+              <tr><td>FRED / World Bank / IMF series</td><td><code>api-data-fetcher</code></td><td><a href="openecon-data-mcp.html">OpenEcon Data</a> or FRED MCP</td><td><strong>Either / both</strong>: MCP to discover; skill for pinned reproducible scripts</td></tr>
+              <tr><td>Stata clean / reghdfe / esttab</td><td><code>stata-data-cleaning</code>, <code>stata-regression</code></td><td>Stata-MCP</td><td><strong>Both</strong> if the agent drives Stata; <strong>skill only</strong> if you run <code>.do</code> files yourself</td></tr>
+              <tr><td>Panel FE in Python</td><td><code>pyfixest</code>, <code>python-panel-data</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
+              <tr><td>Lit search / BibTeX</td><td><code>econ-lit-search</code>, <code>citation-management</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
+              <tr><td>Figures / LaTeX tables</td><td><code>econ-visualization</code>, <code>latex-tables</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
+              <tr><td>Paper / slides / referee prep</td><td><code>econ-write</code>, <code>econ-slides</code>, <code>econ-referee</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
+              <tr><td>“What tool rung am I on?”</td><td>—</td><td>—</td><td>Chat for thinking; editor for edits; agent for pipelines; agent + MCP only when live licensed or public APIs are required</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ STAGES ============ -->
+      <section class="guide-section" id="stages">
+        <h2>The nine stages</h2>
+        <p>Each stage lists its default skills, the MCP server if one applies, and the verification gate you pass <em>before</em> moving on. Alternatives are collapsed: pick one lane and stay in it. Chip text opens the skill in the catalog; the arrow downloads the zip.</p>
+        <!-- Inline SVG derived from assets/figures/pipeline/FIG-P04_stage_tool_map.svg
+             (standalone file kept unchanged); inlined so skill chips link to the catalog filter
+             (skills.html?q=…) and MCP badges link to their setup pages. -->
+        <figure class="fig">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" width="1000" height="780" role="img" aria-labelledby="p04-title p04-desc">
+            <title id="p04-title">Grid mapping stages one through nine to their primary skills and MCP servers, showing where WRDS, SEC EDGAR, and OpenEcon MCP servers enter the workflow</title>
+            <desc id="p04-desc">Table of nine pipeline stages with default skill picks and MCP servers; each skill chip links to the catalog and each MCP badge links to its setup page. Stage 3 Pull uses wrds-mcp, SEC EDGAR, and OpenEcon or FRED MCP; stage 5 Text uses SEC EDGAR MCP; stage 7 Estimate can optionally use Stata-MCP; all other stages are skills only.</desc>
+            <style>
+              .p4-title { font-family: "Source Serif 4", Georgia, serif; font-size: 24px; font-weight: 600; fill: #00356b; }
+              .p4-sub   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+              .p4-head  { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff; }
+              .p4-stage { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #0f1115; }
+              .p4-num   { font-family: Inter, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+              .p4-chip  { font-family: ui-monospace, Menlo, monospace; font-size: 16px; fill: #00356b; text-anchor: middle; }
+              .p4-mcp   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #1d63d8; text-anchor: middle; }
+              .p4-none  { font-family: Inter, -apple-system, sans-serif; font-size: 18px; fill: #9aa3ad; }
+              .p4-muted { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+              .p4-chipbg { fill: #eef3f8; stroke: #c6d4e2; stroke-width: 1; }
+              .p4-mcpb   { fill: #e8f0fc; stroke: #1d63d8; stroke-width: 1; }
+              .p4-rowline { stroke: #e7e9ec; stroke-width: 1; }
+            </style>
+
+            <text class="p4-title" x="28" y="38">Stage &#8594; tool map: default picks</text>
+            <text class="p4-sub" x="28" y="64">Three or four default skills per stage; alternatives live in the catalog. MCP appears only where live access earns its keep.</text>
+
+            <!-- Header band -->
+            <rect x="28" y="84" width="944" height="36" rx="8" fill="#00356b"/>
+            <text class="p4-head" x="44" y="108">Stage</text>
+            <text class="p4-head" x="296" y="108">Default skills</text>
+            <text class="p4-head" x="776" y="108">MCP</text>
+
+            <!-- Row shading (even rows) -->
+            <rect x="28" y="188" width="944" height="68" fill="#f8f9fa"/>
+            <rect x="28" y="324" width="944" height="68" fill="#f8f9fa"/>
+            <rect x="28" y="460" width="944" height="68" fill="#f8f9fa"/>
+            <rect x="28" y="596" width="944" height="68" fill="#f8f9fa"/>
+
+            <!-- Row separators -->
+            <line class="p4-rowline" x1="28" y1="188" x2="972" y2="188"/>
+            <line class="p4-rowline" x1="28" y1="256" x2="972" y2="256"/>
+            <line class="p4-rowline" x1="28" y1="324" x2="972" y2="324"/>
+            <line class="p4-rowline" x1="28" y1="392" x2="972" y2="392"/>
+            <line class="p4-rowline" x1="28" y1="460" x2="972" y2="460"/>
+            <line class="p4-rowline" x1="28" y1="528" x2="972" y2="528"/>
+            <line class="p4-rowline" x1="28" y1="596" x2="972" y2="596"/>
+            <line class="p4-rowline" x1="28" y1="664" x2="972" y2="664"/>
+            <line class="p4-rowline" x1="28" y1="732" x2="972" y2="732"/>
+            <!-- Column separators -->
+            <line class="p4-rowline" x1="288" y1="120" x2="288" y2="732"/>
+            <line class="p4-rowline" x1="768" y1="120" x2="768" y2="732"/>
+
+            <!-- Row 1: Question & literature -->
+            <circle cx="52" cy="154" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="159">1</text>
+            <text class="p4-stage" x="74" y="160">Question &amp; literature</text>
+            <a href="skills.html?q=econ-lit-search" aria-label="econ-lit-search skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="126" width="162" height="26" rx="13"/>
+              <text class="p4-chip" x="377" y="144">econ-lit-search</text>
+            </a>
+            <a href="skills.html?q=research-ideation" aria-label="research-ideation skill — open in catalog">
+              <rect class="p4-chipbg" x="466" y="126" width="181" height="26" rx="13"/>
+              <text class="p4-chip" x="556" y="144">research-ideation</text>
+            </a>
+            <a href="skills.html?q=citation-management" aria-label="citation-management skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="156" width="200" height="26" rx="13"/>
+              <text class="p4-chip" x="396" y="174">citation-management</text>
+            </a>
+            <text class="p4-none" x="776" y="160">&#8212;</text>
+
+            <!-- Row 2: Six-part prompt -->
+            <circle cx="52" cy="222" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="227">2</text>
+            <text class="p4-stage" x="74" y="228">Six-part prompt</text>
+            <a href="skills.html?q=wrds" aria-label="wrds skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="209" width="56" height="26" rx="13"/>
+              <text class="p4-chip" x="324" y="227">wrds</text>
+            </a>
+            <a href="skills.html?q=sec-edgar" aria-label="sec-edgar skill — open in catalog">
+              <rect class="p4-chipbg" x="360" y="209" width="104" height="26" rx="13"/>
+              <text class="p4-chip" x="412" y="227">sec-edgar</text>
+            </a>
+            <a href="skills.html?q=exploratory-data-analysis" aria-label="exploratory-data-analysis skill — open in catalog">
+              <rect class="p4-chipbg" x="472" y="209" width="258" height="26" rx="13"/>
+              <text class="p4-chip" x="601" y="227">exploratory-data-analysis</text>
+            </a>
+            <text class="p4-none" x="776" y="228">&#8212;</text>
+
+            <!-- Row 3: Pull live data -->
+            <circle cx="52" cy="290" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="295">3</text>
+            <text class="p4-stage" x="74" y="296">Pull live data</text>
+            <a href="skills.html?q=wrds" aria-label="wrds skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="277" width="56" height="26" rx="13"/>
+              <text class="p4-chip" x="324" y="295">wrds</text>
+            </a>
+            <a href="skills.html?q=sec-edgar" aria-label="sec-edgar skill — open in catalog">
+              <rect class="p4-chipbg" x="360" y="277" width="104" height="26" rx="13"/>
+              <text class="p4-chip" x="412" y="295">sec-edgar</text>
+            </a>
+            <a href="skills.html?q=api-data-fetcher" aria-label="api-data-fetcher skill — open in catalog">
+              <rect class="p4-chipbg" x="472" y="277" width="172" height="26" rx="13"/>
+              <text class="p4-chip" x="558" y="295">api-data-fetcher</text>
+            </a>
+            <a href="wrds-mcp.html" aria-label="wrds-mcp setup guide">
+              <rect class="p4-mcpb" x="776" y="262" width="94" height="26" rx="13"/>
+              <text class="p4-mcp" x="823" y="280">wrds-mcp</text>
+            </a>
+            <a href="sec-edgar-mcp.html" aria-label="SEC EDGAR MCP setup guide">
+              <rect class="p4-mcpb" x="878" y="262" width="66" height="26" rx="13"/>
+              <text class="p4-mcp" x="911" y="280">EDGAR</text>
+            </a>
+            <a href="openecon-data-mcp.html" aria-label="OpenEcon Data MCP setup guide">
+              <rect class="p4-mcpb" x="776" y="292" width="150" height="26" rx="13"/>
+              <text class="p4-mcp" x="851" y="310">OpenEcon / FRED</text>
+            </a>
+
+            <!-- Row 4: Clean, join, attrition -->
+            <circle cx="52" cy="358" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="363">4</text>
+            <text class="p4-stage" x="74" y="364">Clean, join, attrition</text>
+            <a href="skills.html?q=stata-data-cleaning" aria-label="stata-data-cleaning skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="330" width="200" height="26" rx="13"/>
+              <text class="p4-chip" x="396" y="348">stata-data-cleaning</text>
+            </a>
+            <a href="skills.html?q=polars" aria-label="polars skill — open in catalog">
+              <rect class="p4-chipbg" x="504" y="330" width="76" height="26" rx="13"/>
+              <text class="p4-chip" x="542" y="348">polars</text>
+            </a>
+            <a href="skills.html?q=python-panel-data" aria-label="python-panel-data skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="360" width="181" height="26" rx="13"/>
+              <text class="p4-chip" x="386" y="378">python-panel-data</text>
+            </a>
+            <text class="p4-none" x="776" y="364">&#8212;</text>
+
+            <!-- Row 5: Text measures (optional) -->
+            <circle cx="52" cy="426" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="431">5</text>
+            <text class="p4-stage" x="74" y="424">Text measures</text>
+            <text class="p4-muted" x="74" y="444">(optional)</text>
+            <a href="skills.html?q=sec-edgar" aria-label="sec-edgar skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="413" width="104" height="26" rx="13"/>
+              <text class="p4-chip" x="348" y="431">sec-edgar</text>
+            </a>
+            <a href="skills.html?q=financial-text-nlp" aria-label="financial-text-nlp skill — open in catalog">
+              <rect class="p4-chipbg" x="408" y="413" width="191" height="26" rx="13"/>
+              <text class="p4-chip" x="503" y="431">financial-text-nlp</text>
+            </a>
+            <a href="skills.html?q=web-scrape" aria-label="web-scrape skill — open in catalog">
+              <rect class="p4-chipbg" x="607" y="413" width="114" height="26" rx="13"/>
+              <text class="p4-chip" x="664" y="431">web-scrape</text>
+            </a>
+            <a href="sec-edgar-mcp.html" aria-label="SEC EDGAR MCP setup guide">
+              <rect class="p4-mcpb" x="776" y="413" width="108" height="26" rx="13"/>
+              <text class="p4-mcp" x="830" y="431">SEC EDGAR</text>
+            </a>
+
+            <!-- Row 6: Measures & sanity EDA -->
+            <circle cx="52" cy="494" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="499">6</text>
+            <text class="p4-stage" x="74" y="500">Measures &amp; sanity EDA</text>
+            <a href="skills.html?q=exploratory-data-analysis" aria-label="exploratory-data-analysis skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="466" width="258" height="26" rx="13"/>
+              <text class="p4-chip" x="425" y="484">exploratory-data-analysis</text>
+            </a>
+            <a href="skills.html?q=econ-visualization" aria-label="econ-visualization skill — open in catalog">
+              <rect class="p4-chipbg" x="562" y="466" width="191" height="26" rx="13"/>
+              <text class="p4-chip" x="657" y="484">econ-visualization</text>
+            </a>
+            <a href="skills.html?q=statistical-analysis" aria-label="statistical-analysis skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="496" width="210" height="26" rx="13"/>
+              <text class="p4-chip" x="401" y="514">statistical-analysis</text>
+            </a>
+            <text class="p4-none" x="776" y="500">&#8212;</text>
+
+            <!-- Row 7: Estimate & identify -->
+            <circle cx="52" cy="562" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="567">7</text>
+            <text class="p4-stage" x="74" y="568">Estimate &amp; identify</text>
+            <a href="skills.html?q=pyfixest" aria-label="pyfixest skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="549" width="95" height="26" rx="13"/>
+              <text class="p4-chip" x="343" y="567">pyfixest</text>
+            </a>
+            <a href="skills.html?q=stata-regression" aria-label="stata-regression skill — open in catalog">
+              <rect class="p4-chipbg" x="399" y="549" width="162" height="26" rx="13"/>
+              <text class="p4-chip" x="480" y="567">stata-regression</text>
+            </a>
+            <a href="skills.html?q=r-econometrics" aria-label="r-econometrics skill — open in catalog">
+              <rect class="p4-chipbg" x="569" y="549" width="152" height="26" rx="13"/>
+              <text class="p4-chip" x="645" y="567">r-econometrics</text>
+            </a>
+            <a href="index.html#mcp" aria-label="Stata-MCP install guide (optional)">
+              <rect class="p4-mcpb" x="776" y="549" width="104" height="26" rx="13" stroke-dasharray="5 3"/>
+              <text class="p4-mcp" x="828" y="567">Stata-MCP</text>
+            </a>
+            <text class="p4-muted" x="888" y="567">optional</text>
+
+            <!-- Row 8: Tables, figures, trail -->
+            <circle cx="52" cy="630" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="635">8</text>
+            <text class="p4-stage" x="74" y="636">Tables, figures, trail</text>
+            <a href="skills.html?q=latex-tables" aria-label="latex-tables skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="602" width="133" height="26" rx="13"/>
+              <text class="p4-chip" x="362" y="620">latex-tables</text>
+            </a>
+            <a href="skills.html?q=econ-visualization" aria-label="econ-visualization skill — open in catalog">
+              <rect class="p4-chipbg" x="437" y="602" width="191" height="26" rx="13"/>
+              <text class="p4-chip" x="532" y="620">econ-visualization</text>
+            </a>
+            <a href="skills.html?q=venue-templates" aria-label="venue-templates skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="632" width="162" height="26" rx="13"/>
+              <text class="p4-chip" x="377" y="650">venue-templates</text>
+            </a>
+            <text class="p4-none" x="776" y="636">&#8212;</text>
+
+            <!-- Row 9: Write, verify, present -->
+            <circle cx="52" cy="698" r="14" fill="#00356b"/>
+            <text class="p4-num" x="52" y="703">9</text>
+            <text class="p4-stage" x="74" y="704">Write, verify, present</text>
+            <a href="skills.html?q=econ-write" aria-label="econ-write skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="670" width="114" height="26" rx="13"/>
+              <text class="p4-chip" x="353" y="688">econ-write</text>
+            </a>
+            <a href="skills.html?q=econ-humanizer" aria-label="econ-humanizer skill — open in catalog">
+              <rect class="p4-chipbg" x="418" y="670" width="152" height="26" rx="13"/>
+              <text class="p4-chip" x="494" y="688">econ-humanizer</text>
+            </a>
+            <a href="skills.html?q=econ-slides" aria-label="econ-slides skill — open in catalog">
+              <rect class="p4-chipbg" x="578" y="670" width="124" height="26" rx="13"/>
+              <text class="p4-chip" x="640" y="688">econ-slides</text>
+            </a>
+            <a href="skills.html?q=econ-referee" aria-label="econ-referee skill — open in catalog">
+              <rect class="p4-chipbg" x="296" y="700" width="133" height="26" rx="13"/>
+              <text class="p4-chip" x="362" y="718">econ-referee</text>
+            </a>
+            <text class="p4-none" x="776" y="704">&#8212;</text>
+
+            <text class="p4-muted" x="28" y="762">Chips are skills (click to open in the catalog); badges are MCP servers (click for the setup guide; credentials in .env).</text>
+          </svg>
+          <figcaption>Stage-by-tool map: skills carry every stage; MCP enters at data pull, text, and (optionally) estimation. Chips and badges are clickable.</figcaption>
+        </figure>
+
+        <div class="stage-filters" id="stage-filters" role="group" aria-label="Filter stages" hidden>
+          <span class="filters-label" aria-hidden="true">Filter stages</span>
+          <button type="button" class="filter-btn active" data-flow="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-btn" data-flow="question" aria-pressed="false">Question</button>
+          <button type="button" class="filter-btn" data-flow="data" aria-pressed="false">Data</button>
+          <button type="button" class="filter-btn" data-flow="text" aria-pressed="false">Text</button>
+          <button type="button" class="filter-btn" data-flow="estimate" aria-pressed="false">Estimate</button>
+          <button type="button" class="filter-btn" data-flow="write" aria-pressed="false">Write</button>
+          <span class="filter-count" id="stage-filter-count" aria-live="polite"></span>
+        </div>
+
+        <!-- Stage 1 -->
+        <article class="stage-card" id="stage-1" data-flow="question">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">1</span>
+            <h3>Research question and literature</h3>
+            <span class="stage-flow-tag">Question</span>
+          </div>
+          <p>Sharpen a question that Compustat, CRSP, EDGAR, or a public panel can actually answer; map prior designs and measurement conventions before writing any code.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-lit-search"><code>econ-lit-search</code></a><a class="chip-dl" href="downloads/skills/econ-lit-search.zip" download aria-label="Download econ-lit-search zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=research-ideation"><code>research-ideation</code></a><a class="chip-dl" href="downloads/skills/research-ideation.zip" download aria-label="Download research-ideation zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=hypothesis-generation"><code>hypothesis-generation</code></a><a class="chip-dl" href="downloads/skills/hypothesis-generation.zip" download aria-label="Download hypothesis-generation zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=citation-management"><code>citation-management</code></a><a class="chip-dl" href="downloads/skills/citation-management.zip" download aria-label="Download citation-management zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">None. Skill and scripts only.</span>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=openalex-api"><code>openalex-api</code></a><a class="chip-dl" href="downloads/skills/openalex-api.zip" download aria-label="Download openalex-api zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=lit-review-assistant"><code>lit-review-assistant</code></a><a class="chip-dl" href="downloads/skills/lit-review-assistant.zip" download aria-label="Download lit-review-assistant zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=literature-review"><code>literature-review</code></a><a class="chip-dl" href="downloads/skills/literature-review.zip" download aria-label="Download literature-review zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=research-lookup"><code>research-lookup</code></a><a class="chip-dl" href="downloads/skills/research-lookup.zip" download aria-label="Download research-lookup zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=scientific-critical-thinking"><code>scientific-critical-thinking</code></a><a class="chip-dl" href="downloads/skills/scientific-critical-thinking.zip" download aria-label="Download scientific-critical-thinking zip">↓</a></span>
+            </div>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Name the identifying variation and the unit of observation (firm–year, filing, event) in one sentence. If you cannot, do not open a data session yet.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>You are scoping a first paper or a new chapter and need search plus synthesis, not SQL.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>The design is already fixed: a referee revision with a locked sample. Jump to stages 2–3.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 2 -->
+        <article class="stage-card" id="stage-2" data-flow="question">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">2</span>
+            <h3>Empty folder and the six-part opening prompt</h3>
+            <span class="stage-flow-tag">Question</span>
+          </div>
+          <p>Start in a clean directory and write the six-part prompt <em>before</em> any code runs. Demand named scripts, <code>DECISIONS.md</code>, <code>LOG.md</code>, and attrition rows, not chat-only results.</p>
+          <ol class="prompt-list">
+            <li><span><strong>DATA</strong>: source, years, tables or files, variables</span></li>
+            <li><span><strong>JOIN</strong>: key(s), pre/post row counts, unmatched-key report</span></li>
+            <li><span><strong>MEASURE</strong>: exact definition and filters (e.g. <code>qtrs</code>, form type, Compustat iron laws)</span></li>
+            <li><span><strong>AGGREGATION</strong>: statistic, grouping, time unit</span></li>
+            <li><span><strong>OUTPUT</strong>: figure and table filenames plus the underlying CSV/Parquet</span></li>
+            <li><span><strong>PAPER TRAIL</strong>: named scripts, <code>DECISIONS.md</code>, <code>LOG.md</code>, attrition printed on every filter</span></li>
+          </ol>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=wrds"><code>wrds</code></a><a class="chip-dl" href="downloads/skills/wrds.zip" download aria-label="Download wrds zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=sec-edgar"><code>sec-edgar</code></a><a class="chip-dl" href="downloads/skills/sec-edgar.zip" download aria-label="Download sec-edgar zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=exploratory-data-analysis"><code>exploratory-data-analysis</code></a><a class="chip-dl" href="downloads/skills/exploratory-data-analysis.zip" download aria-label="Download exploratory-data-analysis zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">None at prompt-writing time; MCP comes online in stage 3. Install <code>wrds</code> / <code>sec-edgar</code> here so the prompt carries the iron laws and CIK discipline from the start.</span>
+          </div>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Paste the six headings. Fill in every blank an agent would have to guess: years, tags, filters, join key, filename.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>Starting any new empirical project or lab-style loop.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Extending a repo that already has <code>DECISIONS.md</code> and stage scripts. Prompt for the delta; do not reinvent the folder.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 3 -->
+        <article class="stage-card" id="stage-3" data-flow="data">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">3</span>
+            <h3>Live data pull</h3>
+            <span class="stage-flow-tag">Data</span>
+          </div>
+          <p>Pull WRDS extracts, EDGAR filings and XBRL facts, and macro controls into <code>data/raw/</code>. Every pull, authenticated or bulk, ends as files on disk.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=wrds"><code>wrds</code></a><a class="chip-dl" href="downloads/skills/wrds.zip" download aria-label="Download wrds zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=sec-edgar"><code>sec-edgar</code></a><a class="chip-dl" href="downloads/skills/sec-edgar.zip" download aria-label="Download sec-edgar zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=api-data-fetcher"><code>api-data-fetcher</code></a><a class="chip-dl" href="downloads/skills/api-data-fetcher.zip" download aria-label="Download api-data-fetcher zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <div class="chips">
+              <a class="mcp-badge" href="wrds-mcp.html">wrds-mcp: Compustat, CRSP, CCM</a>
+              <a class="mcp-badge" href="sec-edgar-mcp.html">SEC EDGAR MCP: CIKs, filings, XBRL</a>
+              <a class="mcp-badge" href="openecon-data-mcp.html">OpenEcon Data: macro series</a>
+            </div>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=datacommons-client"><code>datacommons-client</code></a><a class="chip-dl" href="downloads/skills/datacommons-client.zip" download aria-label="Download datacommons-client zip">↓</a></span>
+            </div>
+            <p style="font-size:0.85rem; margin:0.5rem 0 0;">The skill encodes the query patterns and iron laws; the MCP runs them. <code>api-data-fetcher</code> is the reproducible-script path; OpenEcon or FRED MCP is the interactive-discovery path.</p>
+          </details>
+          <div class="callout callout-warn">
+            <strong>Credentials live in <code>.env</code>, never in chat.</strong> The MCP server reads <code>WRDS_USERNAME</code> and friends from an env file with <code>chmod 600</code>. If a password ever appears in a prompt or a log, rotate it.
+          </div>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Four inspections before trusting any extract: (1) row count vs an expectation written down beforehand, (2) a sample of rows, (3) null check on the analysis columns, (4) date-range min/max. Compustat SQL must include <code>indfmt='INDL'</code>, <code>datafmt='STD'</code>, <code>popsrc='D'</code>, <code>consol='C'</code>. CRSP share-type and exchange filters are manual. Never assume a helper applied them.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>You need licensed WRDS tables, live EDGAR/XBRL, or pinned macro series at scale.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Reproducing from a frozen Parquet already on disk. Do not re-query WRDS “for convenience.”</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 4 -->
+        <article class="stage-card" id="stage-4" data-flow="data">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">4</span>
+            <h3>Clean, join, attrition panel</h3>
+            <span class="stage-flow-tag">Data</span>
+          </div>
+          <p>Turn raw extracts into an analysis-ready firm–year panel. Join on the correct key: <code>gvkey</code>–<code>fyear</code>, <code>adsh</code>, the CCM link table. Never join on hand-typed tickers. Print attrition at every filter.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=stata-data-cleaning"><code>stata-data-cleaning</code></a><a class="chip-dl" href="downloads/skills/stata-data-cleaning.zip" download aria-label="Download stata-data-cleaning zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=polars"><code>polars</code></a><a class="chip-dl" href="downloads/skills/polars.zip" download aria-label="Download polars zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=python-panel-data"><code>python-panel-data</code></a><a class="chip-dl" href="downloads/skills/python-panel-data.zip" download aria-label="Download python-panel-data zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">None. Scripts on disk. Stata-MCP is optional if cleaning runs in Stata interactively (see the <a href="index.html#mcp">MCP install guide</a>).</span>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=exploratory-data-analysis"><code>exploratory-data-analysis</code></a><a class="chip-dl" href="downloads/skills/exploratory-data-analysis.zip" download aria-label="Download exploratory-data-analysis zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=dask"><code>dask</code></a><a class="chip-dl" href="downloads/skills/dask.zip" download aria-label="Download dask zip">↓</a></span>
+            </div>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>One join check: n before, n after, and the reason for every drop. Flag unmatched keys. No silent many-to-many blow-ups.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>Building or revising the sample that will enter every table.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>The panel is locked and you are only adding an outcome column. Document the append in <code>DECISIONS.md</code> and re-print attrition for that step only.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 5 -->
+        <article class="stage-card" id="stage-5" data-flow="text">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">5</span>
+            <h3>Disclosure and EDGAR text measures <span style="font-weight:400; font-size:0.8em; color:var(--muted);">(optional branch)</span></h3>
+            <span class="stage-flow-tag">Text</span>
+          </div>
+          <p>CIK resolution → filing retrieval (cached HTML) → section extraction with fallback patterns → quality report → text feature or NLP score. Construct validity is the accounting contribution; automation is not the finding.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=sec-edgar"><code>sec-edgar</code></a><a class="chip-dl" href="downloads/skills/sec-edgar.zip" download aria-label="Download sec-edgar zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=financial-text-nlp"><code>financial-text-nlp</code></a><a class="chip-dl" href="downloads/skills/financial-text-nlp.zip" download aria-label="Download financial-text-nlp zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <div class="chips">
+              <a class="mcp-badge" href="sec-edgar-mcp.html">SEC EDGAR MCP: filings, Form 4, XBRL</a>
+            </div>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=web-scrape"><code>web-scrape</code></a><a class="chip-dl" href="downloads/skills/web-scrape.zip" download aria-label="Download web-scrape zip">↓</a></span>
+            </div>
+            <p style="font-size:0.85rem; margin:0.5rem 0 0;">Iron habit: resolve and pin CIKs. Never treat ticker strings as stable firm ids across EDGAR joins.</p>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Read the quality report: the failures and the suspiciously short sections, not the headline success rate. Before a text measure enters a main table, run a stratified human audit (~50 filings across measure level, size, and industry) against a written rubric.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>The paper’s contribution is disclosure, sentiment, or filing-based measurement.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Pure Compustat/CRSP design with no text. Do not pull EDGAR just because the MCP is installed.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 6 -->
+        <article class="stage-card" id="stage-6" data-flow="data estimate">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">6</span>
+            <h3>Construct measures and sanity EDA</h3>
+            <span class="stage-flow-tag">Data · Estimate</span>
+          </div>
+          <p>Build ratios, treatments, instruments, and controls; winsorize or trim with documented rules; plot distributions and known-event windows <em>before</em> any regression.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=exploratory-data-analysis"><code>exploratory-data-analysis</code></a><a class="chip-dl" href="downloads/skills/exploratory-data-analysis.zip" download aria-label="Download exploratory-data-analysis zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-visualization"><code>econ-visualization</code></a><a class="chip-dl" href="downloads/skills/econ-visualization.zip" download aria-label="Download econ-visualization zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=statistical-analysis"><code>statistical-analysis</code></a><a class="chip-dl" href="downloads/skills/statistical-analysis.zip" download aria-label="Download statistical-analysis zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">None. Skill and scripts only.</span>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=seaborn"><code>seaborn</code></a><a class="chip-dl" href="downloads/skills/seaborn.zip" download aria-label="Download seaborn zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=matplotlib"><code>matplotlib</code></a><a class="chip-dl" href="downloads/skills/matplotlib.zip" download aria-label="Download matplotlib zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=statsmodels"><code>statsmodels</code></a><a class="chip-dl" href="downloads/skills/statsmodels.zip" download aria-label="Download statsmodels zip">↓</a></span>
+            </div>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Name two checks <em>before</em> looking at the figure: (1) benchmark industries or firms where you hold a strong prior, (2) plausibility around a known shock. Write both into the README.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>Any new constructed variable enters the analysis file.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Replicating a locked measure from a prior commit. Re-run the measure script and diff the outputs instead.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 7 -->
+        <article class="stage-card" id="stage-7" data-flow="estimate">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">7</span>
+            <h3>Estimation and identification</h3>
+            <span class="stage-flow-tag">Estimate</span>
+          </div>
+          <p>Run the main specs and pre-committed robustness: FE OLS, Poisson, IV, DiD including modern estimators, clustering. Prefer high-dimensional FE tools that match accounting panel practice: <code>pyfixest</code> if Python, <code>stata-regression</code> if Stata.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=pyfixest"><code>pyfixest</code></a><a class="chip-dl" href="downloads/skills/pyfixest.zip" download aria-label="Download pyfixest zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=stata-regression"><code>stata-regression</code></a><a class="chip-dl" href="downloads/skills/stata-regression.zip" download aria-label="Download stata-regression zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">Stata-MCP if the agent drives Stata (see the <a href="index.html#mcp">MCP install guide</a>); otherwise none.</span>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=python-panel-data"><code>python-panel-data</code></a><a class="chip-dl" href="downloads/skills/python-panel-data.zip" download aria-label="Download python-panel-data zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=statsmodels"><code>statsmodels</code></a><a class="chip-dl" href="downloads/skills/statsmodels.zip" download aria-label="Download statsmodels zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=r-econometrics"><code>r-econometrics</code></a><a class="chip-dl" href="downloads/skills/r-econometrics.zip" download aria-label="Download r-econometrics zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=econ-writing-plus"><code>econ-writing-plus</code></a><a class="chip-dl" href="downloads/skills/econ-writing-plus.zip" download aria-label="Download econ-writing-plus zip">↓</a></span>
+            </div>
+            <p style="font-size:0.85rem; margin:0.5rem 0 0;"><code>econ-writing-plus</code> belongs to stage 9 for prose, but peek at its identification checklists while designing specs.</p>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Check one coefficient or N from the log file against an independent re-run or a hand calculation on a tiny subsample. Confirm FE and cluster choices match <code>DECISIONS.md</code>.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>The analysis file and measures are frozen enough to estimate.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Still discovering the sample. Regressions on a moving panel create verification debt; do more stage 4–6 work first.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 8 -->
+        <article class="stage-card" id="stage-8" data-flow="write">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">8</span>
+            <h3>Tables, figures, and the paper trail</h3>
+            <span class="stage-flow-tag">Write</span>
+          </div>
+          <p>Export publication tables and figures from scripts. Every manuscript number comes from a generated file, <code>\input{}</code> or a read CSV, never hand-typed from a terminal. Finish the README so a stranger can rerun the project from empty folder to figure.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=latex-tables"><code>latex-tables</code></a><a class="chip-dl" href="downloads/skills/latex-tables.zip" download aria-label="Download latex-tables zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-visualization"><code>econ-visualization</code></a><a class="chip-dl" href="downloads/skills/econ-visualization.zip" download aria-label="Download econ-visualization zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">None. Skill and scripts only.</span>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=matplotlib"><code>matplotlib</code></a><a class="chip-dl" href="downloads/skills/matplotlib.zip" download aria-label="Download matplotlib zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=beamer-presentation"><code>beamer-presentation</code></a><a class="chip-dl" href="downloads/skills/beamer-presentation.zip" download aria-label="Download beamer-presentation zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=venue-templates"><code>venue-templates</code></a><a class="chip-dl" href="downloads/skills/venue-templates.zip" download aria-label="Download venue-templates zip">↓</a></span>
+            </div>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Pick one table cell. Check it against the script output file and confirm the manuscript inputs that file. No copied digits.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>Specs are stable enough for a working-paper draft or slides.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Exploratory notebooks only. Do not polish LaTeX until the stage 7 gate passes.</p></div>
+          </div>
+        </article>
+
+        <!-- Stage 9 -->
+        <article class="stage-card" id="stage-9" data-flow="write">
+          <div class="stage-head">
+            <span class="stage-num" aria-hidden="true">9</span>
+            <h3>Manuscript, slides, pre-submission verification</h3>
+            <span class="stage-flow-tag">Write</span>
+          </div>
+          <p>Draft and revise, strip AI tells, build the seminar deck, and run a hostile pre-submission pass. The default writing sequence: <code>econ-write</code> → <code>econ-writing-plus</code> for identification prose → <code>econ-humanizer</code> (plus <code>econ-humanizer-plus</code>) for voice.</p>
+          <div class="tools-row">
+            <span class="tools-label">Default skills</span>
+            <div class="chips">
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-write"><code>econ-write</code></a><a class="chip-dl" href="downloads/skills/econ-write.zip" download aria-label="Download econ-write zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-writing-plus"><code>econ-writing-plus</code></a><a class="chip-dl" href="downloads/skills/econ-writing-plus.zip" download aria-label="Download econ-writing-plus zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-humanizer"><code>econ-humanizer</code></a><a class="chip-dl" href="downloads/skills/econ-humanizer.zip" download aria-label="Download econ-humanizer zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-humanizer-plus"><code>econ-humanizer-plus</code></a><a class="chip-dl" href="downloads/skills/econ-humanizer-plus.zip" download aria-label="Download econ-humanizer-plus zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-slides"><code>econ-slides</code></a><a class="chip-dl" href="downloads/skills/econ-slides.zip" download aria-label="Download econ-slides zip">↓</a></span>
+              <span class="chip"><a class="chip-name" href="skills.html?q=econ-referee"><code>econ-referee</code></a><a class="chip-dl" href="downloads/skills/econ-referee.zip" download aria-label="Download econ-referee zip">↓</a></span>
+            </div>
+          </div>
+          <div class="tools-row">
+            <span class="tools-label">MCP</span>
+            <span class="mcp-none">None. Skill and scripts only.</span>
+          </div>
+          <details class="stage-alt">
+            <summary>Alternatives and deeper dives</summary>
+            <div class="chips">
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=academic-paper-writer"><code>academic-paper-writer</code></a><a class="chip-dl" href="downloads/skills/academic-paper-writer.zip" download aria-label="Download academic-paper-writer zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=scholar-evaluation"><code>scholar-evaluation</code></a><a class="chip-dl" href="downloads/skills/scholar-evaluation.zip" download aria-label="Download scholar-evaluation zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=latex-econ-model"><code>latex-econ-model</code></a><a class="chip-dl" href="downloads/skills/latex-econ-model.zip" download aria-label="Download latex-econ-model zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=paper-2-acfin-web"><code>paper-2-acfin-web</code></a><a class="chip-dl" href="downloads/skills/paper-2-acfin-web.zip" download aria-label="Download paper-2-acfin-web zip">↓</a></span>
+              <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=beamer-presentation"><code>beamer-presentation</code></a><a class="chip-dl" href="downloads/skills/beamer-presentation.zip" download aria-label="Download beamer-presentation zip">↓</a></span>
+            </div>
+          </details>
+          <div class="verify-gate">
+            <span class="gate-label">Verify this</span>
+            <p>Cross-check one <code>DECISIONS.md</code> claim against the git commit it cites. Run a credential audit: grep the history for secrets; it should come back empty. On identification, the agent is an editor, not a rewriter: comments only, no ghostwritten argument.</p>
+          </div>
+          <div class="reach-skip">
+            <div class="reach"><h4>Use this when…</h4><p>Working paper, conference talk, or submission package.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>You only needed a data extract. Stop at stages 3–4 with a README. Writing skills are not a substitute for unfinished empirics.</p></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ VERIFICATION DEBT ============ -->
+      <section class="guide-section" id="debt">
+        <h2>Verification debt</h2>
+        <p>Agents break the old correlation between effort and checking: output that once took a week of RA time now appears in minutes, and the checking cost did not fall with it. The danger sits exactly where this catalog is strongest: text measures from <code>financial-text-nlp</code> plus EDGAR, dense <code>pyfixest</code> / <code>stata-regression</code> batteries, and fluent <code>econ-write</code> drafts. All of it is cheap to produce and expensive to validate.</p>
+        <figure class="fig">
+          <img src="assets/figures/pipeline/FIG-P03_verification_debt_2x2.svg" alt="Two-by-two matrix of production cost versus verification cost; agent output such as NLP disclosure scores, regression batteries, and AI-drafted prose falls in the cheap-to-make, costly-to-verify quadrant">
+          <figcaption>Cheap to make, costly to verify: where agent output accumulates debt.</figcaption>
+        </figure>
+        <p>Pay the debt with the stage gates above, not with more autonomy. Row counts, iron-law filter checks, and date ranges are cheap; run them every time. Human audits of text measures and independent re-runs of headline coefficients are expensive; budget for them before the result enters a main table.</p>
+      </section>
+
+      <!-- ============ MVP STACK ============ -->
+      <section class="guide-section" id="mvp">
+        <h2>Minimum viable stack</h2>
+        <p>The small set for a first Compustat firm–year paper, with optional EDGAR text and a Stata or Python estimator. Everything else in the 46-skill catalog (Bayesian, geospatial, posters) can wait. <a href="skills.html">Browse the full catalog</a> when you need it.</p>
+
+        <h3>Skills to install first</h3>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Role</th><th>Skills</th></tr></thead>
+            <tbody>
+              <tr><td>Data access conventions</td><td><code>wrds</code>; add <code>sec-edgar</code> if any filing work</td></tr>
+              <tr><td>Panel &amp; estimate</td><td>Stata lane: <code>stata-data-cleaning</code> + <code>stata-regression</code>; Python lane: <code>pyfixest</code> + <code>python-panel-data</code></td></tr>
+              <tr><td>Output</td><td><code>latex-tables</code>, <code>econ-visualization</code></td></tr>
+              <tr><td>Write &amp; check</td><td><code>econ-write</code>, <code>econ-humanizer</code>, <code>econ-referee</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>MCP priority</h3>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Priority</th><th>Server</th></tr></thead>
+            <tbody>
+              <tr><td>Required for WRDS papers</td><td><a href="wrds-mcp.html">wrds-mcp setup</a></td></tr>
+              <tr><td>Optional</td><td><a href="sec-edgar-mcp.html">SEC EDGAR MCP</a> · <a href="openecon-data-mcp.html">OpenEcon Data</a> / FRED · Stata-MCP (<a href="index.html#mcp">install guide</a>)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Five non-negotiable habits</h3>
+        <p>These are habits, not packages. No install fixes their absence.</p>
+        <ul class="habit-list">
+          <li>Empty folder plus the six-part prompt (<a href="#stage-2">stage 2</a>)</li>
+          <li>Iron-law Compustat filters plus the four WRDS inspections (<a href="#stage-3">stage 3</a>)</li>
+          <li>Attrition rows on every sample change (<a href="#stage-4">stage 4</a>)</li>
+          <li>No hand-typed manuscript numbers (<a href="#stage-8">stage 8</a>)</li>
+          <li>Two named sanity checks before signing off on a figure (<a href="#stage-6">stage 6</a>)</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>MIT License · John Barrios · <a href="index.html">Barrios Skills</a></p>
+      <div class="footer-links">
+        <a href="https://github.com/Barrios88/barrios-skills/blob/main/SECURITY.md">Security</a>
+        <a href="pipeline.html">Pipeline</a>
+        <a href="index.html#mcp">Install</a>
+        <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+  <script>
+    // Stage filter chips — progressive enhancement; page reads fine without JS.
+    (function () {
+      var bar = document.getElementById("stage-filters");
+      if (!bar) return;
+      bar.hidden = false;
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".stage-card"));
+      var count = document.getElementById("stage-filter-count");
+      var updateCount = function () {
+        if (!count) return;
+        var visible = cards.filter(function (c) { return !c.hidden; }).length;
+        count.textContent = visible === cards.length
+          ? "All " + cards.length + " stages"
+          : visible + " of " + cards.length + " stages";
+      };
+      updateCount();
+      bar.addEventListener("click", function (e) {
+        var btn = e.target.closest("button[data-flow]");
+        if (!btn) return;
+        var flow = btn.dataset.flow;
+        bar.querySelectorAll("button[data-flow]").forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        cards.forEach(function (card) {
+          var flows = (card.dataset.flow || "").split(" ");
+          card.hidden = flow !== "all" && flows.indexOf(flow) === -1;
+        });
+        updateCount();
+      });
+    })();
+
+    // Wayfinding + life — scroll-reveal, stage progress rail, back-to-top.
+    // All progressive enhancement; nothing here is required to read the page.
+    (function () {
+      var prefersReduce = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var hasIO = "IntersectionObserver" in window;
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".stage-card"));
+
+      // Scroll-reveal on stage cards (skipped entirely under reduced motion).
+      // Cards already at or above the viewport reveal instantly, so deep-anchor
+      // arrivals and upward scrolling never meet a blank card.
+      if (hasIO && !prefersReduce && cards.length) {
+        var pending = [];
+        cards.forEach(function (el) {
+          el.classList.add("js-reveal");
+          if (el.getBoundingClientRect().top < window.innerHeight * 1.1) {
+            el.classList.add("is-seen");
+          } else {
+            pending.push(el);
+          }
+        });
+        if (pending.length) {
+          var revealIO = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-seen");
+                revealIO.unobserve(entry.target);
+              }
+            });
+          }, { rootMargin: "600px 0px -8% 0px" });
+          pending.forEach(function (el) { revealIO.observe(el); });
+        }
+      }
+
+      // Stage progress rail — numbers 1–9, visible while the stages section is on screen.
+      var stagesSection = document.getElementById("stages");
+      if (stagesSection && cards.length && hasIO) {
+        var labels = ["Question", "Prompt", "Pull", "Clean/join", "Text",
+                      "Measures", "Estimate", "Tables/figs", "Write/verify"];
+        var rail = document.createElement("nav");
+        rail.className = "stage-rail";
+        rail.setAttribute("aria-label", "Stage progress");
+        cards.forEach(function (card, i) {
+          var a = document.createElement("a");
+          a.href = "#" + card.id;
+          a.textContent = String(i + 1);
+          if (labels[i]) a.setAttribute("data-label", labels[i]);
+          a.setAttribute("aria-label", "Stage " + (i + 1) + (labels[i] ? ": " + labels[i] : ""));
+          rail.appendChild(a);
+        });
+        document.body.appendChild(rail);
+        var links = Array.prototype.slice.call(rail.children);
+
+        // If a filter is hiding the target card, reset to "All" before jumping.
+        rail.addEventListener("click", function (e) {
+          var link = e.target.closest("a");
+          if (!link) return;
+          var target = document.getElementById(link.getAttribute("href").slice(1));
+          if (target && target.hidden) {
+            var allBtn = document.querySelector('#stage-filters button[data-flow="all"]');
+            if (allBtn) allBtn.click();
+          }
+        });
+
+        var sectionIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            rail.classList.toggle("is-visible", entry.isIntersecting);
+          });
+        }, { rootMargin: "-20% 0px -10% 0px" });
+        sectionIO.observe(stagesSection);
+
+        var current = -1;
+        var cardIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) current = cards.indexOf(entry.target);
+          });
+          links.forEach(function (l, i) {
+            l.classList.toggle("active", i === current);
+            if (i === current) { l.setAttribute("aria-current", "true"); }
+            else { l.removeAttribute("aria-current"); }
+          });
+        }, { rootMargin: "-35% 0px -55% 0px" });
+        cards.forEach(function (c) { cardIO.observe(c); });
+      }
+
+      // Back to top.
+      var topLink = document.createElement("a");
+      topLink.className = "back-top";
+      topLink.href = "#main-content";
+      topLink.setAttribute("aria-label", "Back to top");
+      topLink.textContent = "↑";
+      document.body.appendChild(topLink);
+      var onScroll = function () {
+        topLink.classList.toggle("is-visible", window.scrollY > 1400);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

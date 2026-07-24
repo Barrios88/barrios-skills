@@ -12,6 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Inter:wght@400..650&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="css/site.css">
+  <style>
+    .compare-band-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    .compare-band-cta p { margin: 0; color: var(--ink-soft); max-width: 34rem; }
+  </style>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -22,6 +26,7 @@
       <nav class="site-nav" id="site-nav" aria-label="Barrios Skills">
         <a href="#skills">Popular</a>
         <a href="skills.html">All skills</a>
+        <a href="pipeline.html">Pipeline</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
         <a href="https://github.com/Barrios88/barrios-skills">GitHub</a>
@@ -37,6 +42,7 @@
           <h1>Skills and MCP servers for empirical research</h1>
           <p class="hero-intro">A free, open-source toolkit for economists and accountants using AI coding agents. Copy skills into Cursor, Claude, or Codex — and connect to WRDS, SEC EDGAR, and macro data via MCP.</p>
           <p class="lead"><strong>Skills</strong> teach your agent how to work (Stata, LaTeX, writing). <strong>MCP servers</strong> connect it to live data. Same repo, different folders.</p>
+          <p class="lead">New here? The <a href="pipeline.html">research pipeline guide</a> shows which skills to use at each step of an empirical project, from question to finished draft.</p>
           <div class="hero-actions-row">
             <div class="hero-actions">
               <a href="skills.html" class="btn btn-primary">Browse all skills</a>
@@ -92,6 +98,10 @@
               <li>e.g. wrds-mcp, sec-edgar-mcp, OpenEcon Data</li>
             </ul>
           </article>
+        </div>
+        <div class="compare-band-cta">
+          <p>Every skill here belongs to a step in a real research project: question, data pull, cleaning, measures, estimation, and writing. The pipeline guide walks the nine steps in order and lists the useful skills and MCP servers at each one.</p>
+          <a href="pipeline.html" class="btn btn-primary" style="white-space: nowrap;">Follow the research pipeline →</a>
         </div>
       </div>
     </section>
@@ -209,6 +219,7 @@ pip install -e .</code></pre></article>
         <a href="skills.html">All skills</a>
         <a href="#mcp">MCP</a>
         <a href="#install">Install</a>
+        <a href="pipeline.html">Pipeline</a>
         <a href="wrds-mcp.html">WRDS</a>
         <a href="sec-edgar-mcp.html">EDGAR</a>
         <a href="openecon-data-mcp.html">OpenEcon</a>

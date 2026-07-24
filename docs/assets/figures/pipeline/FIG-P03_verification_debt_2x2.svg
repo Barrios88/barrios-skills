@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 632" role="img" aria-labelledby="p03-title p03-desc">
+  <title id="p03-title">Verification debt: cost to make versus cost to verify</title>
+  <desc id="p03-desc">Two-by-two matrix. Rows: expensive to make versus cheap to make. Columns: cheap to verify versus costly to verify. The danger quadrant, cheap to make but costly to verify, is highlighted in orange and lists NLP disclosure scores, dense regression batteries, and AI-drafted prose and tables. The safe quadrant lists cheap gates: row counts, iron-law filter presence, date ranges.</desc>
+  <style>
+    .t-title { font-family: "Source Serif 4", Georgia, serif; font-size: 23px; font-weight: 600; fill: #00356b; }
+    .t-sub   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .t-axis  { font-family: Inter, -apple-system, sans-serif; font-size: 17px; font-weight: 600; fill: #0f1115; text-anchor: middle; }
+    .t-qtitle { font-family: Inter, -apple-system, sans-serif; font-size: 18px; font-weight: 600; fill: #0f1115; }
+    .t-body  { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #3f4650; }
+    .t-item  { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #0f1115; }
+    .t-tools { font-family: ui-monospace, Menlo, monospace; font-size: 16px; fill: #6b7280; }
+    .t-tag   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #ffffff; text-anchor: middle; letter-spacing: 0.06em; }
+    .t-foot  { font-family: Inter, -apple-system, sans-serif; font-size: 17px; font-weight: 600; fill: #0f1115; }
+  </style>
+
+  <text class="t-title" x="28" y="38">Verification debt &#8212; the 2&#215;2 that matters</text>
+  <text class="t-sub" x="28" y="64">Agents move output into the bottom row: cheap to make. The question is what it costs to verify.</text>
+
+  <!-- Column headers -->
+  <text class="t-axis" x="362" y="102">Cheap to verify</text>
+  <text class="t-axis" x="755" y="102">Costly to verify</text>
+
+  <!-- Row labels -->
+  <text class="t-axis" transform="rotate(-90 140 203)" x="140" y="203">Expensive to make</text>
+  <text class="t-axis" transform="rotate(-90 140 429)" x="140" y="429">Cheap to make</text>
+
+  <!-- Top-left: expensive to make, cheap to verify -->
+  <rect x="170" y="112" width="385" height="182" rx="10" fill="#f8f9fa" stroke="#e7e9ec" stroke-width="1.4"/>
+  <text class="t-qtitle" x="190" y="146">Rare with agents</text>
+  <text class="t-body" x="190" y="176">Old-world hand-built pipelines.</text>
+  <text class="t-body" x="190" y="200">Little sits here once agents draft code.</text>
+
+  <!-- Top-right: expensive to make, costly to verify -->
+  <rect x="563" y="112" width="385" height="182" rx="10" fill="#f8f9fa" stroke="#e7e9ec" stroke-width="1.4"/>
+  <text class="t-qtitle" x="583" y="146">RA-heavy builds, heavy review</text>
+  <text class="t-body" x="583" y="176">Effort and checking rose together &#8212;</text>
+  <text class="t-body" x="583" y="200">the old cost structure kept output</text>
+  <text class="t-body" x="583" y="224">small and scrutinized.</text>
+
+  <!-- Bottom-left: cheap to make, cheap to verify -->
+  <rect x="170" y="302" width="385" height="254" rx="10" fill="#edf3f8" stroke="#9db8cf" stroke-width="1.4"/>
+  <text class="t-qtitle" x="190" y="336" fill="#00356b">Cheap gates &#8212; run them every pull</text>
+  <text class="t-body" x="190" y="368">Row counts vs a written expectation</text>
+  <text class="t-body" x="190" y="394">Iron-law filter presence in the SQL</text>
+  <text class="t-body" x="190" y="420">Date ranges, null checks, sampled rows</text>
+
+  <!-- Bottom-right: cheap to make, costly to verify (danger) -->
+  <rect x="563" y="302" width="385" height="254" rx="10" fill="#fcefe6" stroke="#bd5319" stroke-width="2"/>
+  <rect x="583" y="318" width="140" height="26" rx="13" fill="#bd5319"/>
+  <text class="t-tag" x="653" y="336">DANGER ZONE</text>
+  <text class="t-qtitle" x="583" y="374">Cheap to make, costly to verify</text>
+  <text class="t-item" x="583" y="404">NLP disclosure scores</text>
+  <text class="t-tools" x="583" y="426">financial-text-nlp &#183; sec-edgar</text>
+  <text class="t-item" x="583" y="454">Dense regression batteries</text>
+  <text class="t-tools" x="583" y="476">pyfixest &#183; stata-regression</text>
+  <text class="t-item" x="583" y="504">AI-drafted prose &amp; tables</text>
+  <text class="t-tools" x="583" y="526">econ-write &#183; latex-tables</text>
+
+  <!-- Footer -->
+  <rect x="170" y="586" width="4" height="20" fill="#bd5319"/>
+  <text class="t-foot" x="184" y="602">Pay the debt with stage gates &#8212; not with more autonomy.</text>
+</svg>

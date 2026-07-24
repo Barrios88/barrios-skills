@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 648" role="img" aria-labelledby="p02-title p02-desc">
+  <title id="p02-title">Skills teach how, MCP runs live, you verify</title>
+  <desc id="p02-desc">Two swimlanes: Skills carry conventions such as Compustat iron-law filters and join keys; MCP servers give live access to WRDS, EDGAR, and macro series with credentials in a .env file. Both converge on a shared band, files on disk, the unit of work. A third rail below reads: verification gates, always yours.</desc>
+  <defs>
+    <marker id="p02-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <style>
+    .t-title { font-family: "Source Serif 4", Georgia, serif; font-size: 24px; font-weight: 600; fill: #00356b; }
+    .t-sub   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .t-lane  { font-family: "Source Serif 4", Georgia, serif; font-size: 20px; font-weight: 600; }
+    .t-lanesub { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #3f4650; }
+    .t-body  { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #3f4650; }
+    .t-chip  { font-family: ui-monospace, Menlo, monospace; font-size: 16px; text-anchor: middle; }
+    .t-band  { font-family: "Source Serif 4", Georgia, serif; font-size: 20px; font-weight: 600; fill: #0f1115; }
+    .t-mono  { font-family: ui-monospace, Menlo, monospace; font-size: 16px; fill: #00356b; }
+    .t-muted { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .t-rail  { font-family: "Source Serif 4", Georgia, serif; font-size: 19px; font-weight: 600; fill: #a3441a; }
+    .flow    { stroke: #6b7280; stroke-width: 1.6; fill: none; }
+  </style>
+
+  <text class="t-title" x="28" y="38">Skills teach how. MCP runs live. You verify.</text>
+  <text class="t-sub" x="28" y="64">Two different tools, one shared destination: files on disk.</text>
+
+  <!-- Skills lane -->
+  <rect x="28" y="92" width="452" height="220" rx="12" fill="#f5f8fb" stroke="#00356b" stroke-width="1.5"/>
+  <text class="t-lane" x="48" y="128" fill="#00356b">Skills</text>
+  <text class="t-lanesub" x="48" y="152">Conventions &#8212; the &#8220;how&#8221;</text>
+  <line x1="48" y1="166" x2="460" y2="166" stroke="#d7dee6" stroke-width="1"/>
+  <circle cx="54" cy="187" r="2.5" fill="#00356b"/>
+  <text class="t-body" x="66" y="192">Compustat iron-law filters, CIK discipline</text>
+  <circle cx="54" cy="213" r="2.5" fill="#00356b"/>
+  <text class="t-body" x="66" y="218">Join keys, attrition rows, table-note style</text>
+  <circle cx="54" cy="239" r="2.5" fill="#00356b"/>
+  <text class="t-body" x="66" y="244">What a good DiD write-up looks like</text>
+  <rect x="48" y="262" width="52" height="26" rx="13" fill="#ffffff" stroke="#00356b" stroke-width="1"/>
+  <text class="t-chip" x="74" y="280" fill="#00356b">wrds</text>
+  <rect x="108" y="262" width="100" height="26" rx="13" fill="#ffffff" stroke="#00356b" stroke-width="1"/>
+  <text class="t-chip" x="158" y="280" fill="#00356b">sec-edgar</text>
+  <rect x="216" y="262" width="91" height="26" rx="13" fill="#ffffff" stroke="#00356b" stroke-width="1"/>
+  <text class="t-chip" x="261" y="280" fill="#00356b">pyfixest</text>
+  <rect x="315" y="262" width="129" height="26" rx="13" fill="#ffffff" stroke="#00356b" stroke-width="1"/>
+  <text class="t-chip" x="379" y="280" fill="#00356b">latex-tables</text>
+
+  <!-- MCP lane -->
+  <rect x="520" y="92" width="452" height="220" rx="12" fill="#f3f7fd" stroke="#1d63d8" stroke-width="1.5"/>
+  <text class="t-lane" x="540" y="128" fill="#1d63d8">MCP servers</text>
+  <text class="t-lanesub" x="540" y="152">Live access &#8212; credentials in .env, never in chat</text>
+  <line x1="540" y1="166" x2="952" y2="166" stroke="#d3ddec" stroke-width="1"/>
+  <circle cx="546" cy="187" r="2.5" fill="#1d63d8"/>
+  <text class="t-body" x="558" y="192">Authenticated WRDS SQL, EDGAR filings, XBRL</text>
+  <circle cx="546" cy="213" r="2.5" fill="#1d63d8"/>
+  <text class="t-body" x="558" y="218">Macro series: FRED, World Bank, OpenEcon</text>
+  <circle cx="546" cy="239" r="2.5" fill="#1d63d8"/>
+  <text class="t-body" x="558" y="244">Auth and rate limits handled by the server</text>
+  <rect x="540" y="262" width="91" height="26" rx="13" fill="#ffffff" stroke="#1d63d8" stroke-width="1"/>
+  <text class="t-chip" x="585" y="280" fill="#1d63d8">wrds-mcp</text>
+  <rect x="639" y="262" width="100" height="26" rx="13" fill="#ffffff" stroke="#1d63d8" stroke-width="1"/>
+  <text class="t-chip" x="689" y="280" fill="#1d63d8">SEC EDGAR</text>
+  <rect x="747" y="262" width="91" height="26" rx="13" fill="#ffffff" stroke="#1d63d8" stroke-width="1"/>
+  <text class="t-chip" x="792" y="280" fill="#1d63d8">OpenEcon</text>
+  <rect x="846" y="262" width="100" height="26" rx="13" fill="#ffffff" stroke="#1d63d8" stroke-width="1"/>
+  <text class="t-chip" x="896" y="280" fill="#1d63d8">Stata-MCP</text>
+
+  <!-- Converging arrows -->
+  <line class="flow" x1="254" y1="312" x2="406" y2="370" marker-end="url(#p02-arr)"/>
+  <line class="flow" x1="746" y1="312" x2="594" y2="370" marker-end="url(#p02-arr)"/>
+  <text class="t-muted" x="28" y="352">conventions become scripts</text>
+  <text class="t-muted" x="972" y="352" text-anchor="end">extracts land in data/raw/</text>
+
+  <!-- Files on disk band -->
+  <rect x="28" y="380" width="944" height="110" rx="12" fill="#f8f9fa" stroke="#cfd3d9" stroke-width="1.5"/>
+  <text class="t-band" x="48" y="418">Files on disk &#8212; the unit of work</text>
+  <text class="t-mono" x="48" y="448">data/raw/ &#183; scripts/ &#183; tables/ &#183; DECISIONS.md &#183; LOG.md</text>
+  <text class="t-muted" x="48" y="474">Chat is disposable context. If a result matters, it exists as a file a stranger can rerun.</text>
+
+  <!-- Connector to verification rail -->
+  <line class="flow" x1="500" y1="490" x2="500" y2="512" marker-end="url(#p02-arr)"/>
+
+  <!-- Verification rail -->
+  <rect x="28" y="520" width="944" height="104" rx="12" fill="#fdf2ea" stroke="#bd5319" stroke-width="1.5"/>
+  <text class="t-rail" x="48" y="552">Verification gates &#8212; always yours</text>
+  <text class="t-body" x="48" y="580">Row counts &#183; iron-law filters &#183; join audits &#183; benchmark checks &#183; no hand-typed manuscript numbers.</text>
+  <text class="t-body" x="48" y="606">Neither a skill nor an MCP server verifies for you.</text>
+</svg>

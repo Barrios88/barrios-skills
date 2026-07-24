@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 512" role="img" aria-labelledby="p01-title p01-desc">
+  <title id="p01-title">The empirical loop: nine stages from question to verified draft</title>
+  <desc id="p01-desc">Horizontal flow of nine pipeline stages in two rows. Stages 1 Question, 2 Prompt, 4 Clean/join, 6 Measures, 8 Tables/figs, and 9 Write/verify use skills only; stages 3 Pull and 5 Text use both a skill and an MCP server; stage 7 Estimate uses a skill plus an optional Stata MCP. Stage 5 is a dashed optional branch that can be skipped.</desc>
+  <defs>
+    <marker id="p01-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <style>
+    .t-title { font-family: "Source Serif 4", Georgia, serif; font-size: 24px; font-weight: 600; fill: #00356b; }
+    .t-sub   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .t-name  { font-family: Inter, -apple-system, sans-serif; font-size: 17px; font-weight: 600; fill: #0f1115; }
+    .t-opt   { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 400; fill: #6b7280; }
+    .t-num   { font-family: Inter, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    .t-badge      { font-family: Inter, -apple-system, sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; }
+    .t-legend     { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #3f4650; }
+    .t-note       { font-family: Inter, -apple-system, sans-serif; font-size: 16px; fill: #6b7280; }
+    .node    { fill: #ffffff; stroke: #c9d3dd; stroke-width: 1.4; }
+    .node-opt { fill: #ffffff; stroke: #8aa5c0; stroke-width: 1.4; stroke-dasharray: 6 4; }
+    .badge-skill { fill: #eaf0f6; stroke: #00356b; stroke-width: 1.2; }
+    .badge-both  { fill: #00356b; }
+    .badge-both-opt { fill: #ffffff; stroke: #1d63d8; stroke-width: 1.4; stroke-dasharray: 5 3; }
+    .flow    { stroke: #6b7280; stroke-width: 1.6; fill: none; }
+    .flow-opt { stroke: #6b7280; stroke-width: 1.6; fill: none; stroke-dasharray: 5 4; }
+  </style>
+
+  <text class="t-title" x="28" y="38">The empirical loop &#8212; nine stages</text>
+  <text class="t-sub" x="28" y="64">Empty folder to seminar-ready draft. Badges mark where a skill, an MCP server, or both carry the stage.</text>
+
+  <!-- Row 1: stages 1-5 -->
+  <!-- Stage 1 -->
+  <rect class="node" x="28" y="92" width="176" height="104" rx="10"/>
+  <circle cx="54" cy="126" r="13" fill="#00356b"/>
+  <text class="t-num" x="54" y="131">1</text>
+  <text class="t-name" x="74" y="132">Question</text>
+  <rect class="badge-skill" x="44" y="156" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="75" y="174" fill="#00356b">skill</text>
+  <!-- Stage 2 -->
+  <rect class="node" x="220" y="92" width="176" height="104" rx="10"/>
+  <circle cx="246" cy="126" r="13" fill="#00356b"/>
+  <text class="t-num" x="246" y="131">2</text>
+  <text class="t-name" x="266" y="132">Prompt</text>
+  <rect class="badge-skill" x="236" y="156" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="267" y="174" fill="#00356b">skill</text>
+  <!-- Stage 3 -->
+  <rect class="node" x="412" y="92" width="176" height="104" rx="10"/>
+  <circle cx="438" cy="126" r="13" fill="#00356b"/>
+  <text class="t-num" x="438" y="131">3</text>
+  <text class="t-name" x="458" y="132">Pull</text>
+  <rect class="badge-both" x="428" y="156" width="118" height="26" rx="13"/>
+  <text class="t-badge" x="487" y="174" fill="#ffffff">skill + MCP</text>
+  <!-- Stage 4 -->
+  <rect class="node" x="604" y="92" width="176" height="104" rx="10"/>
+  <circle cx="630" cy="126" r="13" fill="#00356b"/>
+  <text class="t-num" x="630" y="131">4</text>
+  <text class="t-name" x="650" y="132">Clean/join</text>
+  <rect class="badge-skill" x="620" y="156" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="651" y="174" fill="#00356b">skill</text>
+  <!-- Stage 5 (optional branch) -->
+  <rect class="node-opt" x="796" y="92" width="176" height="104" rx="10"/>
+  <circle cx="822" cy="126" r="13" fill="#00356b"/>
+  <text class="t-num" x="822" y="131">5</text>
+  <text class="t-name" x="842" y="132">Text<tspan class="t-opt"> (optional)</tspan></text>
+  <rect class="badge-both" x="812" y="156" width="118" height="26" rx="13"/>
+  <text class="t-badge" x="871" y="174" fill="#ffffff">skill + MCP</text>
+
+  <!-- Row 1 arrows -->
+  <line class="flow" x1="205" y1="144" x2="216" y2="144" marker-end="url(#p01-arr)"/>
+  <line class="flow" x1="397" y1="144" x2="408" y2="144" marker-end="url(#p01-arr)"/>
+  <line class="flow" x1="589" y1="144" x2="600" y2="144" marker-end="url(#p01-arr)"/>
+  <line class="flow" x1="781" y1="144" x2="792" y2="144" marker-end="url(#p01-arr)"/>
+
+  <!-- Wrap connector 5 -> 6 -->
+  <path class="flow" d="M884 196 V222 H212 V254" marker-end="url(#p01-arr)"/>
+  <!-- Bypass 4 -> 6 (skip stage 5) -->
+  <path class="flow-opt" d="M692 196 V240 H250 V254" marker-end="url(#p01-arr)"/>
+  <rect x="375" y="230" width="190" height="20" fill="#ffffff"/>
+  <text class="t-note" x="470" y="245" text-anchor="middle">no text? skip stage 5</text>
+
+  <!-- Row 2: stages 6-9 -->
+  <!-- Stage 6 -->
+  <rect class="node" x="124" y="260" width="176" height="104" rx="10"/>
+  <circle cx="150" cy="294" r="13" fill="#00356b"/>
+  <text class="t-num" x="150" y="299">6</text>
+  <text class="t-name" x="170" y="300">Measures</text>
+  <rect class="badge-skill" x="140" y="324" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="171" y="342" fill="#00356b">skill</text>
+  <!-- Stage 7 -->
+  <rect class="node" x="316" y="260" width="176" height="104" rx="10"/>
+  <circle cx="342" cy="294" r="13" fill="#00356b"/>
+  <text class="t-num" x="342" y="299">7</text>
+  <text class="t-name" x="362" y="300">Estimate</text>
+  <rect class="badge-both-opt" x="332" y="324" width="118" height="26" rx="13"/>
+  <text class="t-badge" x="391" y="342" fill="#1d63d8">skill + MCP</text>
+  <!-- Stage 8 -->
+  <rect class="node" x="508" y="260" width="176" height="104" rx="10"/>
+  <circle cx="534" cy="294" r="13" fill="#00356b"/>
+  <text class="t-num" x="534" y="299">8</text>
+  <text class="t-name" x="554" y="300">Tables/figs</text>
+  <rect class="badge-skill" x="524" y="324" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="555" y="342" fill="#00356b">skill</text>
+  <!-- Stage 9 -->
+  <rect class="node" x="700" y="260" width="176" height="104" rx="10"/>
+  <circle cx="726" cy="294" r="13" fill="#00356b"/>
+  <text class="t-num" x="726" y="299">9</text>
+  <text class="t-name" x="746" y="300">Write/verify</text>
+  <rect class="badge-skill" x="716" y="324" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="747" y="342" fill="#00356b">skill</text>
+
+  <!-- Row 2 arrows -->
+  <line class="flow" x1="301" y1="312" x2="312" y2="312" marker-end="url(#p01-arr)"/>
+  <line class="flow" x1="493" y1="312" x2="504" y2="312" marker-end="url(#p01-arr)"/>
+  <line class="flow" x1="685" y1="312" x2="696" y2="312" marker-end="url(#p01-arr)"/>
+
+  <!-- Legend -->
+  <rect class="badge-skill" x="28" y="392" width="62" height="26" rx="13"/>
+  <text class="t-badge" x="59" y="410" fill="#00356b">skill</text>
+  <text class="t-legend" x="102" y="410">conventions installed locally</text>
+  <rect class="badge-both" x="430" y="392" width="118" height="26" rx="13"/>
+  <text class="t-badge" x="489" y="410" fill="#ffffff">skill + MCP</text>
+  <text class="t-legend" x="560" y="410">pair conventions with live, authenticated access</text>
+
+  <rect class="badge-both-opt" x="28" y="428" width="118" height="26" rx="13"/>
+  <text class="t-badge" x="87" y="446" fill="#1d63d8">skill + MCP</text>
+  <text class="t-legend" x="158" y="446">stage 7: Stata-MCP only if the agent drives Stata</text>
+  <rect class="node-opt" x="620" y="430" width="44" height="22" rx="6"/>
+  <text class="t-legend" x="676" y="446">dashed node = optional branch</text>
+
+  <text class="t-legend" x="28" y="488">Every stage ends at a verification gate: results live as files on disk, never chat-only.</text>
+</svg>
