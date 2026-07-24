@@ -310,7 +310,7 @@
         <a class="guide-back" href="index.html">← Back to Barrios Skills</a>
         <p class="eyebrow">John Barrios · empirical workflow</p>
         <h1>Accounting research pipeline: skills, MCP, and verification</h1>
-        <p class="lead">Skills teach <strong>how</strong>: Compustat filters, CIK discipline, attrition rows, what a defensible DiD write-up looks like. MCP servers run <strong>live access</strong>: authenticated WRDS queries, EDGAR filings, macro series. Credentials stay in <code>.env</code>, never in chat. Neither replaces <strong>verification</strong>. Agents make pipelines cheap to produce. The costly part stays on you: joins, filters, construct validity, every number in the manuscript. Files on disk are the unit of work; chat is disposable.</p>
+        <p class="lead">Skills teach <strong>how</strong>: Compustat filters, CIK discipline, attrition rows, what a defensible DiD write-up looks like. MCP servers run <strong>live access</strong>: authenticated WRDS queries, EDGAR filings, macro series. Credentials stay in <code>.env</code>, never in chat. Neither replaces <strong>verification</strong>. Agents make pipelines cheap to produce. The costly part stays yours: joins, filters, construct validity, every number in the manuscript. Files on disk are the unit of work; chat is disposable.</p>
         <!-- Inline SVG derived from assets/figures/pipeline/FIG-P01_empirical_loop_stages.svg
              (standalone file kept unchanged); inlined so each stage node links to its #stage-N card. -->
         <figure class="fig">
@@ -396,7 +396,7 @@
             <!-- Bypass 4 -> 6 (skip stage 5) -->
             <path class="p1-flow-opt" d="M692 196 V240 H250 V254" marker-end="url(#p01-arr)"/>
             <rect x="375" y="230" width="190" height="20" fill="#ffffff"/>
-            <text class="p1-note" x="470" y="245" text-anchor="middle">no text? skip stage 5</text>
+            <text class="p1-note" x="470" y="245" text-anchor="middle">no text: skip stage 5</text>
 
             <!-- Row 2: stages 6-9 -->
             <a href="#stage-6" aria-label="Stage 6: Measures — jump to details">
@@ -492,7 +492,7 @@
               <tr><td>Lit search / BibTeX</td><td><code>econ-lit-search</code>, <code>citation-management</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
               <tr><td>Figures / LaTeX tables</td><td><code>econ-visualization</code>, <code>latex-tables</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
               <tr><td>Paper / slides / referee prep</td><td><code>econ-write</code>, <code>econ-slides</code>, <code>econ-referee</code></td><td>none</td><td><strong>Skill only</strong></td></tr>
-              <tr><td>“What tool rung am I on?”</td><td>—</td><td>—</td><td>Chat for thinking; editor for edits; agent for pipelines; agent + MCP only when live licensed or public APIs are required</td></tr>
+              <tr><td>Choosing the tool rung</td><td>—</td><td>—</td><td>Chat for thinking; editor for edits; agent for pipelines; agent + MCP only when live licensed or public APIs are required</td></tr>
             </tbody>
           </table>
         </div>
@@ -525,7 +525,7 @@
             </style>
 
             <text class="p4-title" x="28" y="38">Stage &#8594; tool map: default picks</text>
-            <text class="p4-sub" x="28" y="64">Three or four default skills per stage; alternatives live in the catalog. MCP appears only where live access earns its keep.</text>
+            <text class="p4-sub" x="28" y="64">Three or four default skills per stage; alternatives live in the catalog. MCP appears only where live access is needed.</text>
 
             <!-- Header band -->
             <rect x="28" y="84" width="944" height="36" rx="8" fill="#00356b"/>
@@ -761,7 +761,7 @@
             <h3>Research question and literature</h3>
             <span class="stage-flow-tag">Question</span>
           </div>
-          <p>Sharpen a question that Compustat, CRSP, EDGAR, or a public panel can actually answer; map prior designs and measurement conventions before writing any code.</p>
+          <p>Sharpen a question that Compustat, CRSP, EDGAR, or a public panel can answer; map prior designs and measurement conventions before writing any code.</p>
           <div class="tools-row">
             <span class="tools-label">Default skills</span>
             <div class="chips">
@@ -802,7 +802,7 @@
             <h3>Empty folder and the six-part opening prompt</h3>
             <span class="stage-flow-tag">Question</span>
           </div>
-          <p>Start in a clean directory and write the six-part prompt <em>before</em> any code runs. Demand named scripts, <code>DECISIONS.md</code>, <code>LOG.md</code>, and attrition rows, not chat-only results.</p>
+          <p>Start in a clean directory and write the six-part prompt <em>before</em> any code runs. Require named scripts, <code>DECISIONS.md</code>, <code>LOG.md</code>, and attrition rows, not chat-only results.</p>
           <ol class="prompt-list">
             <li><span><strong>DATA</strong>: source, years, tables or files, variables</span></li>
             <li><span><strong>JOIN</strong>: key(s), pre/post row counts, unmatched-key report</span></li>
@@ -865,7 +865,7 @@
             <p style="font-size:0.85rem; margin:0.5rem 0 0;">The skill encodes the query patterns and iron laws; the MCP runs them. <code>api-data-fetcher</code> is the reproducible-script path; OpenEcon or FRED MCP is the interactive-discovery path.</p>
           </details>
           <div class="callout callout-warn">
-            <strong>Credentials live in <code>.env</code>, never in chat.</strong> The MCP server reads <code>WRDS_USERNAME</code> and friends from an env file with <code>chmod 600</code>. If a password ever appears in a prompt or a log, rotate it.
+            <strong>Credentials live in <code>.env</code>, never in chat.</strong> The MCP server reads <code>WRDS_USERNAME</code> and related variables from an env file with <code>chmod 600</code>. If a password ever appears in a prompt or a log, rotate it.
           </div>
           <div class="verify-gate">
             <span class="gate-label">Verify this</span>
@@ -873,7 +873,7 @@
           </div>
           <div class="reach-skip">
             <div class="reach"><h4>Use this when…</h4><p>You need licensed WRDS tables, live EDGAR/XBRL, or pinned macro series at scale.</p></div>
-            <div class="skip"><h4>Skip when…</h4><p>Reproducing from a frozen Parquet already on disk. Do not re-query WRDS “for convenience.”</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Reproducing from a frozen Parquet already on disk. Do not re-query WRDS.</p></div>
           </div>
         </article>
 
@@ -906,7 +906,7 @@
           </details>
           <div class="verify-gate">
             <span class="gate-label">Verify this</span>
-            <p>One join check: n before, n after, and the reason for every drop. Flag unmatched keys. No silent many-to-many blow-ups.</p>
+            <p>One join check: n before, n after, and the reason for every drop. Flag unmatched keys. No silent row inflation from many-to-many joins.</p>
           </div>
           <div class="reach-skip">
             <div class="reach"><h4>Use this when…</h4><p>Building or revising the sample that will enter every table.</p></div>
@@ -948,7 +948,7 @@
           </div>
           <div class="reach-skip">
             <div class="reach"><h4>Use this when…</h4><p>The paper’s contribution is disclosure, sentiment, or filing-based measurement.</p></div>
-            <div class="skip"><h4>Skip when…</h4><p>Pure Compustat/CRSP design with no text. Do not pull EDGAR just because the MCP is installed.</p></div>
+            <div class="skip"><h4>Skip when…</h4><p>Pure Compustat/CRSP design with no text. An installed MCP is not a reason to pull EDGAR.</p></div>
           </div>
         </article>
 
@@ -1017,7 +1017,7 @@
               <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=r-econometrics"><code>r-econometrics</code></a><a class="chip-dl" href="downloads/skills/r-econometrics.zip" download aria-label="Download r-econometrics zip">↓</a></span>
               <span class="chip chip--alt"><a class="chip-name" href="skills.html?q=econ-writing-plus"><code>econ-writing-plus</code></a><a class="chip-dl" href="downloads/skills/econ-writing-plus.zip" download aria-label="Download econ-writing-plus zip">↓</a></span>
             </div>
-            <p style="font-size:0.85rem; margin:0.5rem 0 0;"><code>econ-writing-plus</code> belongs to stage 9 for prose, but peek at its identification checklists while designing specs.</p>
+            <p style="font-size:0.85rem; margin:0.5rem 0 0;"><code>econ-writing-plus</code> belongs to stage 9 for prose, but read its identification checklists while designing specs.</p>
           </details>
           <div class="verify-gate">
             <span class="gate-label">Verify this</span>
@@ -1073,7 +1073,7 @@
             <h3>Manuscript, slides, pre-submission verification</h3>
             <span class="stage-flow-tag">Write</span>
           </div>
-          <p>Draft and revise, strip AI tells, build the seminar deck, and run a hostile pre-submission pass. The default writing sequence: <code>econ-write</code> → <code>econ-writing-plus</code> for identification prose → <code>econ-humanizer</code> (plus <code>econ-humanizer-plus</code>) for voice.</p>
+          <p>Draft and revise, strip AI tells, build the seminar deck, and run an adversarial pre-submission pass. The default writing sequence: <code>econ-write</code> → <code>econ-writing-plus</code> for identification prose → <code>econ-humanizer</code> (plus <code>econ-humanizer-plus</code>) for voice.</p>
           <div class="tools-row">
             <span class="tools-label">Default skills</span>
             <div class="chips">
@@ -1124,7 +1124,7 @@
       <!-- ============ MVP STACK ============ -->
       <section class="guide-section" id="mvp">
         <h2>Minimum viable stack</h2>
-        <p>The small set for a first Compustat firm–year paper, with optional EDGAR text and a Stata or Python estimator. Everything else in the 46-skill catalog (Bayesian, geospatial, posters) can wait. <a href="skills.html">Browse the full catalog</a> when you need it.</p>
+        <p>The small set for a first Compustat firm–year paper, with optional EDGAR text and a Stata or Python estimator. Everything else in the 46-skill catalog (Bayesian, geospatial, posters) is not needed for a first paper. <a href="skills.html">Browse the full catalog</a> when you need it.</p>
 
         <h3>Skills to install first</h3>
         <div class="table-scroll">

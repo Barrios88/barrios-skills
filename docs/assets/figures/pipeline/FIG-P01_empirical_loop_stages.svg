@@ -75,7 +75,7 @@
   <!-- Bypass 4 -> 6 (skip stage 5) -->
   <path class="flow-opt" d="M692 196 V240 H250 V254" marker-end="url(#p01-arr)"/>
   <rect x="375" y="230" width="190" height="20" fill="#ffffff"/>
-  <text class="t-note" x="470" y="245" text-anchor="middle">no text? skip stage 5</text>
+  <text class="t-note" x="470" y="245" text-anchor="middle">no text: skip stage 5</text>
 
   <!-- Row 2: stages 6-9 -->
   <!-- Stage 6 -->

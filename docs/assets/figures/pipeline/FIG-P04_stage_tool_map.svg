@@ -17,7 +17,7 @@
   </style>
 
   <text class="t-title" x="28" y="38">Stage &#8594; tool map: default picks</text>
-  <text class="t-sub" x="28" y="64">Three or four default skills per stage; alternatives live in the catalog. MCP appears only where live access earns its keep.</text>
+  <text class="t-sub" x="28" y="64">Three or four default skills per stage; alternatives live in the catalog. MCP appears only where live access is needed.</text>
 
   <!-- Header band -->
   <rect x="28" y="84" width="944" height="36" rx="8" fill="#00356b"/>
