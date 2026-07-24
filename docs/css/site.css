@@ -664,3 +664,17 @@ section h2 {
 .dual-stats dt.skills-stat { color: var(--yale); }
 .dual-stats dt.mcp-stat { color: var(--blue); }
 .dual-stats dd { margin: 0; font-size: 0.78rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Links inside the dark hero (e.g. the pipeline guide pointer) */
+.hero .lead a, .hero-intro a {
+  color: #9dc1e4; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.hero .lead a:hover, .hero .lead a:focus-visible,
+.hero-intro a:hover, .hero-intro a:focus-visible { color: #fff; }
+
+/* Narrow screens: the sticky bar stacks vertically, so the base
+   flex-basis of .filters (320px) must not become its height. */
+@media (max-width: 860px) {
+  .browse-sticky .filters { flex: 0 0 auto; }
+}
