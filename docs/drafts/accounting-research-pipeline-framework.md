@@ -7,6 +7,92 @@
 
 ---
 
+## 0. File locations (read this first)
+
+Absolute paths below assume this machine’s layout. Repo-relative paths work from the Barrios Skills git root.
+
+### This draft and the public site (Barrios Skills repo)
+
+| What | Path |
+|------|------|
+| **This framework draft** | `/Users/jmb432/Documents/Barrios_Skills/docs/drafts/accounting-research-pipeline-framework.md` |
+| Repo root | `/Users/jmb432/Documents/Barrios_Skills` |
+| Skill catalog (ids, summaries) | `catalog/skills.json` → also `docs/data/skills.json` |
+| Collection philosophy / Barrios touch | `COLLECTION.md` |
+| Public homepage | `docs/index.html` |
+| All-skills browser | `docs/skills.html` |
+| Site CSS / JS | `docs/css/site.css`, `docs/js/site.js` |
+| **Target new page (not built yet)** | `docs/pipeline.html` |
+| **Target figure folder (not built yet)** | `docs/assets/figures/pipeline/` |
+| Skill zip downloads (built by CI / `generate-site.sh`) | `docs/downloads/skills/{skill-id}.zip` |
+| Site build script | `scripts/generate-site.sh`, `scripts/build-skill-zips.py`, `scripts/sync-catalog-descriptions.py` |
+
+### MCP install docs (markdown) and website guides (HTML)
+
+| MCP | Install markdown | Website guide |
+|-----|------------------|---------------|
+| WRDS (vendored) | `install/wrds-mcp.md` | `docs/wrds-mcp.html` |
+| SEC EDGAR | `install/sec-edgar-mcp.md` | `docs/sec-edgar-mcp.html` |
+| OpenEcon Data | `install/openecon-data-mcp.md` | `docs/openecon-data-mcp.html` |
+| FRED / Stata-MCP / index | `install/external-mcps.md` | (no dedicated HTML yet; link from homepage MCP section) |
+| MCP folder README | `mcp/README.md` | — |
+| Vendored WRDS server code | `mcp/wrds-mcp/` | — |
+
+### Skills on disk (by category)
+
+Core skills live under `skills/{category}/{skill-id}/` with a `SKILL.md` in each folder.
+
+| Category | Directory |
+|----------|-----------|
+| Econometrics | `skills/econometrics/` — `wrds`, `pyfixest`, `stata-regression`, `stata-data-cleaning`, `python-panel-data`, `r-econometrics` |
+| Data & viz | `skills/data-and-visualization/` |
+| Research & literature | `skills/research-tools/` — includes `sec-edgar`, `financial-text-nlp`, `api-data-fetcher`, … |
+| Writing & review | `skills/writing-and-review/` — includes `econ-write`, `econ-slides`, `econ-referee`, … |
+| Optional (not in core 46) | `skills/optional/` |
+
+Installed copies for Cursor (if synced): `~/.cursor/skills/{skill-id}/`
+
+### Course site (inspiration — Quarto)
+
+**Root:** `/Users/jmb432/Yale University Dropbox/John Barrios/Claude/Claude for Academics/website`
+
+| What | Path (under course root) |
+|------|--------------------------|
+| Syllabus / home | `syllabus.qmd`, `index.qmd` |
+| Tool decision table | `tools.qmd` |
+| Verification protocol | `verification.qmd` |
+| Prompts gallery | `prompts.qmd` |
+| WRDS setup (course) | `setup-wrds.qmd`, `setup.qmd` |
+| Modules | `modules/01-foundations.qmd` … `modules/06-ai-knowledge-market.qmd` |
+| Labs | `labs/day1.qmd` … `labs/day5.qmd` |
+| Course skill pages | `skills/` |
+| **Figures (PNG)** | `assets/figures/day1/` … `assets/figures/day6/` |
+| Exhibits | `assets/exhibits/` |
+| Slides (PDF) | `assets/slides/day1_slides.pdf` … `day6_slides.pdf` |
+| Rendered HTML preview | `_site/` |
+
+**Key course figures for redesign (do not copy into docs without attribution check):**
+
+| Course file | Use for |
+|-------------|---------|
+| `assets/figures/day1/FIG-D1-01_tool_ladder.png` | Skill vs MCP / tool rungs |
+| `assets/figures/day1/FIG-D1-03_research_map.png` | idea → data → measure → analysis → paper |
+| `assets/figures/day2/FIG-D2-01_empirical_loop.png` | Empirical loop stages |
+| `assets/figures/day3/FIG-D3-01_edgar_pipeline.png` | EDGAR stages |
+| `assets/figures/day4/FIG-D4-01_wrds_mcp_architecture.png` | WRDS MCP architecture |
+| `assets/figures/day5/FIG-D5-01_verification_debt_2x2.png` | Verification debt |
+| `assets/figures/day6/FIG-D6-01_production_function_map.png` | Automatability × value |
+
+### Live / remote
+
+| What | URL / note |
+|------|------------|
+| GitHub repo | `https://github.com/Barrios88/barrios-skills` |
+| GitHub Pages | `https://barrios88.github.io/barrios-skills/` |
+| Cursor MCP config (local, not in repo) | `~/.cursor/mcp.json` |
+
+---
+
 ## A. Framework
 
 ### 1. Framing
@@ -341,18 +427,24 @@ Style: match Barrios Skills site (Yale blue `#00356b`, Source Serif / Inter) —
 ```
 Implement the Barrios Skills pipeline guide from the framework draft.
 
-Read first:
-- docs/drafts/accounting-research-pipeline-framework.md (§A content + §B handoff)
+Read first (paths are listed in §0 of the draft):
+- docs/drafts/accounting-research-pipeline-framework.md (§0 locations, §A content, §B handoff, §D overlaps)
 - docs/index.html, docs/skills.html, docs/css/site.css, docs/js/site.js (nav + patterns)
 - docs/wrds-mcp.html (guide page template)
+- catalog/skills.json (validate every skill id)
+- Course figure inspiration (read-only): 
+  /Users/jmb432/Yale University Dropbox/John Barrios/Claude/Claude for Academics/website/assets/figures/
+  and tools.qmd, modules/02-empirical-loop.qmd, verification.qmd under that website root
 
 Build:
 1. docs/pipeline.html from §A (user-friendly, not a dump of the draft)
 2. Wire nav/footer on existing docs pages + homepage teaser
 3. Create docs/assets/figures/pipeline/ with the figures listed in §B.2
    (at least FIG-P01–P04). Match Yale/Barrios site look; exhibit-style clarity.
-4. Link skill ids to downloads/skills/{id}.zip and MCP setup pages.
-5. Meet acceptance criteria in §B.4.
+   Redesign from course PNGs — do not copy course assets into docs/ without attribution check.
+4. Link skill ids to downloads/skills/{id}.zip and MCP setup pages
+   (wrds-mcp.html, sec-edgar-mcp.html, openecon-data-mcp.html).
+5. Meet acceptance criteria in §B.4; apply §D default-vs-alternative skill picks in the UI.
 
 Constraints: Do not invent skills; keep verification-first voice; prefer
 structured stage sections over long prose.
