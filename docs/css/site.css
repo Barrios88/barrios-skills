@@ -442,7 +442,6 @@ section h2 {
   .dual-stats { gap: 1.5rem; }
   .hero-actions-row { flex-direction: column; align-items: stretch; }
   .dual-stats--inline { justify-content: flex-start; }
-  .compare-cards { grid-template-columns: 1fr; }
   .browse-sticky-inner { flex-direction: column; align-items: stretch; }
   .browse-sticky .filters { flex: 1 1 auto; }
   .browse-header { align-items: flex-start; }
@@ -615,8 +614,14 @@ section h2 {
 .compare-band-title {
   font-family: var(--font-serif); font-size: 1.35rem; margin: 0 0 1rem; text-align: center;
 }
+/* Single column by default; two side by side once there is room. Declared
+   here rather than in the 860px block above, which sits earlier in the file
+   and so was losing to this rule. */
 .compare-cards {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+}
+@media (min-width: 861px) {
+  .compare-cards { grid-template-columns: 1fr 1fr; }
 }
 .compare-card {
   background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius);
