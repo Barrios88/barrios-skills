@@ -438,7 +438,8 @@ section h2 {
 
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-panel { order: -1; }
+  /* Copy stays first when the grid collapses: the headline and the pitch
+     should land before the install snippet, not below it. */
   .dual-stats { gap: 1.5rem; }
   .hero-actions-row { flex-direction: column; align-items: stretch; }
   .dual-stats--inline { justify-content: flex-start; }
