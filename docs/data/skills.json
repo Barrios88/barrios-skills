@@ -345,8 +345,15 @@
           "id": "econ-referee",
           "name": "econ-referee",
           "path": "skills/writing-and-review/econ-referee",
-          "description": "Pre-submission referee report for economics, finance, and accounting papers \u2014 verified comments tied to page/table evidence, separate editing notes, and a prioritized revision plan. Barrios-original workflow for JAR/TAR/JAE/JF/JFE/RFS/AEA-style empirics. For general science checklists use peer-review; for scoring rubrics use scholar-evaluation.",
-          "summary": "Pre-submission referee reports with verified comments and a revision plan for econ/finance/accounting."
+          "description": "Pre-submission referee report for economics, finance, and accounting papers. Runs source-fidelity, numerical, claim-evidence, identification, sample, magnitude, and robustness audits, then ranks confirmed corrections above interpretive critiques. Use when stress-testing a working paper, writing a referee report, or preparing a JAR, TAR, JAE, JF, JFE, RFS, or AEA submission. For general science checklists use peer-review; for scoring rubrics use scholar-evaluation.",
+          "summary": "Pre-submission referee reports that check a paper against its own tables, then rank corrections above interpretive critiques."
+        },
+        {
+          "id": "paper-pdf",
+          "name": "paper-pdf",
+          "path": "skills/writing-and-review/paper-pdf",
+          "description": "Parse an academic paper PDF into page text, page images, tables, figures, citations, and cross-references without inventing missing cells. Use before econ-referee, or whenever a working paper PDF needs a source-faithful local reading. Flags scanned pages and unsafe tables instead of guessing values.",
+          "summary": "Local PDF parser for academic papers: page text, images, tables, and figures, with unsafe cells left blank."
         }
       ]
     }
@@ -761,8 +768,17 @@
       "id": "econ-referee",
       "name": "econ-referee",
       "path": "skills/writing-and-review/econ-referee",
-      "description": "Pre-submission referee report for economics, finance, and accounting papers \u2014 verified comments tied to page/table evidence, separate editing notes, and a prioritized revision plan. Barrios-original workflow for JAR/TAR/JAE/JF/JFE/RFS/AEA-style empirics. For general science checklists use peer-review; for scoring rubrics use scholar-evaluation.",
-      "summary": "Pre-submission referee reports with verified comments and a revision plan for econ/finance/accounting.",
+      "description": "Pre-submission referee report for economics, finance, and accounting papers. Runs source-fidelity, numerical, claim-evidence, identification, sample, magnitude, and robustness audits, then ranks confirmed corrections above interpretive critiques. Use when stress-testing a working paper, writing a referee report, or preparing a JAR, TAR, JAE, JF, JFE, RFS, or AEA submission. For general science checklists use peer-review; for scoring rubrics use scholar-evaluation.",
+      "summary": "Pre-submission referee reports that check a paper against its own tables, then rank corrections above interpretive critiques.",
+      "category": "writing-and-review",
+      "curated-by": "John Barrios"
+    },
+    {
+      "id": "paper-pdf",
+      "name": "paper-pdf",
+      "path": "skills/writing-and-review/paper-pdf",
+      "description": "Parse an academic paper PDF into page text, page images, tables, figures, citations, and cross-references without inventing missing cells. Use before econ-referee, or whenever a working paper PDF needs a source-faithful local reading. Flags scanned pages and unsafe tables instead of guessing values.",
+      "summary": "Local PDF parser for academic papers: page text, images, tables, and figures, with unsafe cells left blank.",
       "category": "writing-and-review",
       "curated-by": "John Barrios"
     }

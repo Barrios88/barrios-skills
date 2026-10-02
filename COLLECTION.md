@@ -2,7 +2,7 @@
 
 **Barrios Skills** is John Barrios's personal catalog of **agent skills** (`skills/`) and **MCP servers** (`mcp/`) — kept in separate folders because they install differently — for empirical economics, finance, and accounting research.
 
-## Core focus (46 skills)
+## Core focus (47 skills)
 
 1. **Econometrics & empirical data** — Stata, R, Python panels, pyfixest, WRDS
 2. **Data & visualization** — Publication-quality figures and Python data stacks

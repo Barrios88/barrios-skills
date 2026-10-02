@@ -140,6 +140,7 @@ MCP servers are **not** skills. They require installation, MCP registration, and
 | [econ-write](skills/writing-and-review/econ-write) | Cochrane/McCloskey/Shapiro-style drafting for econ, finance, and accounting. |
 | [econ-slides](skills/writing-and-review/econ-slides) | Paper-to-Beamer talks with honest numbers and speaker scripts. |
 | [econ-referee](skills/writing-and-review/econ-referee) | Pre-submission referee reports with verified comments and a revision plan. |
+| [paper-pdf](skills/writing-and-review/paper-pdf) | Local PDF parser for academic papers. Page text, images, tables, and figures, with unsafe cells left blank. |
 | [academic-paper-writer](skills/writing-and-review/academic-paper-writer) | Draft economics papers with proper structure and academic style |
 | [beamer-presentation](skills/writing-and-review/beamer-presentation) | Create academic presentations in Beamer with professional themes |
 | [econ-humanizer](skills/writing-and-review/econ-humanizer) | Remove AI writing patterns from academic economics, finance, and accounting prose. Enforces a clear… |

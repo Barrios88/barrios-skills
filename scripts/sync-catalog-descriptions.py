@@ -26,7 +26,8 @@ SUMMARY_OVERRIDES: dict[str, str] = {
     "financial-text-nlp": "FinBERT and domain models for 10-K, earnings-call, and central-bank text features.",
     "econ-write": "Cochrane/McCloskey/Shapiro-style paper drafting for economics, finance, and accounting.",
     "econ-slides": "Paper-to-Beamer talks with honest numbers, discussant decks, and speaker scripts.",
-    "econ-referee": "Pre-submission referee reports with verified comments and a revision plan for econ/finance/accounting.",
+    "econ-referee": "Pre-submission referee reports that check a paper against its own tables, then rank corrections above interpretive critiques.",
+    "paper-pdf": "Local PDF parser for academic papers: page text, images, tables, and figures, with unsafe cells left blank.",
 }
 
 AGENT_HEAVY_RE = re.compile(

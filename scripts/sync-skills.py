@@ -62,6 +62,7 @@ CATEGORY_MAP = {
     "latex-econ-model": "writing-and-review",
     "latex-posters": "writing-and-review",
     "latex-tables": "writing-and-review",
+    "paper-pdf": "writing-and-review",
     "peer-review": "writing-and-review",
     "scholar-evaluation": "writing-and-review",
     "scientific-critical-thinking": "writing-and-review",
