@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -142,6 +143,35 @@ def make_summary(description: str, skill_id: str) -> str:
     return summary
 
 
+def git_added_date(skill_path: str) -> str | None:
+    """Earliest commit that added the skill file. Empty on a shallow clone."""
+    proc = subprocess.run(
+        [
+            "git",
+            "log",
+            "--follow",
+            "--diff-filter=A",
+            "--format=%aI",
+            "--",
+            f"{skill_path}/SKILL.md",
+        ],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    dates = [line.strip()[:10] for line in proc.stdout.splitlines() if line.strip()]
+    return min(dates) if dates else None
+
+
+def stamp_added(skill: dict) -> bool:
+    found = git_added_date(skill["path"])
+    if not found or skill.get("added") == found:
+        return False
+    skill["added"] = found
+    return True
+
+
 def sync_skill(skill: dict) -> bool:
     skill_md = REPO_ROOT / skill["path"] / "SKILL.md"
     if not skill_md.is_file():
@@ -163,9 +193,12 @@ def main() -> None:
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
     updated = 0
 
+    dated = 0
     for skill in catalog["skills"]:
         if sync_skill(skill):
             updated += 1
+        if stamp_added(skill):
+            dated += 1
 
     by_id = {s["id"]: s for s in catalog["skills"]}
     for cat in catalog["categories"]:
@@ -174,9 +207,14 @@ def main() -> None:
                 src = by_id[skill["id"]]
                 skill["description"] = src["description"]
                 skill["summary"] = src["summary"]
+                if src.get("added"):
+                    skill["added"] = src["added"]
 
     CATALOG.write_text(json.dumps(catalog, indent=2) + "\n", encoding="utf-8")
-    print(f"Synced descriptions and summaries from SKILL.md ({updated} updated)")
+    print(
+        f"Synced descriptions and summaries from SKILL.md "
+        f"({updated} updated, {dated} add-dates stamped)"
+    )
 
 
 if __name__ == "__main__":

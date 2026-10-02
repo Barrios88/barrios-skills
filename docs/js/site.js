@@ -67,7 +67,23 @@ function cardIsExpandable(skill, { featured = false } = {}) {
   return descriptionNeedsClamp(summary, clampAt) || (hasDetail && descriptionNeedsClamp(skill.description, 100));
 }
 
-function skillCardMarkup(skill, { featured = false } = {}) {
+function newestAddedDate() {
+  return catalog.skills.reduce((max, skill) => {
+    return skill.added && skill.added > max ? skill.added : max;
+  }, "");
+}
+
+function formatAdded(iso) {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function skillCardMarkup(skill, { featured = false, showAdded = false } = {}) {
   const tag = CATEGORY_SHORT[skill.category] || skill.category;
   const summary = skillSummary(skill);
   const hasDetail = skillHasDetail(skill);
@@ -79,13 +95,19 @@ function skillCardMarkup(skill, { featured = false } = {}) {
   const moreBtn = expandable
     ? `<button type="button" class="skill-card-more" aria-expanded="false">More</button>`
     : "";
+  const isNewest = Boolean(skill.added) && skill.added === newestAddedDate();
+  const newTag = isNewest ? `<span class="new-tag">New</span>` : "";
+  const addedLine = showAdded && skill.added
+    ? `<p class="skill-added">Added ${escapeHtml(formatAdded(skill.added))}</p>`
+    : "";
 
   return `
     <div class="skill-card-head">
       <h3>${titleCase(skill.id)}</h3>
-      <span class="category-tag category-tag--${skill.category}">${tag}</span>
+      <span class="skill-card-tags">${newTag}<span class="category-tag category-tag--${skill.category}">${tag}</span></span>
     </div>
     <div class="skill-card-body">
+      ${addedLine}
       <p class="${descClass}">${escapeHtml(summary)}</p>
       ${detailHtml}
     </div>
@@ -117,7 +139,7 @@ function bindSkillCardInteractions(root = document) {
   });
 }
 
-function createSkillCard(skill, { featured = false, animationIndex = 0 } = {}) {
+function createSkillCard(skill, { featured = false, animationIndex = 0, showAdded = false } = {}) {
   const card = document.createElement("article");
   card.className = featured ? "feature-card skill-card-interactive" : "skill-card skill-card-interactive";
   card.tabIndex = 0;
@@ -125,9 +147,54 @@ function createSkillCard(skill, { featured = false, animationIndex = 0 } = {}) {
   if (!featured && animationIndex > 0) {
     card.style.animationDelay = `${Math.min(animationIndex * 0.02, 0.4)}s`;
   }
-  card.innerHTML = skillCardMarkup(skill, { featured });
+  card.innerHTML = skillCardMarkup(skill, { featured, showAdded });
   applySkillCardClasses(card, skill, { featured });
   return card;
+}
+
+function latestSkillGroups() {
+  const dated = catalog.skills.filter((skill) => skill.added);
+  const dates = [...new Set(dated.map((skill) => skill.added))].sort().reverse();
+  if (!dates.length) return { lead: [], recent: [], recentDate: "" };
+  const byName = (a, b) => a.id.localeCompare(b.id);
+  const lead = dated.filter((skill) => skill.added === dates[0]).sort(byName);
+  const recentDate = dates[1] || "";
+  const recent = recentDate
+    ? dated.filter((skill) => skill.added === recentDate).sort(byName)
+    : [];
+  return { lead, recent, recentDate };
+}
+
+function renderLatest() {
+  const { lead, recent, recentDate } = latestSkillGroups();
+  document.querySelectorAll(".latest-skills").forEach((section) => {
+    const leadGrid = section.querySelector("[data-latest-lead]");
+    const alsoGrid = section.querySelector("[data-latest-also]");
+    const alsoHeading = section.querySelector("[data-latest-also-heading]");
+    if (!leadGrid || !lead.length) {
+      section.hidden = true;
+      return;
+    }
+    leadGrid.innerHTML = "";
+    lead.forEach((skill) => {
+      leadGrid.appendChild(createSkillCard(skill, { featured: true, showAdded: true }));
+    });
+    bindSkillCardInteractions(leadGrid);
+    if (alsoGrid && alsoHeading) {
+      alsoGrid.innerHTML = "";
+      if (recent.length) {
+        alsoHeading.hidden = false;
+        alsoHeading.textContent = `Previously added · ${formatAdded(recentDate)}`;
+        recent.forEach((skill) => {
+          alsoGrid.appendChild(createSkillCard(skill, { featured: true, showAdded: true }));
+        });
+        bindSkillCardInteractions(alsoGrid);
+      } else {
+        alsoHeading.hidden = true;
+      }
+    }
+    section.hidden = false;
+  });
 }
 
 function renderFeatured() {
@@ -386,6 +453,7 @@ async function initHomePage() {
   }
 
   await loadCatalog();
+  renderLatest();
   renderFeatured();
   document.querySelectorAll("[data-skill-count]").forEach((el) => {
     el.textContent = String(catalog.skills.length);
@@ -411,6 +479,7 @@ async function initSkillsPage() {
   }
 
   await loadCatalog();
+  renderLatest();
   syncUrlParams();
   initBrowseFilters();
   renderSkills();

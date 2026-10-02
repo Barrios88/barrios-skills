@@ -198,6 +198,36 @@ section h2 {
 }
 .section-intro { color: var(--ink-soft); margin: 0 0 1.75rem; max-width: 42rem; }
 
+.latest-skills {
+  padding: 2.25rem 0 2rem;
+  background: linear-gradient(180deg, rgba(0, 53, 107, 0.045), transparent 85%);
+  border-bottom: 1px solid var(--border);
+}
+.latest-skills h2 { margin-bottom: 0.35rem; }
+.latest-skills .section-intro { margin-bottom: 1.25rem; }
+.latest-lead {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem; margin-bottom: 1.35rem;
+}
+.latest-also-heading {
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  margin: 0 0 0.75rem;
+}
+.latest-lead .feature-card {
+  background: #fff;
+  box-shadow: 0 16px 36px rgba(0, 53, 107, 0.08);
+}
+.latest-lead .feature-card h3 { font-size: 1.35rem; }
+.new-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #fff; background: var(--yale);
+  border-radius: 999px; padding: 0.15rem 0.5rem; white-space: nowrap;
+}
+.skill-added {
+  margin: 0; font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.04em; color: var(--ink-soft);
+}
 .featured { padding: 1rem 0 3rem; }
 .featured-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;
@@ -346,6 +376,7 @@ section h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 .skill-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
+.skill-card-tags { display: inline-flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
 .category-tag {
   font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em;
   padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--paper-2);
