@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Inter:wght@400..650&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/site.css?v=20261002c">
 </head>
 <body data-page="skills">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -42,14 +42,27 @@
       </div>
     </section>
 
-    <section class="latest-skills" id="latest" hidden>
+    <section class="just-added" id="latest" aria-labelledby="latest-heading">
       <div class="container">
-        <p class="section-label-skills">New in the catalog</p>
-        <h2>Latest skills</h2>
-        <p class="section-intro">The most recent addition is first.</p>
-        <div class="latest-lead" data-latest-lead></div>
-        <h3 class="latest-also-heading" data-latest-also-heading hidden></h3>
-        <div class="featured-grid" data-latest-also></div>
+        <article class="just-added-panel">
+          <p class="just-added-kicker"><span class="new-tag">New</span> <time data-latest-date datetime="2026-10-02">October 2, 2026</time></p>
+          <div class="just-added-main">
+            <div>
+              <h2 id="latest-heading" data-latest-title>Paper PDF</h2>
+              <p class="just-added-summary" data-latest-summary>Local PDF parser for academic papers: page text, images, tables, and figures, with unsafe cells left blank.</p>
+            </div>
+            <a class="btn btn-primary" data-latest-download href="downloads/skills/paper-pdf.zip" download="paper-pdf.zip">Download zip</a>
+          </div>
+          <p class="just-added-also">
+            <span>Also recent</span>
+            <a href="skills.html?q=econ-referee">Econ referee</a>
+            <a href="skills.html?q=econ-slides">Econ slides</a>
+            <a href="skills.html?q=econ-write">Econ write</a>
+            <a href="skills.html?q=financial-text-nlp">Financial text NLP</a>
+            <a href="skills.html?q=pyfixest">Pyfixest</a>
+            <a href="skills.html?q=sec-edgar">SEC EDGAR</a>
+          </p>
+        </article>
       </div>
     </section>
 
@@ -86,6 +99,6 @@
       </div>
     </div>
   </footer>
-  <script src="js/site.js"></script>
+  <script src="js/site.js?v=20261002c"></script>
 </body>
 </html>

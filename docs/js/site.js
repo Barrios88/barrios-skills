@@ -30,7 +30,11 @@ let activeCategory = "all";
 let searchQuery = "";
 
 function titleCase(id) {
-  return id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const acronyms = { pdf: "PDF", nlp: "NLP", sec: "SEC", edgar: "EDGAR", wrds: "WRDS", api: "API" };
+  return id
+    .split("-")
+    .map((word) => acronyms[word] || word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }
 
 function descriptionNeedsClamp(text, n = 96) {
@@ -166,35 +170,38 @@ function latestSkillGroups() {
 }
 
 function renderLatest() {
-  const { lead, recent, recentDate } = latestSkillGroups();
-  document.querySelectorAll(".latest-skills").forEach((section) => {
-    const leadGrid = section.querySelector("[data-latest-lead]");
-    const alsoGrid = section.querySelector("[data-latest-also]");
-    const alsoHeading = section.querySelector("[data-latest-also-heading]");
-    if (!leadGrid || !lead.length) {
-      section.hidden = true;
-      return;
-    }
-    leadGrid.innerHTML = "";
-    lead.forEach((skill) => {
-      leadGrid.appendChild(createSkillCard(skill, { featured: true, showAdded: true }));
-    });
-    bindSkillCardInteractions(leadGrid);
-    if (alsoGrid && alsoHeading) {
-      alsoGrid.innerHTML = "";
-      if (recent.length) {
-        alsoHeading.hidden = false;
-        alsoHeading.textContent = `Previously added · ${formatAdded(recentDate)}`;
-        recent.forEach((skill) => {
-          alsoGrid.appendChild(createSkillCard(skill, { featured: true, showAdded: true }));
-        });
-        bindSkillCardInteractions(alsoGrid);
-      } else {
-        alsoHeading.hidden = true;
-      }
-    }
-    section.hidden = false;
+  const { lead, recent } = latestSkillGroups();
+  const skill = lead[0];
+  const section = document.getElementById("latest");
+  if (!section || !skill) return;
+
+  document.querySelectorAll("[data-latest-title]").forEach((el) => {
+    el.textContent = titleCase(skill.id);
   });
+  document.querySelectorAll("[data-latest-summary]").forEach((el) => {
+    el.textContent = skillSummary(skill);
+  });
+  document.querySelectorAll("[data-latest-date]").forEach((el) => {
+    el.textContent = formatAdded(skill.added);
+    el.setAttribute("datetime", skill.added);
+  });
+  document.querySelectorAll("[data-latest-download]").forEach((el) => {
+    el.href = skillDownloadUrl(skill.id);
+    el.setAttribute("download", `${skill.id}.zip`);
+  });
+
+  const also = section.querySelector(".just-added-also");
+  if (also) {
+    if (!recent.length) {
+      also.hidden = true;
+    } else {
+      const hrefFor = (id) => (PAGE === "skills" ? `?q=${encodeURIComponent(id)}` : `skills.html?q=${encodeURIComponent(id)}`);
+      also.hidden = false;
+      also.innerHTML = `<span>Also recent</span>${recent
+        .map((item) => `<a href="${hrefFor(item.id)}">${escapeHtml(titleCase(item.id))}</a>`)
+        .join("")}`;
+    }
+  }
 }
 
 function renderFeatured() {

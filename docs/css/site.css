@@ -127,7 +127,7 @@ body {
 .btn-ghost { border: 1px solid var(--rule-dark); color: var(--ink); padding: 0.45rem 0.9rem; border-radius: 999px; }
 
 .hero {
-  padding: 4rem 0 3.25rem;
+  padding: 4rem 0 5rem;
   background: var(--yale) url("../assets/yale-banner.svg") no-repeat center / cover;
   color: #fff;
 }
@@ -198,27 +198,57 @@ section h2 {
 }
 .section-intro { color: var(--ink-soft); margin: 0 0 1.75rem; max-width: 42rem; }
 
-.latest-skills {
-  padding: 2.25rem 0 2rem;
-  background: linear-gradient(180deg, rgba(0, 53, 107, 0.045), transparent 85%);
-  border-bottom: 1px solid var(--border);
+.just-added {
+  position: relative; z-index: 2;
+  margin-top: -2.75rem;
+  padding: 0 0 1.75rem;
 }
-.latest-skills h2 { margin-bottom: 0.35rem; }
-.latest-skills .section-intro { margin-bottom: 1.25rem; }
-.latest-lead {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem; margin-bottom: 1.35rem;
-}
-.latest-also-heading {
-  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
-  margin: 0 0 0.75rem;
-}
-.latest-lead .feature-card {
+.just-added-panel {
   background: #fff;
-  box-shadow: 0 16px 36px rgba(0, 53, 107, 0.08);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--yale);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 44px rgba(0, 53, 107, 0.12);
+  padding: 1.15rem 1.35rem 1rem;
 }
-.latest-lead .feature-card h3 { font-size: 1.35rem; }
+.just-added-kicker {
+  display: flex; align-items: center; gap: 0.65rem;
+  margin: 0 0 0.35rem;
+}
+.just-added-kicker time {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.04em; color: var(--muted);
+}
+.just-added-main {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem;
+}
+.just-added h2 {
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  margin: 0 0 0.2rem; line-height: 1.15;
+}
+.just-added-summary {
+  margin: 0; max-width: 40rem; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
+}
+.just-added-main .btn { flex-shrink: 0; }
+.just-added-also {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.9rem;
+  margin: 0.85rem 0 0; padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.just-added-also span {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  margin-right: 0.15rem;
+}
+.just-added-also a {
+  color: var(--yale); font-weight: 600; text-decoration: none; font-size: 0.9rem;
+}
+.just-added-also a:hover { text-decoration: underline; }
+@media (max-width: 720px) {
+  .just-added { margin-top: -1.75rem; }
+  .just-added-main { flex-direction: column; align-items: flex-start; }
+  .just-added-panel { padding: 1rem 1rem 0.85rem; }
+}
 .new-tag {
   font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
   text-transform: uppercase; color: #fff; background: var(--yale);
@@ -666,7 +696,7 @@ section h2 {
 .compare-card--skills { border-left: 3px solid var(--yale); }
 .compare-card--mcp { border-left: 3px solid var(--blue); }
 .skills-page-hero {
-  padding: 2.5rem 0 1.5rem;
+  padding: 2.5rem 0 3.75rem;
   background: var(--yale) url("../assets/yale-banner.svg") no-repeat center / cover;
   color: #fff;
 }
