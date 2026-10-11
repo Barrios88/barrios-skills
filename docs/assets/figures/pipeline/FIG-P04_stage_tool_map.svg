@@ -50,7 +50,7 @@
   <text class="t-num" x="52" y="159">1</text>
   <text class="t-stage" x="74" y="160">Question &amp; literature</text>
   <rect class="chip" x="296" y="126" width="162" height="26" rx="13"/>
-  <text class="t-chip" x="377" y="144">econ-lit-search</text>
+  <text class="t-chip" x="377" y="144">openalex-api</text>
   <rect class="chip" x="466" y="126" width="181" height="26" rx="13"/>
   <text class="t-chip" x="556" y="144">research-ideation</text>
   <rect class="chip" x="296" y="156" width="200" height="26" rx="13"/>

@@ -180,14 +180,6 @@
           "added": "2026-05-26"
         },
         {
-          "id": "econ-lit-search",
-          "name": "econ-lit-search",
-          "path": "skills/research-tools/econ-lit-search",
-          "description": "Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenever the user asks to search for papers, find literature, look up references, do a lit review, check what's been published on a topic, find papers by an author, or any other request that involves discovering or retrieving academic economics papers. Also trigger when the user says \"search econ-lit\", \"search the corpus\", \"find me papers on\u2026\", \"what papers exist about\u2026\", \"look up [topic] in the literature\", or similar. This skill searches a local indexed corpus \u2014 it does NOT overlap with OpenAlex (which covers 240M+ works broadly). Let the user decide which to use; do not auto-combine with OpenAlex unless asked.",
-          "summary": "Search ~51k economics papers with full-text search, abstracts, and citation sorting.",
-          "added": "2026-05-26"
-        },
-        {
           "id": "exploratory-data-analysis",
           "name": "exploratory-data-analysis",
           "path": "skills/research-tools/exploratory-data-analysis",
@@ -594,16 +586,6 @@
       "description": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources. Use this skill when working with demographic data, economic indicators, health statistics, environmental data, or any public datasets available through Data Commons. Applicable for querying population statistics, GDP figures, unemployment rates, disease prevalence, geographic entity resolution, and exploring relationships between statistical entities.",
       "curated-by": "John Barrios",
       "summary": "Work with Data Commons, a platform providing programmatic access to public statistical data from global sources.",
-      "added": "2026-05-26"
-    },
-    {
-      "id": "econ-lit-search",
-      "name": "econ-lit-search",
-      "category": "research-tools",
-      "path": "skills/research-tools/econ-lit-search",
-      "description": "Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with full-text search, abstract retrieval, body-passage snippets, and citation sorting. Use this skill whenever the user asks to search for papers, find literature, look up references, do a lit review, check what's been published on a topic, find papers by an author, or any other request that involves discovering or retrieving academic economics papers. Also trigger when the user says \"search econ-lit\", \"search the corpus\", \"find me papers on\u2026\", \"what papers exist about\u2026\", \"look up [topic] in the literature\", or similar. This skill searches a local indexed corpus \u2014 it does NOT overlap with OpenAlex (which covers 240M+ works broadly). Let the user decide which to use; do not auto-combine with OpenAlex unless asked.",
-      "curated-by": "John Barrios",
-      "summary": "Search ~51k economics papers with full-text search, abstracts, and citation sorting.",
       "added": "2026-05-26"
     },
     {

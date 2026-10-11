@@ -24,6 +24,11 @@ def zip_skill(skill_dir: Path, out_file: Path) -> None:
 
 def main() -> None:
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+    # Downloads must reflect the current catalog, including removed skills.
+    expected = {f"{skill['id']}.zip" for skill in catalog["skills"]}
+    for stale in OUT_DIR.glob("*.zip"):
+        if stale.name not in expected:
+            stale.unlink()
     built = 0
     missing = []
 

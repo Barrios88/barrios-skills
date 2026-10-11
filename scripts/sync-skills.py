@@ -16,7 +16,7 @@ SOURCES = [
     Path.home() / "Yale University Dropbox" / "John Barrios" / "Claude" / "Skills",
 ]
 
-EXCLUDE = {"som-llm-api", "figma", "figma-implement-design", "playwright", "vercel-deploy"}
+EXCLUDE = {"econ-lit-search", "som-llm-api", "figma", "figma-implement-design", "playwright", "vercel-deploy"}
 
 CATEGORY_MAP = {
     "dask": "data-and-visualization",
@@ -39,7 +39,6 @@ CATEGORY_MAP = {
     "api-data-fetcher": "research-tools",
     "citation-management": "research-tools",
     "datacommons-client": "research-tools",
-    "econ-lit-search": "research-tools",
     "exploratory-data-analysis": "research-tools",
     "financial-text-nlp": "research-tools",
     "lit-review-assistant": "research-tools",

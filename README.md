@@ -31,8 +31,8 @@ Skills teach *how* to work. MCP servers give the agent *live tools* (e.g. run SQ
 |------|--------|--------------|
 | **Econometrics & empirical data** | 6 | Stata, R, Python panels, pyfixest, WRDS |
 | **Data & visualization** | 11 | Econ figures, matplotlib/seaborn, polars, statsmodels, PyMC |
-| **Research & literature** | 14 | Lit search, EDGAR, FRED/OpenEcon, financial NLP, scraping |
-| **Writing & review** | 15 | econ-write, humanizer, slides, referee, LaTeX |
+| **Research & literature** | 13 | Lit search, EDGAR, FRED/OpenEcon, financial NLP, scraping |
+| **Writing & review** | 16 | econ-write, humanizer, slides, referee, LaTeX |
 
 **46 core skills** in the main catalog. Additional document, career, and specialty tools live in [`skills/optional/`](skills/optional/) if you need them.
 
@@ -74,7 +74,6 @@ MCP servers are **not** skills. They require installation, MCP registration, and
 | [pyfixest](skills/econometrics/pyfixest) | Fast high-dimensional FE regression in Python (fixest-like) |
 | [econ-write](skills/writing-and-review/econ-write) | Cochrane/McCloskey/Shapiro-style drafting for econ, finance, accounting |
 | [econ-humanizer-plus](skills/writing-and-review/econ-humanizer-plus) | Stronger rules for removing AI tells in economics and finance prose |
-| [econ-lit-search](skills/research-tools/econ-lit-search) | Search ~51k economics papers with full-text search and citation sorting |
 | [econ-visualization](skills/data-and-visualization/econ-visualization) | Publication-quality charts and graphs for economics papers |
 
 ## Browse by task
@@ -121,7 +120,6 @@ MCP servers are **not** skills. They require installation, MCP registration, and
 | [api-data-fetcher](skills/research-tools/api-data-fetcher) | Fetch economic data from FRED, World Bank, and other APIs |
 | [citation-management](skills/research-tools/citation-management) | Comprehensive citation management for academic research. Search Google Scholar and PubMed for paper… |
 | [datacommons-client](skills/research-tools/datacommons-client) | Work with Data Commons, a platform providing programmatic access to public statistical data from gl… |
-| [econ-lit-search](skills/research-tools/econ-lit-search) | Search a curated corpus of ~51k economics papers (NBER working papers, JEL-coded journals) with ful… |
 | [exploratory-data-analysis](skills/research-tools/exploratory-data-analysis) | Perform comprehensive exploratory data analysis on scientific data files across 200+ file formats. … |
 | [lit-review-assistant](skills/research-tools/lit-review-assistant) | Search, summarize, and synthesize economics literature |
 | [literature-review](skills/research-tools/literature-review) | Conduct comprehensive, systematic literature reviews using multiple academic databases (PubMed, arX… |

@@ -144,7 +144,7 @@ Skill ids are from the live catalog only. MCP names match `install/external-mcps
 
 | | |
 |--|--|
-| **Primary skills** | `research-ideation`, `hypothesis-generation`, `lit-review-assistant`, `econ-lit-search`, `citation-management` |
+| **Primary skills** | `research-ideation`, `hypothesis-generation`, `lit-review-assistant`, `citation-management` |
 | **Also useful** | `research-lookup`, `openalex-api`, `literature-review`, `scientific-critical-thinking` |
 | **MCP** | none — skill/scripts only (optional: OpenEcon Data later for “is there a macro series for X?”) |
 | **Verification gate** | Name the identifying variation and the unit of observation (firm–year, filing, event) in one sentence; if you cannot, do not open a data session yet. |
@@ -288,7 +288,7 @@ Skill ids are from the live catalog only. MCP names match `install/external-mcps
 | FRED / World Bank / IMF series | `api-data-fetcher` | **OpenEcon Data** or **FRED MCP** | **Either/both** — MCP to discover; skill for pinned reproducible scripts |
 | Stata clean / `reghdfe` / `esttab` | `stata-data-cleaning`, `stata-regression` | **Stata-MCP** | **Both** if agent drives Stata; **skill only** if you run `.do` yourself |
 | Panel FE in Python | `pyfixest`, `python-panel-data` | none | **Skill only** |
-| Lit search / BibTeX | `econ-lit-search`, `citation-management`, … | none | **Skill only** |
+| Lit search / BibTeX | `citation-management`, … | none | **Skill only** |
 | Figures / LaTeX tables | `econ-visualization`, `latex-tables` | none | **Skill only** |
 | Paper / slides / referee prep | `econ-write`, `econ-slides`, `econ-referee`, … | none | **Skill only** |
 | “What tool rung am I on?” | — | — | Chat for thinking; editor for edits; agent for pipelines; **agent + MCP** only when live licensed/public APIs are required |
@@ -472,7 +472,7 @@ Use this when building the page so UX resolves overlaps explicitly and gaps stay
 
 | Stage | Prefer as default | Present as alternatives / deeper |
 |-------|-------------------|----------------------------------|
-| Literature | `econ-lit-search` (econ corpus) | `openalex-api` (breadth), `lit-review-assistant` / `literature-review` (synthesis), `research-lookup` (current web) |
+| Literature | `openalex-api` (discovery) | `lit-review-assistant` / `literature-review` (synthesis), `research-lookup` (current web) |
 | Writing | Sequence: `econ-write` → `econ-writing-plus` (ID) → `econ-humanizer` (+plus) | `academic-paper-writer` as general scaffold |
 | Slides | `econ-slides` for paper→talk | `beamer-presentation` for ad-hoc decks |
 | Firm–year FE | Stata: `stata-regression`; Python: `pyfixest` | `python-panel-data` / `statsmodels` for simpler panels; `r-econometrics` if R-first |

@@ -15,7 +15,6 @@ SUMMARY_OVERRIDES: dict[str, str] = {
     "web-scrape": "Scrape websites, download journal PDFs, and extract tables using the right tool for each source.",
     "econ-humanizer-plus": "Stronger Cochrane-style rules for removing AI tells in economics and finance prose.",
     "econ-writing-plus": "Identification-strategy writing conventions, modern DiD guidance, and AEA submission standards.",
-    "econ-lit-search": "Search ~51k economics papers with full-text search, abstracts, and citation sorting.",
     "citation-management": "Find papers, validate metadata, and generate BibTeX for your bibliography.",
     "exploratory-data-analysis": "Profile scientific data files across 200+ formats before analysis.",
     "literature-review": "Systematic literature reviews across PubMed, arXiv, Semantic Scholar, and more.",
@@ -165,6 +164,9 @@ def git_added_date(skill_path: str) -> str | None:
 
 
 def stamp_added(skill: dict) -> bool:
+    """Preserve publication dates; use Git history only for missing dates."""
+    if skill.get("added"):
+        return False
     found = git_added_date(skill["path"])
     if not found or skill.get("added") == found:
         return False

@@ -5,7 +5,6 @@ const FEATURED_IDS = [
   "pyfixest",
   "econ-write",
   "econ-humanizer-plus",
-  "econ-lit-search",
   "econ-visualization",
 ];
 
