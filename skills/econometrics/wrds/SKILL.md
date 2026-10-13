@@ -131,7 +131,7 @@ Before EVERY query execution:
 |---------|--------|------------|
 | Compustat | `comp` | `company`, `funda`, `fundq`, `secd` |
 | ExecuComp | `comp_execucomp` | `anncomp` |
-| CRSP | `crsp` | `dsf`, `msf`, `stocknames`, `ccmxpf_linkhist` |
+| CRSP | `crsp` | `dsf`, `msf`, `stocknames`, `ccmxpf_lnkhist` |
 | CRSP v2 | `crsp` | `dsf_v2`, `msf_v2`, `stocknames_v2` |
 | Form 4 Insiders | `tr_insiders` | `table1`, `header`, `company` |
 | ISS Incentive Lab | `iss_incentive_lab` | `comppeer`, `sumcomp`, `participantfy` |

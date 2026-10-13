@@ -19,7 +19,7 @@
 | `crsp.msf` | Monthly stock file |
 | `crsp.dse` | Daily stock events |
 | `crsp.stocknames` | Security names/identifiers |
-| `crsp.ccmxpf_linkhist` | CRSP-Compustat link |
+| `crsp.ccmxpf_lnkhist` | CRSP-Compustat link |
 
 ### v2 (CIZ) Format
 | Table | Description |
@@ -88,7 +88,7 @@ sql = """
     SELECT a.gvkey, a.datadate, a.at, a.sale,
            b.lpermno as permno, c.mthret
     FROM comp.funda a
-    INNER JOIN crsp.ccmxpf_linkhist b
+    INNER JOIN crsp.ccmxpf_lnkhist b
         ON a.gvkey = b.gvkey
         AND b.linktype IN ('LU', 'LC')
         AND b.linkprim IN ('P', 'C')
